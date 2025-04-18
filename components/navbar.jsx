@@ -243,8 +243,8 @@ export default function Navbar() {
                 variant="primary" 
                 size="sm" 
                 className={cn(
-                  "rounded-full bg-primary hover:bg-primary/90 text-white font-medium text-xs sm:text-sm px-3 sm:px-5 h-8 sm:h-9",
-                  isActiveLink('/login') && "bg-primary/80"
+                  "rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 hover:text-white dark:hover:text-black font-medium text-xs sm:text-sm px-3 sm:px-5 h-8 sm:h-9",
+                  isActiveLink('/login') && "bg-black/80 dark:bg-white/80"
                 )}
               >
                 Login
