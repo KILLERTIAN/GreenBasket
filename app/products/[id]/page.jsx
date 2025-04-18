@@ -354,7 +354,7 @@ export default function ProductDetailPage({ params }) {
                           <Factory className="h-5 w-5 sm:h-6 sm:w-6 text-gray-500 mb-2" />
                           <h3 className="font-medium text-center text-sm sm:text-base">Ethical Factory</h3>
                           <p className="text-center text-xs text-muted-foreground mt-1">Made in certified ethical facilities</p>
-                        </div>
+                      </div>
                         
                         <div className="flex flex-col items-center justify-center p-3 border rounded-lg">
                           <Wind className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mb-2" />
@@ -374,7 +374,7 @@ export default function ProductDetailPage({ params }) {
                                 GreenBasket Product
                               </span>
                             </div>
-                            <div>
+                        <div>
                               <span className="text-xs font-medium inline-block text-gray-600">
                                 Conventional Product
                               </span>
@@ -390,7 +390,7 @@ export default function ProductDetailPage({ params }) {
                         </div>
                       </div>
                       
-                      <div>
+                        <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Sustainability Certifications</h3>
                         <div className="flex flex-wrap gap-2 sm:gap-3">
                           <Badge variant="outline" className="py-1 px-2">Global Organic Textile Standard</Badge>

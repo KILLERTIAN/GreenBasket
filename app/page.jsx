@@ -192,15 +192,15 @@ export default function HomePage() {
           <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 px-4 pb-0">
             <div className="flex flex-col justify-center mb-8 md:mb-0 z-10 p-10 md:p-20">
               <h1 className="text-3xl sm:text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                Shop Sustainably
-              </h1>
+              Shop Sustainably
+            </h1>
               <p className="mt-4 max-w-md text-base sm:text-lg text-white/90">
-                Discover eco-friendly products that help reduce your carbon footprint.
-                Every purchase makes a difference.
-              </p>
+              Discover eco-friendly products that help reduce your carbon footprint.
+              Every purchase makes a difference.
+            </p>
               <Button size="lg" className="mt-6 md:mt-8 w-fit" asChild>
-                <Link href="/products">Shop Now</Link>
-              </Button>
+              <Link href="/products">Shop Now</Link>
+            </Button>
             </div>
             <div className="flex items-end justify-center md:justify-end h-full relative">
               <div className="relative h-[85%] md:h-[95%] w-full max-w-[600px]">
@@ -342,7 +342,7 @@ export default function HomePage() {
             </p>
           </div>
           
-          <Tabs defaultValue="shop" className="mt-8">
+        <Tabs defaultValue="shop" className="mt-8">
             <div className="flex justify-center mb-8">
               <TabsList className="grid grid-cols-3 w-full max-w-lg">
                 <TabsTrigger value="shop" className="flex items-center gap-2">
@@ -357,10 +357,10 @@ export default function HomePage() {
                   <BarChart2 className="h-4 w-4" />
                   <span>Track</span>
                 </TabsTrigger>
-              </TabsList>
+          </TabsList>
             </div>
             
-            <TabsContent value="shop">
+          <TabsContent value="shop">
               <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6 text-center">
@@ -378,7 +378,7 @@ export default function HomePage() {
                   <CardContent className="p-6 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <ShoppingCart className="h-8 w-8 text-green-600 dark:text-green-400" />
-                    </div>
+                  </div>
                     <h3 className="text-xl font-semibold mb-3">2. Add to Cart</h3>
                     <p className="text-muted-foreground">
                       Select your items and see real-time calculation of your environmental impact. Our transparent approach shows the emissions you're saving compared to conventional products.
@@ -390,17 +390,17 @@ export default function HomePage() {
                   <CardContent className="p-6 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <CreditCard className="h-8 w-8 text-green-600 dark:text-green-400" />
-                    </div>
+                  </div>
                     <h3 className="text-xl font-semibold mb-3">3. Checkout</h3>
                     <p className="text-muted-foreground">
                       Complete your purchase with our secure payment process. Receive a detailed sustainability report with your order confirmation, showcasing your positive environmental impact.
                     </p>
-                  </CardContent>
-                </Card>
+              </CardContent>
+            </Card>
               </div>
-            </TabsContent>
+          </TabsContent>
             
-            <TabsContent value="impact">
+          <TabsContent value="impact">
               <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6 text-center">
@@ -418,7 +418,7 @@ export default function HomePage() {
                   <CardContent className="p-6 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Recycle className="h-8 w-8 text-green-600 dark:text-green-400" />
-                    </div>
+                  </div>
                     <h3 className="text-xl font-semibold mb-3">Resource Conservation</h3>
                     <p className="text-muted-foreground">
                       We prioritize recycled, upcycled, and responsibly sourced materials. Our partnerships with ethical suppliers ensure sustainable resource management throughout our supply chain.
@@ -430,17 +430,17 @@ export default function HomePage() {
                   <CardContent className="p-6 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Trash2 className="h-8 w-8 text-green-600 dark:text-green-400" />
-                    </div>
+                  </div>
                     <h3 className="text-xl font-semibold mb-3">Waste Reduction</h3>
                     <p className="text-muted-foreground">
                       Our circular approach diverts waste from landfills through innovative recycling and biodegradable packaging. We strive for zero-waste operations across our business.
                     </p>
-                  </CardContent>
-                </Card>
+              </CardContent>
+            </Card>
               </div>
-            </TabsContent>
+          </TabsContent>
             
-            <TabsContent value="track">
+          <TabsContent value="track">
               <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6 text-center">
@@ -458,7 +458,7 @@ export default function HomePage() {
                   <CardContent className="p-6 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Award className="h-8 w-8 text-green-600 dark:text-green-400" />
-                    </div>
+                  </div>
                     <h3 className="text-xl font-semibold mb-3">Achievements & Rewards</h3>
                     <p className="text-muted-foreground">
                       Earn badges, points, and exclusive rewards for your sustainable shopping habits. Unlock special offers and discounts as you reach new sustainability milestones.
@@ -470,16 +470,16 @@ export default function HomePage() {
                   <CardContent className="p-6 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
-                    </div>
+                  </div>
                     <h3 className="text-xl font-semibold mb-3">Community Impact</h3>
                     <p className="text-muted-foreground">
                       Join our community of eco-conscious shoppers making a collective difference. Compare your impact with others and participate in community challenges and initiatives.
                     </p>
-                  </CardContent>
-                </Card>
+              </CardContent>
+            </Card>
               </div>
-            </TabsContent>
-          </Tabs>
+          </TabsContent>
+        </Tabs>
           
           <div className="mt-12 text-center">
             <Button size="lg" className="bg-green-600 hover:bg-green-700" asChild>
