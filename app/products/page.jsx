@@ -80,18 +80,21 @@ export default function ProductsPage() {
       const category = product.category.toLowerCase();
       // Handle category mapping for URL parameters
       if (selectedCategory === 'home') {
-        return category === 'home goods';
+        return category === 'home';
       } else {
         return category === selectedCategory;
       }
     });
   } else {
-    // When no specific category is selected, only show stationery, personal-care, and accessories
+    // When no specific category is selected, show all main categories
     filtered = filtered.filter(product => {
       const category = product.category.toLowerCase();
       const isDisplayableCategory = category === 'stationery' || 
                                    category === 'personal-care' || 
-                                   category === 'accessories';
+                                   category === 'accessories' ||
+                                   category === 'clothing' ||
+                                   category === 'furniture' ||
+                                   category === 'home';
       return isDisplayableCategory;
     });
   }

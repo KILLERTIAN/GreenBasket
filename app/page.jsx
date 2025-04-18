@@ -223,14 +223,14 @@ export default function HomePage() {
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Shop by Category</h2>
         </div>
-        <div className="mt-8 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-8 grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {productCategories.map((category) => (
             <Link 
               href={category.href} 
               key={category.name}
-              className="group flex flex-col items-center"
+              className="group flex flex-col items-center p-3 rounded-lg hover:bg-accent/50 transition-colors"
             >
-              <div className="relative mb-3 h-40 w-40 overflow-hidden rounded-full border-2 border-primary/10 transition-all group-hover:border-primary/50">
+              <div className="relative mb-3 h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 overflow-hidden rounded-full border-2 border-primary/10 transition-all group-hover:border-primary">
                 <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/0 transition-colors" />
                 <img 
                   src={category.image} 
@@ -238,8 +238,8 @@ export default function HomePage() {
                   className="h-full w-full object-cover transition-transform group-hover:scale-110"
                 />
               </div>
-              <h3 className="text-lg font-medium group-hover:text-primary transition-colors">{category.name}</h3>
-              <p className="mt-1 text-xs text-center text-muted-foreground">{category.description}</p>
+              <h3 className="text-base sm:text-lg font-medium group-hover:text-primary transition-colors text-center">{category.name}</h3>
+              <p className="mt-1 text-xs text-center text-muted-foreground line-clamp-2">{category.description}</p>
             </Link>
           ))}
         </div>
