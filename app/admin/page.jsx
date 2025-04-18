@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Chart } from "@/components/ui/chart"
 import { Plus, Edit, Trash2 } from "lucide-react"
 import { ProtectedRoute } from "@/components/protected-route"
-import { ProductModal } from "@/components/product-modal"
+import ProductModal from "@/components/product-modal"
 import { toast } from "sonner"
 
 // Mock data - Replace with actual API calls
@@ -71,6 +71,7 @@ function AdminDashboard() {
   const handleSubmitProduct = async (data) => {
     try {
       // TODO: Implement create/update product API call
+      console.log("Product data:", data)
       toast.success(
         selectedProduct
           ? "Product updated successfully"
@@ -238,12 +239,14 @@ function AdminDashboard() {
         </TabsContent>
       </Tabs>
 
-      <ProductModal
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
-        product={selectedProduct}
-        onSubmit={handleSubmitProduct}
-      />
+      {isModalOpen && (
+        <ProductModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          initialData={selectedProduct}
+          onSubmit={handleSubmitProduct}
+        />
+      )}
     </div>
   )
 }

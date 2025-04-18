@@ -1,34 +1,32 @@
 "use client"
 
 import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { ProductForm } from "@/components/product-form"
+import ProductForm from "@/components/product-form"
 
-export function ProductModal({ open, onOpenChange, product, onSubmit }) {
-  const [isOpen, setIsOpen] = useState(open)
-
-  const handleOpenChange = (value) => {
-    setIsOpen(value)
-    onOpenChange?.(value)
+export default function ProductModal({ isOpen, onClose, initialData, onSubmit }) {
+  const [open, setOpen] = useState(isOpen || false)
+  
+  const handleClose = () => {
+    setOpen(false)
+    if (onClose) onClose()
   }
-
+  
   const handleSubmit = async (data) => {
     await onSubmit(data)
-    handleOpenChange(false)
+    handleClose()
   }
-
+  
   return (
-    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-3xl">
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {product ? "Edit Product" : "Add New Product"}
-          </DialogTitle>
+          <DialogTitle>{initialData ? "Edit Product" : "Add New Product"}</DialogTitle>
         </DialogHeader>
-        <ProductForm
-          product={product}
-          onSubmit={handleSubmit}
-          onCancel={() => handleOpenChange(false)}
+        <ProductForm 
+          initialData={initialData} 
+          onSubmit={handleSubmit} 
         />
       </DialogContent>
     </Dialog>
