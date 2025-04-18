@@ -49,16 +49,16 @@ const additionalProducts = [
   },
   {
     id: 103,
-    name: "Sustainable Watch",
+    name: "Sustainable Solar Power Bank",
     price: 2499,
     carbonFootprint: 0.4,
     images: [
-      "/images/products/Accessories/product 22/81eG1PLn6TL._SX522_.jpg",
-      "/images/products/Accessories/product 22/717yotBLXaL._SX522_.jpg",
-      "/images/products/Accessories/product 22/61DKsll9yDL._SX522_.jpg"
+      "/images/products/Accessories/Cable/81eG1PLn6TL._SX522_.jpg",
+      "/images/products/Accessories/Cable/717yotBLXaL._SX522_.jpg",
+      "/images/products/Accessories/Cable/61DKsll9yDL._SX522_.jpg"
     ],
     category: "accessories",
-    description: "Eco-friendly watch made from sustainable materials with recyclable components",
+    description: "High-capacity solar power bank with rapid charging technology, made from 90% recycled materials.",
     rating: 4.7,
     reviewCount: 32,
     inStock: true
@@ -88,8 +88,8 @@ const featuredProducts = [
   productsData.find(p => p.id === 3), // Recycled Glass Vase
   // Personal Care - Body Lotion with specific image
   additionalProducts[1], // Organic Body Lotion
-  // Accessories - Sustainable Watch with specific image 
-  additionalProducts[2], // Sustainable Watch
+  // Accessories - Sustainable Solar Power Bank with specific image 
+  additionalProducts[2], // Sustainable Solar Power Bank
   // Stationery - Correction Pen with specific image
   additionalProducts[0] // Eco-Friendly Correction Pen
 ];

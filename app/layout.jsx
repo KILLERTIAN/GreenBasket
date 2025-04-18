@@ -48,6 +48,7 @@ export default function RootLayout({ children }) {
                                   alt="Green Basket" 
                                   fill
                                   className="object-contain"
+                                  sizes="32px"
                                 />
                               </div>
                               <h3 className="text-lg font-medium">About GreenBasket</h3>
@@ -82,6 +83,7 @@ export default function RootLayout({ children }) {
                                 alt="Green Basket" 
                                 fill
                                 className="object-contain"
+                                sizes="20px"
                               />
                             </div>
                             <p className="text-center text-sm text-muted-foreground md:text-left">
