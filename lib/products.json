@@ -1,0 +1,1718 @@
+[
+  {
+    "id": 1,
+    "name": "Cable",
+    "price": 1683,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Accessories/Cable/617wXWZg2UL._SX522_.jpg",
+      "/images/products/Accessories/Cable/61DKsll9yDL._SX522_.jpg",
+      "/images/products/Accessories/Cable/717yotBLXaL._SX522_.jpg",
+      "/images/products/Accessories/Cable/81eG1PLn6TL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly cable crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed cable combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4,
+    "reviewCount": 22,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Sustainable Canon Dslr",
+    "price": 1788,
+    "carbonFootprint": 0.9,
+    "images": [
+      "/images/products/Accessories/canon DSLR/916GGqnsG+L._SX522_.jpg",
+      "/images/products/Accessories/canon DSLR/918ZpWWf+FL._SX522_.jpg",
+      "/images/products/Accessories/canon DSLR/91kAmoD9Q3L._SX522_.jpg",
+      "/images/products/Accessories/canon DSLR/91mjRsCxynL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly sustainable canon dslr crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed sustainable canon dslr combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.8,
+    "reviewCount": 41,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Organic Controller",
+    "price": 772,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Accessories/controller/51SaZEMbQIL._SX679_.jpg",
+      "/images/products/Accessories/controller/61fcqzwmkqL._SL1200_.jpg",
+      "/images/products/Accessories/controller/61y+3DJAsaL._SL1200_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient organic controller crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary organic controller sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.6,
+    "reviewCount": 89,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Sustainable Dslr",
+    "price": 789,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Accessories/DSLR/61+CNvMD8RL._SX522_.jpg",
+      "/images/products/Accessories/DSLR/61BojK+LQNL._SX522_.jpg",
+      "/images/products/Accessories/DSLR/61EYevuzeuL._SX522_.jpg",
+      "/images/products/Accessories/DSLR/71pP5veZxqL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly sustainable dslr crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed sustainable dslr combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4,
+    "reviewCount": 23,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Earphones",
+    "price": 1519,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Accessories/earphones/513ugd16C6L._SX522_.jpg",
+      "/images/products/Accessories/earphones/61MEsBeFVUL._SX522_.jpg",
+      "/images/products/Accessories/earphones/61sRbJncwbL._SX522_.jpg",
+      "/images/products/Accessories/earphones/61UgSQ9UB2L._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient earphones crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary earphones sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.4,
+    "reviewCount": 79,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Recycled Gaming Console",
+    "price": 1088,
+    "carbonFootprint": 0.8,
+    "images": [
+      "/images/products/Accessories/Gaming console/61MH3bWecxL._SX679_.jpg",
+      "/images/products/Accessories/Gaming console/61zsBElkHyL._SX679_.jpg",
+      "/images/products/Accessories/Gaming console/71CMe1-CAtL._SX679_.jpg",
+      "/images/products/Accessories/Gaming console/71yRGy9zRCL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient recycled gaming console crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary recycled gaming console sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.5,
+    "reviewCount": 24,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Eco-Friendly Gaming Headphones",
+    "price": 1546,
+    "carbonFootprint": 1,
+    "images": [
+      "/images/products/Accessories/Gaming Headphones/71+oIbmOzSL._SX679_.jpg",
+      "/images/products/Accessories/Gaming Headphones/7100W3RnkSL._SX679_.jpg",
+      "/images/products/Accessories/Gaming Headphones/71bfQ6-lC8L._SX679_.jpg",
+      "/images/products/Accessories/Gaming Headphones/71cHxWl3JKL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient eco-friendly gaming headphones crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary eco-friendly gaming headphones sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 5,
+    "reviewCount": 114,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Organic Headphones",
+    "price": 1950,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Accessories/Headphones/51rGmuPoI-L._SX522_.jpg",
+      "/images/products/Accessories/Headphones/61ZeqJtSMIL._SL1000_.jpg",
+      "/images/products/Accessories/Headphones/71DCdDO2BUL._SL1000_.jpg",
+      "/images/products/Accessories/Headphones/71gXoBZ-7AL._SX522_.jpg",
+      "/images/products/Accessories/Headphones/71RCDpisteL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient organic headphones crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary organic headphones sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.6,
+    "reviewCount": 39,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Organic Hp Laptop",
+    "price": 1054,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Accessories/HP Laptop/9441785184286.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient organic hp laptop crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary organic hp laptop sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.8,
+    "reviewCount": 77,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Ipad",
+    "price": 2445,
+    "carbonFootprint": 0.9,
+    "images": [
+      "/images/products/Accessories/ipad/41RYYKtgRoL._SX679_.jpg",
+      "/images/products/Accessories/ipad/61+o-07vsML._SX679_.jpg",
+      "/images/products/Accessories/ipad/61e8H9ycsuL._SX679_.jpg",
+      "/images/products/Accessories/ipad/71IC9VRe6+L._SX679_.jpg",
+      "/images/products/Accessories/ipad/71sKSDi3hyL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly ipad crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed ipad combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.4,
+    "reviewCount": 112,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Organic Mic",
+    "price": 2345,
+    "carbonFootprint": 1,
+    "images": [
+      "/images/products/Accessories/Mic/71dNPNr73PL._SX679_.jpg",
+      "/images/products/Accessories/Mic/71f3ogt1jaL._SX679_.jpg",
+      "/images/products/Accessories/Mic/71yosZR7zoL._SX679_.jpg",
+      "/images/products/Accessories/Mic/71yvPnKiziL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient organic mic crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary organic mic sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.4,
+    "reviewCount": 55,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Organic Microphone",
+    "price": 2235,
+    "carbonFootprint": 0.9,
+    "images": [
+      "/images/products/Accessories/Microphone/51chfLJ5pyL._SX522_.jpg",
+      "/images/products/Accessories/Microphone/51hm7P3c1cL._SX522_.jpg",
+      "/images/products/Accessories/Microphone/51L4oc2PDjL._SX522_.jpg",
+      "/images/products/Accessories/Microphone/61iuZ9LVNFL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient organic microphone crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary organic microphone sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 5,
+    "reviewCount": 31,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Recycled Microwave",
+    "price": 2048,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Accessories/microwave/71ACzSIUvGL._SL1500_.jpg",
+      "/images/products/Accessories/microwave/71FRSrwlQ8L._SL1500_.jpg",
+      "/images/products/Accessories/microwave/71qrP-qD8PL._SL1500_.jpg",
+      "/images/products/Accessories/microwave/816OQBCJngL._SL1500_.jpg",
+      "/images/products/Accessories/microwave/81TWsvlKkwL._SL1500_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient recycled microwave crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary recycled microwave sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.2,
+    "reviewCount": 52,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Recycled Mouse",
+    "price": 2128,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Accessories/Mouse/51uCYJqDrML._SX679_.jpg",
+      "/images/products/Accessories/Mouse/61Gwo4KObML._SX679_.jpg",
+      "/images/products/Accessories/Mouse/71QuUu74mGL._SX679_.jpg",
+      "/images/products/Accessories/Mouse/71XKSKQt75L._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient recycled mouse crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary recycled mouse sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.9,
+    "reviewCount": 25,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Organic Nikon Dslr",
+    "price": 2108,
+    "carbonFootprint": 0.8,
+    "images": [
+      "/images/products/Accessories/Nikon DSLR/719AkIfZGPL._SX522_.jpg",
+      "/images/products/Accessories/Nikon DSLR/71hE3usimHL._SX522_.jpg",
+      "/images/products/Accessories/Nikon DSLR/81-hvd2dj5L._SX522_.jpg",
+      "/images/products/Accessories/Nikon DSLR/81aPiinYbFL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly organic nikon dslr crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed organic nikon dslr combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.9,
+    "reviewCount": 79,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Sustainable Oven",
+    "price": 545,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Accessories/Oven/71AgCcjtjvL._SL1500_.jpg",
+      "/images/products/Accessories/Oven/71JFFNoticL._SL1500_.jpg",
+      "/images/products/Accessories/Oven/71uGl3BjeVL._SL1500_.jpg",
+      "/images/products/Accessories/Oven/81fi2zM5+EL._SL1500_.jpg",
+      "/images/products/Accessories/Oven/81x5jghM++L._SL1500_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly sustainable oven crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed sustainable oven combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.1,
+    "reviewCount": 23,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Printer",
+    "price": 1084,
+    "carbonFootprint": 0.9,
+    "images": [
+      "/images/products/Accessories/Printer/317ChWwBYdL.jpg",
+      "/images/products/Accessories/Printer/31vQimL8NOL.jpg",
+      "/images/products/Accessories/Printer/31ZPAqXj1qL.jpg",
+      "/images/products/Accessories/Printer/514Z574sBBL._SX679_ (1).jpg",
+      "/images/products/Accessories/Printer/514Z574sBBL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly printer crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed printer combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.3,
+    "reviewCount": 59,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Recycled Tab",
+    "price": 1006,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Accessories/Tab/717ha30Nb1L._SX522_.jpg",
+      "/images/products/Accessories/Tab/71DutXb4XUL._SX522_.jpg",
+      "/images/products/Accessories/Tab/71eZ+XJ7sML._SX522_.jpg",
+      "/images/products/Accessories/Tab/81OeFZAXqBL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient recycled tab crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary recycled tab sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.6,
+    "reviewCount": 90,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Organic Tablet",
+    "price": 1229,
+    "carbonFootprint": 1,
+    "images": [
+      "/images/products/Accessories/Tablet/61a-HHMKFnL._SX522_.jpg",
+      "/images/products/Accessories/Tablet/61iqrjUuKyL._SL1500_.jpg",
+      "/images/products/Accessories/Tablet/717nVgCp8eL._SX522_.jpg",
+      "/images/products/Accessories/Tablet/71EjeoAjcNL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient organic tablet crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary organic tablet sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.7,
+    "reviewCount": 107,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Recycled Washing Machine",
+    "price": 763,
+    "carbonFootprint": 0.8,
+    "images": [
+      "/images/products/Accessories/Washing Machine/61f+5DHCIIL._SL1500_.jpg",
+      "/images/products/Accessories/Washing Machine/61R8uRItqcL._SL1500_.jpg",
+      "/images/products/Accessories/Washing Machine/718iwmy7JRL._SL1500_.jpg",
+      "/images/products/Accessories/Washing Machine/71a8akl5+LL._SL1500_.jpg",
+      "/images/products/Accessories/Washing Machine/71KHyN9VCTL._SL1500_.jpg",
+      "/images/products/Accessories/Washing Machine/71TExrhAScL._SL1500_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Energy-efficient recycled washing machine crafted with sustainable materials and cutting-edge green technology.",
+    "details": "This revolutionary recycled washing machine sets a new standard for eco-friendly electronics. The exterior is constructed from recycled plastics and bio-based polymers, while internal components utilize conflict-free minerals and metals. Advanced energy management systems reduce power consumption by up to 40% compared to conventional models. The modular design enables easy repairs and component upgrades, extending the product lifecycle and reducing electronic waste. Each unit is manufactured in facilities powered by renewable energy, further reducing its carbon footprint.",
+    "rating": 4.8,
+    "reviewCount": 23,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with 70% recycled and renewable materials",
+      "Energy-efficient design (40% less power consumption)",
+      "Modular construction for easy repair and upgrading",
+      "Plastic-free, recyclable packaging",
+      "Carbon-neutral manufacturing and shipping"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Webcam",
+    "price": 2440,
+    "carbonFootprint": 0.8,
+    "images": [
+      "/images/products/Accessories/Webcam/71EDCM1hsWL._SX679_.jpg",
+      "/images/products/Accessories/Webcam/71qnZFqFM9L._SX679_.jpg",
+      "/images/products/Accessories/Webcam/71S8Qf6XFML._SL1500_.jpg",
+      "/images/products/Accessories/Webcam/71ZTo7ee9aL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly webcam crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed webcam combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.8,
+    "reviewCount": 46,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Eco-Friendly Webcam2",
+    "price": 1676,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Accessories/webcam2/51IpsJmhInL._SX679_.jpg",
+      "/images/products/Accessories/webcam2/610rFOe7cRL._SX679_.jpg",
+      "/images/products/Accessories/webcam2/618o56hzprL._SL1500_.jpg",
+      "/images/products/Accessories/webcam2/61rQR5iN7iL._SL1500_.jpg",
+      "/images/products/Accessories/webcam2/61YkVM+YKiL._SX679_.jpg",
+      "/images/products/Accessories/webcam2/71J+jgfBEoL._SX679_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly eco-friendly webcam2 crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed eco-friendly webcam2 combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.5,
+    "reviewCount": 50,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Sustainable Window Ac",
+    "price": 1552,
+    "carbonFootprint": 0.8,
+    "images": [
+      "/images/products/Accessories/Window AC/619xE8va0oL._SL1080_.jpg",
+      "/images/products/Accessories/Window AC/61D+qyfmTyL._SL1080_.jpg",
+      "/images/products/Accessories/Window AC/61F0vo4r-0L._SL1080_.jpg",
+      "/images/products/Accessories/Window AC/61gEcvCLMNL._SL1500_.jpg",
+      "/images/products/Accessories/Window AC/61IICDGLdVL._SL1080_.jpg",
+      "/images/products/Accessories/Window AC/61LHTtZ1dGL._SL1080_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly sustainable window ac crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed sustainable window ac combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.9,
+    "reviewCount": 102,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Bamboo Wireless Mouse",
+    "price": 1757,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Accessories/Wireless Mouse/41l+-Nr4BBL._SX522_.jpg",
+      "/images/products/Accessories/Wireless Mouse/518lkM3EOEL._SX522_.jpg",
+      "/images/products/Accessories/Wireless Mouse/51Gzffz+QlL._SX522_.jpg",
+      "/images/products/Accessories/Wireless Mouse/51KC99mX3FL._SX522_.jpg",
+      "/images/products/Accessories/Wireless Mouse/71dJRwU3U+L._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "Premium eco-friendly bamboo wireless mouse crafted from sustainable materials, reducing environmental impact without compromising performance.",
+    "details": "This thoughtfully designed bamboo wireless mouse combines sustainability with cutting-edge functionality. Made from recycled and bio-based materials, it significantly reduces carbon emissions during manufacturing. Each unit is built for durability and longevity, extending its lifecycle and minimizing waste. The packaging is 100% recyclable and plastic-free, reflecting our commitment to a circular economy.",
+    "rating": 4.2,
+    "reviewCount": 39,
+    "inStock": true,
+    "deliveryTime": "2-4 days",
+    "features": [
+      "Made with recycled and sustainable materials",
+      "Carbon-neutral manufacturing process",
+      "Plastic-free, biodegradable packaging",
+      "Extended lifespan design",
+      "Energy-efficient operation"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Bamboo Formal Shirts",
+    "price": 1906,
+    "carbonFootprint": 1.5,
+    "images": [
+      "/images/products/Clothing/clothing men/formal shirts/formalshirt1.jpg",
+      "/images/products/Clothing/clothing men/formal shirts/formalshirt2.jpg",
+      "/images/products/Clothing/clothing men/formal shirts/formalshirt3.jpg",
+      "/images/products/Clothing/clothing men/formal shirts/formalshirt4.jpg",
+      "/images/products/Clothing/clothing men/formal shirts/formalshirt5.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium bamboo formal shirts made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This bamboo formal shirts represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.5,
+    "reviewCount": 188,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Jeans",
+    "price": 4507,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Clothing/clothing men/jeans/jeans1.jpg",
+      "/images/products/Clothing/clothing men/jeans/jeans2.jpg",
+      "/images/products/Clothing/clothing men/jeans/jeans3.jpg",
+      "/images/products/Clothing/clothing men/jeans/jeans4.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium jeans made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This jeans represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 5,
+    "reviewCount": 60,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Eco-Friendly Sports",
+    "price": 2173,
+    "carbonFootprint": 0.6,
+    "images": [
+      "/images/products/Clothing/clothing men/sports/sport1.jpg",
+      "/images/products/Clothing/clothing men/sports/sport2.jpg",
+      "/images/products/Clothing/clothing men/sports/sport3.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium eco-friendly sports made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This eco-friendly sports represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.6,
+    "reviewCount": 59,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Tees",
+    "price": 3846,
+    "carbonFootprint": 0.8,
+    "images": [
+      "/images/products/Clothing/clothing men/tees/tees1.jpg",
+      "/images/products/Clothing/clothing men/tees/tees2.jpg",
+      "/images/products/Clothing/clothing men/tees/tees3.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium tees made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This tees represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.7,
+    "reviewCount": 178,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Tees 2",
+    "price": 1726,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Clothing/clothing men/tees 2/71kvN7jMuDL._SX569_.jpg",
+      "/images/products/Clothing/clothing men/tees 2/81T76fZaNjL._SX569_.jpg",
+      "/images/products/Clothing/clothing men/tees 2/91c6sxqygrL._SX569_.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium tees 2 made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This tees 2 represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.8,
+    "reviewCount": 166,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Dresses",
+    "price": 3395,
+    "carbonFootprint": 0.6,
+    "images": [
+      "/images/products/Clothing/clothing women/dresses/dress1.jpg",
+      "/images/products/Clothing/clothing women/dresses/dress2.jpg",
+      "/images/products/Clothing/clothing women/dresses/dress3.jpg",
+      "/images/products/Clothing/clothing women/dresses/dress4.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium dresses made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This dresses represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.7,
+    "reviewCount": 183,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Recycled Jeans",
+    "price": 3278,
+    "carbonFootprint": 1.4,
+    "images": [
+      "/images/products/Clothing/clothing women/jeans/61+aqavNg0L._SY879_.jpg",
+      "/images/products/Clothing/clothing women/jeans/61NZiRXj-eL._SY741_.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium recycled jeans made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This recycled jeans represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.7,
+    "reviewCount": 144,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Eco-Friendly Kurta",
+    "price": 3369,
+    "carbonFootprint": 1.6,
+    "images": [
+      "/images/products/Clothing/clothing women/kurta/71ge2Ny3gPL._SX569_.jpg",
+      "/images/products/Clothing/clothing women/kurta/8157PGC4WRL._SX569_.jpg",
+      "/images/products/Clothing/clothing women/kurta/81jWhUvpF3L._SX679_.jpg",
+      "/images/products/Clothing/clothing women/kurta/81uRIzBlevL._SX569_.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium eco-friendly kurta made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This eco-friendly kurta represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.8,
+    "reviewCount": 128,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Recycled Kurta 2",
+    "price": 4151,
+    "carbonFootprint": 0.9,
+    "images": [
+      "/images/products/Clothing/clothing women/kurta 2/51--s0sN82L._SY741_.jpg",
+      "/images/products/Clothing/clothing women/kurta 2/51JoEdHdXNL._SY879_.jpg",
+      "/images/products/Clothing/clothing women/kurta 2/61HO4qwSu1L._SY741_.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium recycled kurta 2 made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This recycled kurta 2 represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.1,
+    "reviewCount": 101,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Tees",
+    "price": 4139,
+    "carbonFootprint": 2,
+    "images": [
+      "/images/products/Clothing/clothing women/tees/41bkoqL4lfL._SX679_.jpg",
+      "/images/products/Clothing/clothing women/tees/51O8tXB38ML._SX679_.jpg",
+      "/images/products/Clothing/clothing women/tees/51yYkjuKHAL._SX679_.jpg",
+      "/images/products/Clothing/clothing women/tees/610FYGZxHtL._SY879_.jpg",
+      "/images/products/Clothing/clothing women/tees/61nibH6E4AL._SX679_.jpg",
+      "/images/products/Clothing/clothing women/tees/61R7VKOf8dL._SX569_.jpg",
+      "/images/products/Clothing/clothing women/tees/61W7EBtKuPL._SX569_.jpg"
+    ],
+    "category": "clothing",
+    "description": "Premium tees made from organic and recycled fabrics, combining style with sustainability.",
+    "details": "This tees represents the future of sustainable fashion. Crafted from GOTS-certified organic cotton and recycled materials, it uses 90% less water than conventional alternatives. The production process employs renewable energy and zero-waste techniques, while natural, non-toxic dyes preserve water quality. Each garment is designed for longevity, reducing the need for frequent replacements and minimizing fashion's environmental footprint.",
+    "rating": 4.4,
+    "reviewCount": 116,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "GOTS-certified organic cotton",
+      "Water-saving manufacturing (90% reduction)",
+      "Natural, non-toxic dyes",
+      "Fair labor certified production",
+      "Carbon-neutral shipping"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Chair",
+    "price": 12841,
+    "carbonFootprint": 2.5,
+    "images": [
+      "/images/products/Furniture/chair/chair1.jpg",
+      "/images/products/Furniture/chair/chair2.jpg", 
+      "/images/products/Furniture/chair/chair3.jpg",
+      "/images/products/Furniture/chair/chair4.jpg",
+      "/images/products/Furniture/chair/chair5.jpg",
+      "/images/products/Furniture/chair/chair6.jpg",
+      "/images/products/Furniture/chair/chair8.jpg",
+      "/images/products/Furniture/chair/chair9.jpg"
+    ],
+    "category": "furniture",
+    "description": "Elegant chair handcrafted from reclaimed wood and sustainable materials, combining timeless design with environmental responsibility.",
+    "details": "This beautiful chair represents the perfect balance of sustainability and craftsmanship. Made from 100% reclaimed wood sourced from old buildings and FSC-certified sustainable forestry, each piece prevents deforestation and diverts materials from landfills. Hand-finished with natural, VOC-free oils that are safe for your home and the environment. The timeless design ensures this piece will remain stylish for generations, reducing the need for replacement and further minimizing environmental impact.",
+    "rating": 4.9,
+    "reviewCount": 91,
+    "inStock": true,
+    "deliveryTime": "7-10 days",
+    "features": [
+      "100% reclaimed or FSC-certified wood",
+      "Natural, VOC-free finishes",
+      "Handcrafted by skilled artisans",
+      "Carbon-neutral manufacturing",
+      "Modular design for easy repair"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Coffee Table",
+    "price": 5988,
+    "carbonFootprint": 2.4,
+    "images": [
+      "/images/products/Furniture/coffee table/51WG3F07YeL._SX679_.jpg",
+      "/images/products/Furniture/coffee table/61dpIAiqBIL._SX679_.jpg",
+      "/images/products/Furniture/coffee table/61y230e8hoL._SX679_.jpg",
+      "/images/products/Furniture/coffee table/61Y8mDb3hSL._SX679_.jpg",
+      "/images/products/Furniture/coffee table/81u914Fy-+L._SX679_.jpg"
+    ],
+    "category": "furniture",
+    "description": "Elegant coffee table handcrafted from reclaimed wood and sustainable materials, combining timeless design with environmental responsibility.",
+    "details": "This beautiful coffee table represents the perfect balance of sustainability and craftsmanship. Made from 100% reclaimed wood sourced from old buildings and FSC-certified sustainable forestry, each piece prevents deforestation and diverts materials from landfills. Hand-finished with natural, VOC-free oils that are safe for your home and the environment. The timeless design ensures this piece will remain stylish for generations, reducing the need for replacement and further minimizing environmental impact.",
+    "rating": 4.2,
+    "reviewCount": 21,
+    "inStock": true,
+    "deliveryTime": "7-10 days",
+    "features": [
+      "100% reclaimed or FSC-certified wood",
+      "Natural, VOC-free finishes",
+      "Handcrafted by skilled artisans",
+      "Carbon-neutral manufacturing",
+      "Modular design for easy repair"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Sustainable Dinning Set",
+    "price": 18368,
+    "carbonFootprint": 1.2,
+    "images": [
+      "/images/products/Furniture/dinning set/318sEbpRPqL._SS100_.jpg",
+      "/images/products/Furniture/dinning set/61py4MHFJGL._SX679_.jpg",
+      "/images/products/Furniture/dinning set/71Co3nhoAML._SX679_.jpg",
+      "/images/products/Furniture/dinning set/71m1d-qUPTL._SX679_ (1).jpg",
+      "/images/products/Furniture/dinning set/71m1d-qUPTL._SX679_.jpg",
+      "/images/products/Furniture/dinning set/71w432jOq9L._SX679_.jpg",
+      "/images/products/Furniture/dinning set/81nQBN0OF8L._SX679_.jpg"
+    ],
+    "category": "furniture",
+    "description": "Elegant sustainable dinning set handcrafted from reclaimed wood and sustainable materials, combining timeless design with environmental responsibility.",
+    "details": "This beautiful sustainable dinning set represents the perfect balance of sustainability and craftsmanship. Made from 100% reclaimed wood sourced from old buildings and FSC-certified sustainable forestry, each piece prevents deforestation and diverts materials from landfills. Hand-finished with natural, VOC-free oils that are safe for your home and the environment. The timeless design ensures this piece will remain stylish for generations, reducing the need for replacement and further minimizing environmental impact.",
+    "rating": 4.6,
+    "reviewCount": 27,
+    "inStock": true,
+    "deliveryTime": "7-10 days",
+    "features": [
+      "100% reclaimed or FSC-certified wood",
+      "Natural, VOC-free finishes",
+      "Handcrafted by skilled artisans",
+      "Carbon-neutral manufacturing",
+      "Modular design for easy repair"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Bamboo Organizer",
+    "price": 6101,
+    "carbonFootprint": 2.2,
+    "images": [
+      "/images/products/Furniture/organizer/61PgAd-csRL._SX679_.jpg",
+      "/images/products/Furniture/organizer/61yht34sAXL._SX679_.jpg",
+      "/images/products/Furniture/organizer/81iUo9ZXmvL._SX679_.jpg",
+      "/images/products/Furniture/organizer/81p2GUV9n9L._SX679_.jpg"
+    ],
+    "category": "furniture",
+    "description": "Elegant bamboo organizer handcrafted from reclaimed wood and sustainable materials, combining timeless design with environmental responsibility.",
+    "details": "This beautiful bamboo organizer represents the perfect balance of sustainability and craftsmanship. Made from 100% reclaimed wood sourced from old buildings and FSC-certified sustainable forestry, each piece prevents deforestation and diverts materials from landfills. Hand-finished with natural, VOC-free oils that are safe for your home and the environment. The timeless design ensures this piece will remain stylish for generations, reducing the need for replacement and further minimizing environmental impact.",
+    "rating": 4.5,
+    "reviewCount": 64,
+    "inStock": true,
+    "deliveryTime": "7-10 days",
+    "features": [
+      "100% reclaimed or FSC-certified wood",
+      "Natural, VOC-free finishes",
+      "Handcrafted by skilled artisans",
+      "Carbon-neutral manufacturing",
+      "Modular design for easy repair"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Study Table",
+    "price": 8340,
+    "carbonFootprint": 2.1,
+    "images": [
+      "/images/products/Furniture/study table/61fffHR04VL._SX679_.jpg",
+      "/images/products/Furniture/study table/61HSiSbErKL._SX679_.jpg",
+      "/images/products/Furniture/study table/61nuPESjkcL._SX679_.jpg",
+      "/images/products/Furniture/study table/61Xzutt65hL._SX679_.jpg",
+      "/images/products/Furniture/study table/71dC7yAsWdL._SX679_.jpg",
+      "/images/products/Furniture/study table/71tng4yKb-L._SX679_.jpg",
+      "/images/products/Furniture/study table/811I1cdRZdL._SX679_.jpg",
+      "/images/products/Furniture/study table/814yEGGo7XL._SX679_.jpg",
+      "/images/products/Furniture/study table/81GBoZTQ9dL._SX679_.jpg"
+    ],
+    "category": "furniture",
+    "description": "Elegant study table handcrafted from reclaimed wood and sustainable materials, combining timeless design with environmental responsibility.",
+    "details": "This beautiful study table represents the perfect balance of sustainability and craftsmanship. Made from 100% reclaimed wood sourced from old buildings and FSC-certified sustainable forestry, each piece prevents deforestation and diverts materials from landfills. Hand-finished with natural, VOC-free oils that are safe for your home and the environment. The timeless design ensures this piece will remain stylish for generations, reducing the need for replacement and further minimizing environmental impact.",
+    "rating": 4.5,
+    "reviewCount": 25,
+    "inStock": true,
+    "deliveryTime": "7-10 days",
+    "features": [
+      "100% reclaimed or FSC-certified wood",
+      "Natural, VOC-free finishes",
+      "Handcrafted by skilled artisans",
+      "Carbon-neutral manufacturing",
+      "Modular design for easy repair"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Recycled Air Freshner",
+    "price": 1999,
+    "carbonFootprint": 0.6,
+    "images": [
+      "/images/products/Home goods/air freshner/61Cn1cXF7nL._SX679_.jpg",
+      "/images/products/Home goods/air freshner/71Jhc5kprmL._SX679_.jpg",
+      "/images/products/Home goods/air freshner/71O4ka6+rQL._SX679_.jpg",
+      "/images/products/Home goods/air freshner/71V2+qZ3laL._SX679_.jpg"
+    ],
+    "category": "home",
+    "description": "Smart recycled air freshner that combines energy efficiency with sustainable materials for eco-conscious homes.",
+    "details": "This state-of-the-art recycled air freshner represents the pinnacle of sustainable home technology. Its intelligent power management system reduces energy consumption by up to 60% compared to conventional models. Constructed primarily from recycled and renewable materials, it minimizes resource depletion while maintaining premium quality. The advanced sleep mode consumes near-zero standby power, while smart sensors optimize operation based on usage patterns. Designed for longevity with easily replaceable components, this product dramatically reduces electronic waste while enhancing your home environment.",
+    "rating": 4.8,
+    "reviewCount": 49,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Intelligent power management (60% energy reduction)",
+      "Constructed from 85% recycled materials",
+      "Near-zero standby power consumption",
+      "Smart sensors for usage optimization",
+      "10-year lifespan design with replaceable components"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Glass Vase",
+    "price": 2802,
+    "carbonFootprint": 1.4,
+    "images": [
+      "/images/products/Home goods/glass vase/vase1.jpg",
+      "/images/products/Home goods/glass vase/vase2.jpg",
+      "/images/products/Home goods/glass vase/vase3.jpg",
+      "/images/products/Home goods/glass vase/vase4.jpg"
+    ],
+    "category": "home",
+    "description": "Premium glass vase crafted from eco-friendly materials, designed to enhance your home sustainably.",
+    "details": "This innovative glass vase combines aesthetic appeal with environmental responsibility. Created from recycled and renewable materials, it significantly reduces resource consumption compared to conventional alternatives. The production process prioritizes water conservation and minimizes carbon emissions. Built to last with replaceable components, this product extends its lifecycle and reduces waste. Every detail, from materials to packaging, reflects our commitment to sustainable living.",
+    "rating": 4.7,
+    "reviewCount": 91,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Made from recycled and renewable materials",
+      "Water and energy-efficient production",
+      "Zero-waste packaging",
+      "Replaceable parts for extended life",
+      "Non-toxic materials safe for home use"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Sustainable Lamp",
+    "price": 1724,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Home goods/lamp/81pxqS96JSL._SX522_.jpg",
+      "/images/products/Home goods/lamp/91jTIQTxHTL._SX522_.jpg",
+      "/images/products/Home goods/lamp/91ldgdZDnuL._SX522_.jpg",
+      "/images/products/Home goods/lamp/91RqTkXP8eL._SX522_.jpg"
+    ],
+    "category": "home",
+    "description": "Smart sustainable lamp that combines energy efficiency with sustainable materials for eco-conscious homes.",
+    "details": "This state-of-the-art sustainable lamp represents the pinnacle of sustainable home technology. Its intelligent power management system reduces energy consumption by up to 60% compared to conventional models. Constructed primarily from recycled and renewable materials, it minimizes resource depletion while maintaining premium quality. The advanced sleep mode consumes near-zero standby power, while smart sensors optimize operation based on usage patterns. Designed for longevity with easily replaceable components, this product dramatically reduces electronic waste while enhancing your home environment.",
+    "rating": 4.2,
+    "reviewCount": 37,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Intelligent power management (60% energy reduction)",
+      "Constructed from 85% recycled materials",
+      "Near-zero standby power consumption",
+      "Smart sensors for usage optimization",
+      "10-year lifespan design with replaceable components"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Laundary",
+    "price": 3152,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Home goods/laundary/51kVgpLMX2L._SX679_.jpg",
+      "/images/products/Home goods/laundary/61Ps68t5SPL._SX679_.jpg",
+      "/images/products/Home goods/laundary/715WaZ8N1uL._SX679_.jpg",
+      "/images/products/Home goods/laundary/71A5FJQkxQL._SX679_.jpg",
+      "/images/products/Home goods/laundary/71TqKtPG5ML._SX679_.jpg"
+    ],
+    "category": "home",
+    "description": "Premium laundary crafted from eco-friendly materials, designed to enhance your home sustainably.",
+    "details": "This innovative laundary combines aesthetic appeal with environmental responsibility. Created from recycled and renewable materials, it significantly reduces resource consumption compared to conventional alternatives. The production process prioritizes water conservation and minimizes carbon emissions. Built to last with replaceable components, this product extends its lifecycle and reduces waste. Every detail, from materials to packaging, reflects our commitment to sustainable living.",
+    "rating": 4.3,
+    "reviewCount": 104,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Made from recycled and renewable materials",
+      "Water and energy-efficient production",
+      "Zero-waste packaging",
+      "Replaceable parts for extended life",
+      "Non-toxic materials safe for home use"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Multipurpose Organizer Shelf",
+    "price": 2147,
+    "carbonFootprint": 0.7,
+    "images": [
+      "/images/products/Home goods/Multipurpose Organizer Shelf/71QU3czKLzL._SX679_.jpg",
+      "/images/products/Home goods/Multipurpose Organizer Shelf/812czyZV69L._SX679_.jpg",
+      "/images/products/Home goods/Multipurpose Organizer Shelf/913lTd1z6xL._SX679_.jpg",
+      "/images/products/Home goods/Multipurpose Organizer Shelf/91lmGXW5xpL._SX679_.jpg",
+      "/images/products/Home goods/Multipurpose Organizer Shelf/91QIMryVcEL._SX679_.jpg"
+    ],
+    "category": "home",
+    "description": "Premium multipurpose organizer shelf crafted from eco-friendly materials, designed to enhance your home sustainably.",
+    "details": "This innovative multipurpose organizer shelf combines aesthetic appeal with environmental responsibility. Created from recycled and renewable materials, it significantly reduces resource consumption compared to conventional alternatives. The production process prioritizes water conservation and minimizes carbon emissions. Built to last with replaceable components, this product extends its lifecycle and reduces waste. Every detail, from materials to packaging, reflects our commitment to sustainable living.",
+    "rating": 4.8,
+    "reviewCount": 83,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Made from recycled and renewable materials",
+      "Water and energy-efficient production",
+      "Zero-waste packaging",
+      "Replaceable parts for extended life",
+      "Non-toxic materials safe for home use"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Toilet Cleaning Brush",
+    "price": 1475,
+    "carbonFootprint": 0.6,
+    "images": [
+      "/images/products/Home goods/Toilet Cleaning Brush/41NI-V8MB6L.jpg",
+      "/images/products/Home goods/Toilet Cleaning Brush/41R+ZpokpoL.jpg",
+      "/images/products/Home goods/Toilet Cleaning Brush/51lYNI9yZwL.jpg",
+      "/images/products/Home goods/Toilet Cleaning Brush/51p-Y1PzaKL.jpg",
+      "/images/products/Home goods/Toilet Cleaning Brush/61PfQJSNmaL._SX679_.jpg"
+    ],
+    "category": "home",
+    "description": "Premium toilet cleaning brush crafted from eco-friendly materials, designed to enhance your home sustainably.",
+    "details": "This innovative toilet cleaning brush combines aesthetic appeal with environmental responsibility. Created from recycled and renewable materials, it significantly reduces resource consumption compared to conventional alternatives. The production process prioritizes water conservation and minimizes carbon emissions. Built to last with replaceable components, this product extends its lifecycle and reduces waste. Every detail, from materials to packaging, reflects our commitment to sustainable living.",
+    "rating": 4.8,
+    "reviewCount": 45,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Made from recycled and renewable materials",
+      "Water and energy-efficient production",
+      "Zero-waste packaging",
+      "Replaceable parts for extended life",
+      "Non-toxic materials safe for home use"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Recycled Wet And Dry Vacuum Cleaner",
+    "price": 3750,
+    "carbonFootprint": 1,
+    "images": [
+      "/images/products/Home goods/Wet and Dry Vacuum Cleaner/61Irbw0392L._SX679_.jpg",
+      "/images/products/Home goods/Wet and Dry Vacuum Cleaner/71ByyBe7WXL._SX679_.jpg",
+      "/images/products/Home goods/Wet and Dry Vacuum Cleaner/71JNuQ7Tq+L._SX679_.jpg",
+      "/images/products/Home goods/Wet and Dry Vacuum Cleaner/71S82XQNUOL._SX679_.jpg",
+      "/images/products/Home goods/Wet and Dry Vacuum Cleaner/71Z6asLcUCL._SX679_.jpg"
+    ],
+    "category": "home",
+    "description": "Smart recycled wet and dry vacuum cleaner that combines energy efficiency with sustainable materials for eco-conscious homes.",
+    "details": "This state-of-the-art recycled wet and dry vacuum cleaner represents the pinnacle of sustainable home technology. Its intelligent power management system reduces energy consumption by up to 60% compared to conventional models. Constructed primarily from recycled and renewable materials, it minimizes resource depletion while maintaining premium quality. The advanced sleep mode consumes near-zero standby power, while smart sensors optimize operation based on usage patterns. Designed for longevity with easily replaceable components, this product dramatically reduces electronic waste while enhancing your home environment.",
+    "rating": 4.8,
+    "reviewCount": 63,
+    "inStock": true,
+    "deliveryTime": "2-5 days",
+    "features": [
+      "Intelligent power management (60% energy reduction)",
+      "Constructed from 85% recycled materials",
+      "Near-zero standby power consumption",
+      "Smart sensors for usage optimization",
+      "10-year lifespan design with replaceable components"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Sustainable Body Lotion",
+    "price": 721,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Personal Care/Body Lotion/612ctEDavpL._SX522_.jpg",
+      "/images/products/Personal Care/Body Lotion/713CMzfgStL._SL1500_.jpg",
+      "/images/products/Personal Care/Body Lotion/71LL5gkaPEL._SX522_.jpg",
+      "/images/products/Personal Care/Body Lotion/71YZH0LZzWL._SX522_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium sustainable body lotion formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional sustainable body lotion is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.9,
+    "reviewCount": 104,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Deo",
+    "price": 562,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Personal Care/deo/41zHdcSgDPL._SX522_.jpg",
+      "/images/products/Personal Care/deo/51J9uiLXXXL._SX522_.jpg",
+      "/images/products/Personal Care/deo/61hw-vf+6dL._SX522_.jpg",
+      "/images/products/Personal Care/deo/61MeC-JnQeL._SX522_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium deo formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional deo is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.4,
+    "reviewCount": 119,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Organic Liquid Handwash",
+    "price": 732,
+    "carbonFootprint": 0.6,
+    "images": [
+      "/images/products/Personal Care/Liquid Handwash/51WCgO0DS8L._SX522_.jpg",
+      "/images/products/Personal Care/Liquid Handwash/61Ge9qWBXmL._SX522_.jpg",
+      "/images/products/Personal Care/Liquid Handwash/61hUZzxG2dL._SX522_.jpg",
+      "/images/products/Personal Care/Liquid Handwash/61xTRWf3vUL._SX522_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium organic liquid handwash formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional organic liquid handwash is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.5,
+    "reviewCount": 49,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Manicure Set",
+    "price": 256,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Personal Care/Manicure Set/710YIk1S87L._SX522_.jpg",
+      "/images/products/Personal Care/Manicure Set/81ekThEP3aL._SX522_.jpg",
+      "/images/products/Personal Care/Manicure Set/81FI6JQ6AbL._SX522_.jpg",
+      "/images/products/Personal Care/Manicure Set/81M6h+FH8ZL._SX522_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium manicure set formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional manicure set is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.3,
+    "reviewCount": 60,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Organic Oil",
+    "price": 822,
+    "carbonFootprint": 0.3,
+    "images": [
+      "/images/products/Personal Care/oil/31gQn7KK+XL._SX342_SY445_.jpg",
+      "/images/products/Personal Care/oil/6186CxxoZbL._SX522_.jpg",
+      "/images/products/Personal Care/oil/61Moxi86txL._SX522_.jpg",
+      "/images/products/Personal Care/oil/91A0Y9QRg-S._SX522_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium organic oil formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional organic oil is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.8,
+    "reviewCount": 61,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Portable Bidet Travel",
+    "price": 619,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Personal Care/Portable Bidet Travel/71IAfgzOKZL._SX522_.jpg",
+      "/images/products/Personal Care/Portable Bidet Travel/81-34UwoVWL._SX522_.jpg",
+      "/images/products/Personal Care/Portable Bidet Travel/81E9RQeuGAL._SX522_.jpg",
+      "/images/products/Personal Care/Portable Bidet Travel/81rUbJEfU6L._SX522_.jpg",
+      "/images/products/Personal Care/Portable Bidet Travel/81Uee3L1MwL._SX522_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium portable bidet travel formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional portable bidet travel is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.4,
+    "reviewCount": 105,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Razor",
+    "price": 294,
+    "carbonFootprint": 0.5,
+    "images": [
+      "/images/products/Personal Care/Razor/71gbeqYxdBL._SX679_.jpg",
+      "/images/products/Personal Care/Razor/71KpXjkh61L._SX679_.jpg",
+      "/images/products/Personal Care/Razor/71w9+xyeo0L._SX679_.jpg",
+      "/images/products/Personal Care/Razor/819cowaF2vL._SX679_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Premium razor formulated with organic and plant-based ingredients for effective, eco-conscious personal care.",
+    "details": "This exceptional razor is formulated with carefully selected organic and plant-based ingredients that work in harmony with your body and the planet. Free from harmful chemicals, parabens, and synthetic fragrances, it provides effective care without environmental compromise. The packaging is made from post-consumer recycled materials and is fully biodegradable or refillable. Our production practices prioritize water conservation and renewable energy, while supporting fair trade partnerships with ingredient suppliers.",
+    "rating": 4.7,
+    "reviewCount": 42,
+    "inStock": true,
+    "deliveryTime": "1-3 days",
+    "features": [
+      "100% natural and organic ingredients",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "Biodegradable or recyclable packaging",
+      "Cruelty-free and vegan certified",
+      "Fair trade sourcing"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Bamboo Aeroflow Coloured",
+    "price": 158,
+    "carbonFootprint": 0.1,
+    "images": [
+      "/images/products/Stationery/AeroFlow Coloured/713dB2IscXL._SX522_.jpg",
+      "/images/products/Stationery/AeroFlow Coloured/71P6yyP2dBL._SX522_.jpg",
+      "/images/products/Stationery/AeroFlow Coloured/71swzwihDHL._SX522_.jpg",
+      "/images/products/Stationery/AeroFlow Coloured/81+u7bmnGGL._SX522_.jpg",
+      "/images/products/Stationery/AeroFlow Coloured/8170kN2-DuL._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium bamboo aeroflow coloured crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative bamboo aeroflow coloured reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.8,
+    "reviewCount": 93,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Sustainable Art Markers",
+    "price": 536,
+    "carbonFootprint": 0.1,
+    "images": [
+      "/images/products/Stationery/Art Markers/6197IkLhxFL._SX679_.jpg",
+      "/images/products/Stationery/Art Markers/61fHdGFZlAL._SX679_.jpg",
+      "/images/products/Stationery/Art Markers/61Thb-plp2L._SX679_.jpg",
+      "/images/products/Stationery/Art Markers/71TBr4kVRiL._SX679_.jpg",
+      "/images/products/Stationery/Art Markers/81ccKG-V3TL._SX679_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium sustainable art markers crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative sustainable art markers reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.4,
+    "reviewCount": 73,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Ball Pen Set",
+    "price": 376,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Stationery/Ball Pen SET/41eZUWpoPQL._SX522_.jpg",
+      "/images/products/Stationery/Ball Pen SET/51A2cc8TrwL._SX522_.jpg",
+      "/images/products/Stationery/Ball Pen SET/61-pQUllD2L._SX522_.jpg",
+      "/images/products/Stationery/Ball Pen SET/61h-U4efbCL._SX522_.jpg",
+      "/images/products/Stationery/Ball Pen SET/61lAGnO3TJL._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium ball pen set crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative ball pen set reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.3,
+    "reviewCount": 21,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Memo Pad",
+    "price": 105,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Stationery/Memo Pad/51I1nBnQBOL._SX522_.jpg",
+      "/images/products/Stationery/Memo Pad/61AiSVLGb9L._SX522_.jpg",
+      "/images/products/Stationery/Memo Pad/61BRgPzXFXL._SX522_.jpg",
+      "/images/products/Stationery/Memo Pad/61UmE2EbmqL._SX522_.jpg",
+      "/images/products/Stationery/Memo Pad/61XvBnPxgIL._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium memo pad crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative memo pad reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4,
+    "reviewCount": 83,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Sustainable Metal Desk Organizer",
+    "price": 355,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Stationery/Metal Desk Organizer/61A705mFesL._SX679_.jpg",
+      "/images/products/Stationery/Metal Desk Organizer/61K5IQWtE5L._SX679_.jpg",
+      "/images/products/Stationery/Metal Desk Organizer/71-j43PSK6L._SX679_.jpg",
+      "/images/products/Stationery/Metal Desk Organizer/71GLhlf34GL._SX679_.jpg",
+      "/images/products/Stationery/Metal Desk Organizer/71l+LieBoFL._SX679_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium sustainable metal desk organizer crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative sustainable metal desk organizer reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.4,
+    "reviewCount": 90,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Eco-Friendly Non Dust Eraser",
+    "price": 492,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Stationery/Non Dust Eraser/31SQ42kbCRL.jpg",
+      "/images/products/Stationery/Non Dust Eraser/515RnK5bcyL._SX522_.jpg",
+      "/images/products/Stationery/Non Dust Eraser/71sMpFZwp4L._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium eco-friendly non dust eraser crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative eco-friendly non dust eraser reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.4,
+    "reviewCount": 77,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Organic Pencils",
+    "price": 223,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Stationery/Pencils/61AEh+CqmjL._SX522_.jpg",
+      "/images/products/Stationery/Pencils/61Np8MTuO2L._SX522_.jpg",
+      "/images/products/Stationery/Pencils/61uLUH4ocYL._SY741_.jpg",
+      "/images/products/Stationery/Pencils/71qlmvcRyAL._SX522_.jpg",
+      "/images/products/Stationery/Pencils/71W+4eCb3NL._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium organic pencils crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative organic pencils reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.9,
+    "reviewCount": 47,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Stationery Combo",
+    "price": 512,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Stationery/Stationery Combo/41CO7U4ZqxL._SX522_.jpg",
+      "/images/products/Stationery/Stationery Combo/61cIkwvERPL._SX522_.jpg",
+      "/images/products/Stationery/Stationery Combo/71EC7-M4z2L._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium stationery combo crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative stationery combo reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.9,
+    "reviewCount": 54,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Sustainable White Strip Error",
+    "price": 353,
+    "carbonFootprint": 0.3,
+    "images": [
+      "/images/products/Stationery/White Strip Error/7121MutBSCL._SX522_.jpg",
+      "/images/products/Stationery/White Strip Error/714+-YEhZYL._SX522_.jpg",
+      "/images/products/Stationery/White Strip Error/71AIg4DrzJL._SX522_.jpg",
+      "/images/products/Stationery/White Strip Error/71OnasWKODL._SX522_.jpg",
+      "/images/products/Stationery/White Strip Error/81IpU9C6WcL._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Premium sustainable white strip error crafted from recycled and tree-free materials, combining functionality with environmental responsibility.",
+    "details": "This innovative sustainable white strip error reimagines conventional stationery with sustainability at its core. Made from recycled paper or tree-free alternatives like bamboo, sugarcane, or agricultural waste, it significantly reduces deforestation impact. The production process uses 60% less water and energy than traditional methods, while plant-based inks eliminate toxic chemicals. Designed for optimal functionality without environmental compromise, this product demonstrates how everyday items can contribute to a more sustainable future.",
+    "rating": 4.1,
+    "reviewCount": 74,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Made from 100% recycled or tree-free materials",
+      "Plant-based, non-toxic inks and adhesives",
+      "Plastic-free packaging",
+      "Carbon-neutral manufacturing",
+      "Designed for biodegradability"
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Eco-Friendly Correction Pen",
+    "price": 399,
+    "carbonFootprint": 0.2,
+    "images": [
+      "/images/products/Stationery/White Strip Error/714+-YEhZYL._SX522_.jpg",
+      "/images/products/Stationery/White Strip Error/71AIg4DrzJL._SX522_.jpg",
+      "/images/products/Stationery/White Strip Error/7121MutBSCL._SX522_.jpg"
+    ],
+    "category": "stationery",
+    "description": "Revolutionary correction pen made from 85% recycled materials with non-toxic, water-based formula.",
+    "details": "Our innovative correction pen reimagines everyday stationery with sustainability at its core. The barrel is crafted from post-consumer recycled plastics, while the precision tip ensures accurate application with minimal waste. The correction fluid uses a water-based, non-toxic formula free from harmful solvents and chemicals. It dries three times faster than conventional products while providing superior coverage. The manufacturing process uses 70% less energy than standard methods, and each pen diverts plastic equivalent to five water bottles from landfills.",
+    "rating": 4.6,
+    "reviewCount": 45,
+    "inStock": true,
+    "deliveryTime": "1-2 days",
+    "features": [
+      "Barrel made from 85% post-consumer recycled plastic",
+      "Non-toxic, solvent-free, water-based formula",
+      "Quick-drying technology (3x faster than standard)",
+      "Precision application tip reduces waste",
+      "70% less energy used in manufacturing"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Organic Body Lotion",
+    "price": 799,
+    "carbonFootprint": 0.3,
+    "images": [
+      "/images/products/Personal Care/Body Lotion/612ctEDavpL._SX522_.jpg",
+      "/images/products/Personal Care/Body Lotion/71LL5gkaPEL._SX522_.jpg",
+      "/images/products/Personal Care/Body Lotion/713CMzfgStL._SL1500_.jpg"
+    ],
+    "category": "personal-care",
+    "description": "Luxurious body lotion formulated with 100% organic, plant-based ingredients for effective hydration and skin nourishment.",
+    "details": "This premium body lotion represents the pinnacle of sustainable skincare. Formulated with 100% certified organic ingredients including cold-pressed oils, plant extracts, and botanical butters, it delivers exceptional hydration while supporting skin health. The advanced formula penetrates deeply without leaving residue, providing 24-hour moisture retention with clinical efficacy. Free from parabens, sulfates, silicones, and synthetic fragrances, it's gentle enough for sensitive skin. The bottle is made from 100% post-consumer recycled materials and is fully recyclable, while the manufacturing process uses renewable energy and water-conservation techniques.",
+    "rating": 4.8,
+    "reviewCount": 67,
+    "inStock": true,
+    "deliveryTime": "2-3 days",
+    "features": [
+      "100% certified organic, plant-based ingredients",
+      "Clinically proven 24-hour hydration",
+      "Free from parabens, sulfates, and synthetic fragrances",
+      "100% recycled and recyclable packaging",
+      "Fair trade certified ingredient sourcing"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Sustainable Solar Power Bank",
+    "price": 2499,
+    "carbonFootprint": 0.4,
+    "images": [
+      "/images/products/Accessories/product 22/81eG1PLn6TL._SX522_.jpg",
+      "/images/products/Accessories/product 22/717yotBLXaL._SX522_.jpg",
+      "/images/products/Accessories/product 22/61DKsll9yDL._SX522_.jpg"
+    ],
+    "category": "accessories",
+    "description": "High-capacity solar power bank with rapid charging technology, made from 90% recycled materials.",
+    "details": "This revolutionary solar power bank represents the future of sustainable portable energy. The exterior is constructed from ocean-bound recycled plastics, while the high-efficiency monocrystalline solar panel delivers clean energy even in low-light conditions. The advanced lithium-polymer battery provides 20,000mAh capacity with smart power management that optimizes charging based on connected devices. Quick-charge technology delivers power 3x faster than conventional banks, while the modular design allows for battery replacement, extending the product's life cycle. Each unit saves approximately 20kg of CO₂ emissions compared to standard power banks over its lifetime.",
+    "rating": 4.7,
+    "reviewCount": 32,
+    "inStock": true,
+    "deliveryTime": "3-5 days",
+    "features": [
+      "High-efficiency solar charging in various light conditions",
+      "20,000mAh capacity with smart power management",
+      "Housing made from 90% ocean-bound recycled plastics",
+      "Quick-charge technology (3x faster than standard)",
+      "Replaceable battery system for extended product life"
+    ]
+  }
+] 
