@@ -128,7 +128,7 @@ const productCategories = [
   {
     name: "Stationery",
     description: "Eco-friendly writing supplies and office essentials",
-    image: "/images/products/Stationery/White Strip Error/714+-YEhZYL._SX522_.jpg",
+    image: "/images/products/Stationery/Art Markers/61fHdGFZlAL._SX679_.jpg",
     href: "/products?category=stationery"
   }
 ]
