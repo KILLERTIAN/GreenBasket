@@ -109,7 +109,7 @@ export default function Navbar() {
         
         <div className="flex items-center gap-1 sm:gap-2">
           {/* Only render ModeToggle when mounted to avoid hydration issues */}
-          {mounted && <div className="hidden xs:block"><ModeToggle /></div>}
+          {mounted && <div className="block"><ModeToggle /></div>}
           
           <Button
             variant="ghost"

@@ -281,7 +281,7 @@ export default function ProductsPage() {
                   displayMode === 'list' 
                     ? 'h-56 sm:h-auto sm:w-1/3 sm:min-h-[180px]' 
                     : 'aspect-square'
-                } bg-muted w-full overflow-hidden`}>
+                } bg-gray-50 w-full overflow-hidden`}>
                   <Image
                     src={product.images[0]}
                     alt={product.name}
@@ -290,7 +290,7 @@ export default function ProductsPage() {
                       ? "(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw" 
                       : "(max-width: 640px) 100vw, 33vw"
                     }
-                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    className="object-contain transition-transform duration-300 hover:scale-105"
                   />
                   
                   <Badge variant="secondary" className="absolute top-2 right-2 font-normal">

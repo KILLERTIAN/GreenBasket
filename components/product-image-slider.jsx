@@ -63,7 +63,7 @@ export function ProductImageSlider({
   return (
     <div className="relative space-y-2">
       <div 
-        className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-lg"
+        className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-lg bg-gray-50"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onMouseMove={handleMouseMove}
@@ -86,7 +86,7 @@ export function ProductImageSlider({
                   alt={`${productName} image ${index + 1}`}
                   fill
                   sizes="(max-width: 640px) 80vw, (max-width: 768px) 60vw, 40vw"
-                  className="object-cover transition-transform duration-300"
+                  className="object-contain transition-transform duration-300"
                   priority={index === 0}
                   quality={85}
                   loading={index === 0 ? "eager" : "lazy"}
@@ -167,7 +167,7 @@ export function ProductImageSlider({
                 alt={`${productName} thumbnail ${index + 1}`}
                 fill
                 sizes="64px"
-                className="object-cover"
+                className="object-contain"
               />
             </button>
           ))}
@@ -180,13 +180,13 @@ export function ProductImageSlider({
           className="fixed top-1/4 right-8 h-[60vh] w-[40vw] max-w-xl rounded-lg shadow-2xl border border-border overflow-hidden hidden lg:block z-[9999]"
           style={{ pointerEvents: "none" }}
         >
-          <div className="relative h-full w-full bg-background">
+          <div className="relative h-full w-full bg-gray-50">
             <Image
               src={images[currentIndex]}
               alt={`${productName} enlarged view`}
               fill
               sizes="40vw"
-              className="object-cover"
+              className="object-contain"
               style={{
                 transform: `scale(${zoomFactor})`,
                 transformOrigin: `${mousePosition.x * 100}% ${mousePosition.y * 100}%`,

@@ -57,7 +57,7 @@ export function ThemeProvider({ children, ...props }) {
     <ThemeContext.Provider value={{ themes: THEMES }}>
       <NextThemesProvider 
         attribute="class" 
-        defaultTheme="system"
+        defaultTheme="light"
         enableSystem
         themes={["light", "dark", "green"]}
         {...props}
