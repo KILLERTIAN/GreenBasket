@@ -169,6 +169,26 @@ const formatPrice = (price) => {
 
 export default function ProfilePage() {
   const { user } = useAuth()
+  
+  // Determine join date - if not available, use current month/year
+  const joinDate = user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', { 
+    month: 'short', 
+    year: 'numeric' 
+  }) : new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+  
+  // Use real user data or fallback to mock data for missing fields
+  const userDisplayData = {
+    name: user?.name || userData.name,
+    email: user?.email || userData.email,
+    image: user?.image || userData.avatar,
+    carbonFootprint: userData.carbonFootprint, // Keep mock data for these fields
+    rank: userData.rank,
+    totalOrders: userData.totalOrders,
+    totalSaved: userData.totalSaved,
+    level: userData.level,
+    nextLevelProgress: userData.nextLevelProgress,
+    memberSince: joinDate
+  }
 
   return (
     <div className="space-y-8 pb-10">
@@ -177,19 +197,20 @@ export default function ProfilePage() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <Avatar className="h-20 w-20 border-4 border-background">
-              <AvatarImage src={userData.avatar} alt={userData.name} />
-              <AvatarFallback className="text-xl">{userData.name[0]}</AvatarFallback>
+              <AvatarImage src={userDisplayData.image} alt={userDisplayData.name} />
+              <AvatarFallback className="text-xl">{userDisplayData.name ? userDisplayData.name[0].toUpperCase() : 'U'}</AvatarFallback>
             </Avatar>
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">{userData.name}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold">{userDisplayData.name}</h1>
+              <p className="text-muted-foreground">{userDisplayData.email}</p>
               <div className="flex items-center gap-3 mt-1 text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <CalendarDays className="h-4 w-4" />
-                  Member since {userData.memberSince}
+                  Member since {userDisplayData.memberSince}
                 </span>
                 <span className="flex items-center gap-1">
                   <ShoppingBag className="h-4 w-4" />
-                  {userData.totalOrders} orders
+                  {userDisplayData.totalOrders} orders
                 </span>
               </div>
             </div>
@@ -215,7 +236,7 @@ export default function ProfilePage() {
           <CardHeader className="pb-2 pt-5">
             <CardDescription>Current Level</CardDescription>
             <CardTitle className="text-2xl flex items-center">
-              Level {userData.level}
+              Level {userDisplayData.level}
               <BadgeCheck className="ml-2 h-5 w-5 text-primary" />
             </CardTitle>
           </CardHeader>
@@ -223,9 +244,9 @@ export default function ProfilePage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span>Next Level</span>
-                <span className="font-medium">{userData.nextLevelProgress}%</span>
+                <span className="font-medium">{userDisplayData.nextLevelProgress}%</span>
               </div>
-              <Progress value={userData.nextLevelProgress} />
+              <Progress value={userDisplayData.nextLevelProgress} />
             </div>
           </CardContent>
         </Card>
@@ -234,7 +255,7 @@ export default function ProfilePage() {
           <CardHeader className="pb-2 pt-5">
             <CardDescription>Carbon Footprint</CardDescription>
             <CardTitle className="text-2xl flex items-center">
-              {userData.carbonFootprint} kg CO₂
+              {userDisplayData.carbonFootprint} kg CO₂
               <Leaf className="ml-2 h-5 w-5 text-green-500" />
             </CardTitle>
           </CardHeader>
@@ -250,7 +271,7 @@ export default function ProfilePage() {
           <CardHeader className="pb-2 pt-5">
             <CardDescription>Community Rank</CardDescription>
             <CardTitle className="text-2xl flex items-center">
-              #{userData.rank}
+              #{userDisplayData.rank}
               <Star className="ml-2 h-5 w-5 text-yellow-500" />
             </CardTitle>
           </CardHeader>
@@ -266,7 +287,7 @@ export default function ProfilePage() {
           <CardHeader className="pb-2 pt-5">
             <CardDescription>Total Carbon Saved</CardDescription>
             <CardTitle className="text-2xl flex items-center">
-              {userData.totalSaved} kg CO₂
+              {userDisplayData.totalSaved} kg CO₂
               <Globe className="ml-2 h-5 w-5 text-blue-500" />
             </CardTitle>
           </CardHeader>

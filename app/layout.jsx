@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
               <WishlistProvider>
                 <CartProvider>
                   <Navbar />
-                  <main className={isAuthPage ? '' : 'px-4 py-6 md:px-6 lg:px-8'}>
+                  <main className={`flex-grow ${isAuthPage ? '' : 'px-4 py-6 md:px-6 lg:px-8'}`}>
                     {children}
                   </main>
                   <Footer />

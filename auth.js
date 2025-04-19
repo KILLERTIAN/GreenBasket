@@ -13,6 +13,16 @@ const validateCredentials = async (credentials) => {
     };
   }
   
+  // Admin user credentials
+  if (credentials.email === "admin@gmail.com" && credentials.password === "admin123") {
+    return {
+      id: "admin-1",
+      name: "Admin User",
+      email: "admin@gmail.com",
+      role: "admin"
+    };
+  }
+  
   // For demo purposes, allow any credentials during development
   if (process.env.NODE_ENV === "development") {
     return {

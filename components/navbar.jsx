@@ -213,13 +213,27 @@ export default function Navbar() {
                   )}
                   aria-label="User menu"
                 >
-                  <span className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-sm sm:text-base rounded-full">
-                    {user.name ? user.name.charAt(0).toUpperCase() : <User className="h-4 w-4 sm:h-5 sm:w-5" />}
-                  </span>
+                  {user.image ? (
+                    <Image
+                      src={user.image}
+                      alt={user.name || "User"}
+                      fill
+                      className="object-cover"
+                      priority
+                      sizes="(max-width: 640px) 32px, 36px"
+                    />
+                  ) : (
+                    <span className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-sm sm:text-base rounded-full">
+                      {user.name ? user.name.charAt(0).toUpperCase() : <User className="h-4 w-4 sm:h-5 sm:w-5" />}
+                    </span>
+                  )}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 mt-1" sideOffset={8}>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel className="flex flex-col gap-1">
+                  <span>{user.name}</span>
+                  <span className="text-xs text-muted-foreground font-normal">{user.email}</span>
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild>

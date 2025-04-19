@@ -9,8 +9,10 @@ import Link from "next/link"
 import { formatPrice } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
+import { format } from "date-fns"
+import { toast } from "sonner"
 
-// Sample order data - in a real app, this would come from an API
+// This will be removed once we fetch real orders from the API
 const sampleOrders = [
   {
     id: "ORD-2023-0001",
@@ -48,22 +50,74 @@ const sampleOrders = [
   }
 ]
 
+// Function to convert the orders from the API to a consistent format
+function processApiOrders(apiOrders = []) {
+  return apiOrders.map(order => {
+    // Get a default status based on the order date
+    // In a real application, this would be stored in the database
+    const orderDate = new Date(order.date);
+    const daysSinceOrder = Math.floor((new Date() - orderDate) / (1000 * 60 * 60 * 24));
+    
+    let status = "processing";
+    if (daysSinceOrder >= 7) {
+      status = "delivered";
+    } else if (daysSinceOrder >= 2) {
+      status = "shipped";
+    }
+    
+    return {
+      ...order,
+      status: order.status || status,
+      deliveryDate: order.estimatedDelivery || null,
+      trackingNumber: order.trackingNumber || null
+    };
+  });
+}
+
 export default function OrdersPage() {
   const { user } = useAuth()
   const [orders, setOrders] = useState([])
   const [activeTab, setActiveTab] = useState("all")
   const [isLoading, setIsLoading] = useState(true)
 
-  // Simulate fetching order data
+  // Fetch real orders from the API
   useEffect(() => {
     const fetchOrders = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setOrders(sampleOrders)
-      setIsLoading(false)
-    }
+      setIsLoading(true);
+      try {
+        // Fetch real orders from the API (if available)
+        // For now, we'll use the memory cache which stores orders by session ID
+        const response = await fetch('/api/user/orders');
+        
+        if (response.ok) {
+          const data = await response.json();
+          const processedOrders = processApiOrders(data.orders);
+          
+          // Mix with sample orders for demo purposes
+          // In a real app, you would only use the real orders
+          setOrders(processedOrders.length > 0 ? processedOrders : sampleOrders);
+        } else {
+          // Fallback to sample data if API fails
+          console.warn('Failed to fetch orders, using sample data');
+          setOrders(sampleOrders);
+          
+          // Only show error if it's not a 404 (no orders yet)
+          if (response.status !== 404) {
+            toast.error('Failed to load your orders. Please try again later.');
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+        setOrders(sampleOrders);
+        toast.error('Failed to load your orders. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
     
-    fetchOrders()
-  }, [])
+    // For demo purposes, fetch orders regardless of authentication state
+    fetchOrders();
+  }, []);
 
   const filteredOrders = activeTab === "all" 
     ? orders 
@@ -118,7 +172,7 @@ export default function OrdersPage() {
 
   return (
     <div className="py-8">
-      <h1 className="text-3xl font-bold mb-8">Your Orders</h1>
+      <h1 className="text-3xl font-bold mb-8 py-4">Your Orders</h1>
 
       <Tabs defaultValue="all" className="mb-8" onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-flex">
@@ -132,7 +186,7 @@ export default function OrdersPage() {
       {isLoading ? (
         <div className="space-y-4">
           {[1, 2, 3].map(i => (
-            <Card key={i} className="overflow-hidden">
+            <Card key={i} className="overflow-hidden shadow-md bg-white">
               <CardHeader className="p-4 pb-0">
                 <div className="h-6 bg-muted rounded animate-pulse w-1/4 mb-2" />
                 <div className="h-4 bg-muted rounded animate-pulse w-1/3" />
@@ -170,13 +224,15 @@ export default function OrdersPage() {
       ) : (
         <div className="space-y-6">
           {filteredOrders.map(order => (
-            <Card key={order.id} className="overflow-hidden">
+            <Card key={order.id} className="overflow-hidden shadow-md bg-white">
               <CardHeader className="pb-2 pt-5">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-lg">{order.id}</CardTitle>
+                    <Link href={`/orders/${order.id}`} className="hover:underline">
+                      <CardTitle className="text-lg">{order.id}</CardTitle>
+                    </Link>
                     <CardDescription>
-                      Ordered on {new Date(order.date).toLocaleDateString()}
+                      Ordered on {format(new Date(order.date), "PPP")}
                     </CardDescription>
                   </div>
                   {getStatusBadge(order.status)}
@@ -186,13 +242,13 @@ export default function OrdersPage() {
                 <div className="space-y-4">
                   {/* Order items */}
                   <div className="space-y-2">
-                    {order.items.map(item => (
-                      <div key={`${order.id}-${item.id}`} className="flex justify-between py-2 border-b">
+                    {order.items.map((item, index) => (
+                      <div key={`${order.id}-${index}`} className="flex justify-between py-2 border-b">
                         <div>
                           <p className="font-medium">{item.name}</p>
                           <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
                         </div>
-                        <p className="font-medium">{formatPrice(item.price * item.quantity)}</p>
+                        <p className="font-medium">{formatPrice(item.price)}</p>
                       </div>
                     ))}
                   </div>
@@ -206,9 +262,9 @@ export default function OrdersPage() {
                           {order.status === "delivered" && "Delivered on "}
                           {order.status === "shipped" && "Estimated delivery "}
                           {order.status === "processing" && "Processing since "}
-                          {order.status === "delivered" || order.status === "shipped" 
-                            ? new Date(order.deliveryDate).toLocaleDateString() 
-                            : new Date(order.date).toLocaleDateString()}
+                          {order.deliveryDate
+                            ? format(new Date(order.deliveryDate), "PPP")
+                            : format(new Date(order.date), "PPP")}
                         </p>
                         {order.trackingNumber && (
                           <p className="text-xs text-muted-foreground">
@@ -222,9 +278,11 @@ export default function OrdersPage() {
                         <p className="text-sm text-muted-foreground">Total</p>
                         <p className="font-bold text-lg">{formatPrice(order.total)}</p>
                       </div>
-                      <Button variant="outline" size="sm">
-                        Details
-                      </Button>
+                      <Link href={`/orders/${order.id}`}>
+                        <Button variant="outline" size="sm">
+                          Details
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
