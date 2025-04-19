@@ -16,7 +16,6 @@ import { toast } from "sonner"
 import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
 import { SearchBar } from "@/components/SearchBar"
 import { ProductSkeletonGrid, ProductSkeletonList } from "@/components/ProductSkeleton"
-import productsData from "@/lib/products.json"
 
 export default function ProductsPage() {
   const searchParams = useSearchParams()
@@ -49,68 +48,59 @@ export default function ProductsPage() {
     setCurrentPage(1)
   }, [searchQuery, selectedCategory, sortBy])
   
-  // Fetch product data and apply filters client-side
+  // Fetch all available categories from the API
   useEffect(() => {
-    const fetchAndFilterProducts = async () => {
-      setLoading(true)
+    async function fetchCategories() {
       try {
-        // Filter products based on search and category
-        let filteredProducts = [...productsData];
+        const response = await fetch('/api/categories');
+        const data = await response.json();
         
-        // Apply category filter if not 'all'
+        if (data.categories) {
+          // Add 'all' option and ensure proper formatting
+          const formattedCategories = ['all', ...data.categories.map(c => c.toLowerCase())];
+          setCategories(formattedCategories);
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        toast.error('Failed to load product categories');
+      }
+    }
+    
+    fetchCategories();
+  }, []);
+  
+  // Fetch product data from the database
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        // Build query parameters
+        const params = new URLSearchParams();
         if (selectedCategory && selectedCategory !== 'all') {
-          filteredProducts = filteredProducts.filter(
-            product => product.category.toLowerCase() === selectedCategory.toLowerCase()
-          );
+          params.append('category', selectedCategory);
         }
-        
-        // Apply search filter if present
         if (searchQuery) {
-          const query = searchQuery.toLowerCase();
-          filteredProducts = filteredProducts.filter(product => 
-            product.name.toLowerCase().includes(query) || 
-            product.description.toLowerCase().includes(query) ||
-            product.category.toLowerCase().includes(query)
-          );
+          params.append('search', searchQuery);
+        }
+        params.append('page', currentPage);
+        params.append('limit', itemsPerPage);
+        
+        // Fetch data from API
+        const response = await fetch(`/api/products?${params.toString()}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
         }
         
-        // Apply sorting
-        switch(sortBy) {
-          case 'price-low-high':
-            filteredProducts.sort((a, b) => a.price - b.price);
-            break;
-          case 'price-high-low':
-            filteredProducts.sort((a, b) => b.price - a.price);
-            break;
-          case 'rating':
-            filteredProducts.sort((a, b) => b.rating - a.rating);
-            break;
-          case 'sustainability':
-            filteredProducts.sort((a, b) => (a.carbonFootprint || 5) - (b.carbonFootprint || 5));
-            break;
-          default: // 'featured' - maintain default order or implement featured sorting logic
-            break;
-        }
+        const data = await response.json();
         
-        // Calculate pagination
-        const total = filteredProducts.length;
-        const pages = Math.ceil(total / itemsPerPage);
-        
-        // Get current page items
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
-        
-        // Update state
-        setProducts(paginatedProducts);
-        setTotalProducts(total);
-        setTotalPages(pages);
-        
-        // Extract unique categories for filters
-        const uniqueCategories = ['all', ...new Set(productsData.map(p => p.category.toLowerCase()))];
-        setCategories(uniqueCategories);
+        // Update state with response data
+        setProducts(data.products || []);
+        setTotalProducts(data.pagination?.total || 0);
+        setTotalPages(data.pagination?.pages || 1);
         
       } catch (error) {
-        console.error('Error processing products:', error);
+        console.error('Error fetching products:', error);
         toast.error('Failed to load products');
       } finally {
         // Add slight delay to make loading state visible
@@ -120,8 +110,34 @@ export default function ProductsPage() {
       }
     };
     
-    fetchAndFilterProducts();
-  }, [currentPage, itemsPerPage, selectedCategory, searchQuery, sortBy]);
+    fetchProducts();
+  }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
+  
+  // Apply client-side sorting (sorting is not handled by the API)
+  useEffect(() => {
+    if (products.length > 0) {
+      let sortedProducts = [...products];
+      
+      switch(sortBy) {
+        case 'price-low-high':
+          sortedProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high-low':
+          sortedProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'rating':
+          sortedProducts.sort((a, b) => b.rating - a.rating);
+          break;
+        case 'sustainability':
+          sortedProducts.sort((a, b) => (a.carbonFootprint || 5) - (b.carbonFootprint || 5));
+          break;
+        default: // 'featured' - maintain default order
+          break;
+      }
+      
+      setProducts(sortedProducts);
+    }
+  }, [sortBy, products.length]);
   
   // Fetch carbon footprint data
   useEffect(() => {

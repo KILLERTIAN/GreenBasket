@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useCart } from "@/lib/cart-context"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { ProductImageSlider } from "@/components/product-image-slider"
 import { Leaf, ShoppingBag, Search, ShoppingCart, CreditCard, CloudOff, Recycle, Trash2, LineChart, Award, Globe, BarChart2 } from "lucide-react"
 import productsData from "@/lib/products.json"
+import { HomeFeaturedProductsSkeletonGrid } from "@/components/HomePageSkeleton"
 
 // Creating new products for our categories that don't exist in the data
 const additionalProducts = [
@@ -159,6 +160,55 @@ const sustainabilityStats = [
 export default function HomePage() {
   const { addToCart } = useCart()
   const [loadingProductId, setLoadingProductId] = useState(null)
+  const [featuredProducts, setFeaturedProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Fetch featured products from database
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      setLoading(true)
+      try {
+        // Simulate API call with timeout for demo purposes
+        await new Promise(resolve => setTimeout(resolve, 800))
+        
+        // For demo - select 6 featured products from productsData
+        // In a real app, this would be a fetch call to your API
+        const categories = ['clothing', 'furniture', 'home', 'stationery', 'personal-care', 'accessories']
+        const featured = []
+        
+        // Try to find one product per category
+        for (const category of categories) {
+          const productForCategory = productsData.find(p => 
+            p.category.toLowerCase() === category.toLowerCase() && 
+            !featured.some(f => f.id === p.id)
+          )
+          
+          if (productForCategory) {
+            featured.push(productForCategory)
+          }
+        }
+        
+        // If we don't have 6 products yet, fill with other products
+        while (featured.length < 6 && featured.length < productsData.length) {
+          const randomProduct = productsData[Math.floor(Math.random() * productsData.length)]
+          if (!featured.some(p => p.id === randomProduct.id)) {
+            featured.push(randomProduct)
+          }
+        }
+        
+        setFeaturedProducts(featured)
+      } catch (error) {
+        console.error('Error fetching featured products:', error)
+        // Fallback to hardcoded data if fetch fails
+        const fallbackProducts = productsData.slice(0, 6)
+        setFeaturedProducts(fallbackProducts)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchFeaturedProducts()
+  }, [])
 
   const handleAddToCart = (product) => {
     setLoadingProductId(product.id)
@@ -229,7 +279,7 @@ export default function HomePage() {
         <div className="mt-8 grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {productCategories.map((category) => (
             <Link 
-              href={`/products?category=${category.name.toLowerCase()}`}
+              href={category.href}
               key={category.name}
               className="group flex flex-col items-center p-3 rounded-lg hover:bg-accent/50 transition-colors"
             >
@@ -252,7 +302,7 @@ export default function HomePage() {
       <section>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {sustainabilityStats.map((stat) => (
-            <Card key={stat.title}>
+            <Card key={stat.title} className="py-4">
               <CardHeader>
                 <CardTitle className="text-lg">{stat.title}</CardTitle>
               </CardHeader>
@@ -277,62 +327,66 @@ export default function HomePage() {
         </div>
         
         {/* Using the same card format as products page - exactly 6 products */}
-        <div className="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {loading ? (
+          <HomeFeaturedProductsSkeletonGrid />
+        ) : (
+          <div className="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProducts.map((product) => (
-            <Card 
-              key={product.id} 
-              className="overflow-hidden transition-all duration-200 hover:shadow-lg"
-            >
-              <Link href={`/products/${product.id}`} className="contents">
-                <div className="relative aspect-square w-full overflow-hidden bg-muted">
-                  <Image
-                    src={product.images[0] || "/placeholder.png"}
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                  
-                  <Badge variant="secondary" className="absolute top-2 right-2 font-normal">
-                    <Leaf className="h-3.5 w-3.5 mr-1 text-green-500" />
-                    {product.carbonFootprint} kg CO₂
-                    </Badge>
-                  </div>
-              </Link>
-              
-              <CardContent className="p-4 flex flex-col">
-                <Link href={`/products/${product.id}`} className="group">
-                  <h3 className="font-medium text-lg group-hover:text-primary transition-colors line-clamp-1 mb-1">{product.name}</h3>
+              <Card 
+                key={product.id} 
+                className="overflow-hidden transition-all duration-200 hover:shadow-lg"
+              >
+                <Link href={`/products/${product.id}`} className="contents">
+                  <div className="relative aspect-square w-full overflow-hidden bg-muted">
+                    <Image
+                      src={product.images[0] || "/placeholder.png"}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                    
+                    <Badge variant="secondary" className="absolute top-2 right-2 font-normal">
+                      <Leaf className="h-3.5 w-3.5 mr-1 text-green-500" />
+                      {product.carbonFootprint} kg CO₂
+                      </Badge>
+                    </div>
                 </Link>
                 
-                <div className="flex items-center justify-between mb-2">
-                  <p className="font-bold text-lg text-primary">{formatPrice(product.price)}</p>
+                <CardContent className="p-4 flex flex-col">
+                  <Link href={`/products/${product.id}`} className="group">
+                    <h3 className="font-medium text-lg group-hover:text-primary transition-colors line-clamp-1 mb-1">{product.name}</h3>
+                  </Link>
                   
-                  <div className="flex items-center">
-                    <span className="text-yellow-400">★</span>
-                    <span className="text-sm font-medium ml-1">{product.rating}</span>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="font-bold text-lg text-primary">{formatPrice(product.price)}</p>
+                    
+                    <div className="flex items-center">
+                      <span className="text-yellow-400">★</span>
+                      <span className="text-sm font-medium ml-1">{product.rating}</span>
                   </div>
-                </div>
-                
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{product.description}</p>
-                
-                <div className="mt-auto flex flex-col gap-2">
-                  <Badge className="w-fit self-start capitalize">{product.category}</Badge>
+                  </div>
+                  
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{product.description}</p>
+                  
+                  <div className="mt-auto flex flex-col gap-2">
+                    <Badge className="w-fit self-start capitalize">{product.category}</Badge>
                 <Button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAddToCart(product);
-                    }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleAddToCart(product);
+                      }}
                   className="w-full"
                   disabled={loadingProductId === product.id}
                 >
                   {loadingProductId === product.id ? "Adding..." : "Add to Cart"}
                 </Button>
-                </div>
-              </CardContent>
+                  </div>
+                </CardContent>
             </Card>
           ))}
         </div>
+        )}
       </section>
 
       {/* How It Works */}
@@ -366,7 +420,7 @@ export default function HomePage() {
           <TabsContent value="shop">
               <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Search className="h-8 w-8 text-green-600 dark:text-green-400" />
                     </div>
@@ -378,7 +432,7 @@ export default function HomePage() {
                 </Card>
                 
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <ShoppingCart className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
@@ -390,7 +444,7 @@ export default function HomePage() {
                 </Card>
                 
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <CreditCard className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
@@ -406,7 +460,7 @@ export default function HomePage() {
           <TabsContent value="impact">
               <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <CloudOff className="h-8 w-8 text-green-600 dark:text-green-400" />
                     </div>
@@ -418,7 +472,7 @@ export default function HomePage() {
                 </Card>
                 
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Recycle className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
@@ -430,7 +484,7 @@ export default function HomePage() {
                 </Card>
                 
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Trash2 className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
@@ -446,7 +500,7 @@ export default function HomePage() {
           <TabsContent value="track">
               <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <LineChart className="h-8 w-8 text-green-600 dark:text-green-400" />
                     </div>
@@ -458,7 +512,7 @@ export default function HomePage() {
                 </Card>
                 
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Award className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
@@ -470,7 +524,7 @@ export default function HomePage() {
                 </Card>
                 
                 <Card className="border-green-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 text-center">
                     <div className="mb-5 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                       <Globe className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>

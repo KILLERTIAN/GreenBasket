@@ -171,7 +171,7 @@ export default function OrdersPage() {
         <div className="space-y-6">
           {filteredOrders.map(order => (
             <Card key={order.id} className="overflow-hidden">
-              <CardHeader className="pb-2">
+              <CardHeader className="pb-2 pt-5">
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-lg">{order.id}</CardTitle>
@@ -182,7 +182,7 @@ export default function OrdersPage() {
                   {getStatusBadge(order.status)}
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="py-4">
                 <div className="space-y-4">
                   {/* Order items */}
                   <div className="space-y-2">

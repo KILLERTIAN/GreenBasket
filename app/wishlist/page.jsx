@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Trash2, ShoppingCart, Heart } from "lucide-react"
+import { Trash2, Trash, ShoppingCart, Heart } from "lucide-react"
 import { useAuth } from "@/lib/auth-context"
 import { useCart } from "@/lib/cart-context"
 import { useWishlist } from "@/lib/wishlist-context"
@@ -23,6 +23,7 @@ export default function WishlistPage() {
   } = useWishlist()
   
   const wishlistItems = getWishlistWithDetails()
+  const [hoverStates, setHoverStates] = useState({})
 
   const handleAddToCart = (item) => {
     addToCart({
@@ -38,6 +39,14 @@ export default function WishlistPage() {
   const addAllToCart = () => {
     wishlistItems.forEach(item => handleAddToCart(item))
     toast.success("All items added to cart")
+  }
+
+  const handleMouseEnter = (itemId) => {
+    setHoverStates(prev => ({ ...prev, [itemId]: true }))
+  }
+
+  const handleMouseLeave = (itemId) => {
+    setHoverStates(prev => ({ ...prev, [itemId]: false }))
   }
 
   if (!user) {
@@ -75,7 +84,7 @@ export default function WishlistPage() {
             <Button
               variant="outline"
               size="sm"
-              className="flex-1 sm:flex-none text-destructive hover:bg-destructive hover:text-destructive-foreground"
+              className="flex-1 sm:flex-none text-destructive hover:bg-destructive/10 hover:text-destructive"
               onClick={clearWishlist}
             >
               <Trash2 className="h-4 w-4 mr-2" />
@@ -160,10 +169,16 @@ export default function WishlistPage() {
                       <Button 
                         size="icon" 
                         variant="outline" 
-                        className="text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground"
+                        className="text-destructive border-destructive hover:bg-destructive/10 hover:border-destructive"
                         onClick={() => removeFromWishlist(item.id)}
+                        onMouseEnter={() => handleMouseEnter(item.id)}
+                        onMouseLeave={() => handleMouseLeave(item.id)}
                       >
-                        <Trash2 className="h-4 w-4" />
+                        {hoverStates[item.id] ? (
+                          <Trash className="h-4 w-4 text-red-500 fill-red-500" />
+                        ) : (
+                          <Trash2 className="h-4 w-4" />
+                        )}
                       </Button>
                     </div>
                   </div>
