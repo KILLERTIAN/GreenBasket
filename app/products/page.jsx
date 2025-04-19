@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Leaf, Search, SlidersHorizontal, LayoutGrid, List, ChevronLeft, ChevronRight } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import { toast } from "sonner"
-import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
+import { fetchCarbonFootprint } from "@/lib/carbon-calculator" 
 import { SearchBar } from "@/components/SearchBar"
 import { ProductSkeletonGrid, ProductSkeletonList } from "@/components/ProductSkeleton"
 
@@ -217,9 +217,9 @@ function ProductsContent() {
       <div className="mb-8 space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-grow">
-            <Input
+            <Input 
               type="text"
-              placeholder="Search products..."
+              placeholder="Search products..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full"
@@ -497,7 +497,7 @@ function ProductsContent() {
       )}
     </div>
   )
-}
+} 
 
 export default function ProductsPage() {
   return (

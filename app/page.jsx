@@ -141,30 +141,30 @@ export default function HomePage() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative h-[400px] md:h-[500px] overflow-hidden rounded-lg">
+      <section className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-lg">
         <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 to-green-600/70" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 px-4 pb-0">
-            <div className="flex flex-col justify-center mb-8 md:mb-0 z-10 p-10 md:p-20">
+        <div className="absolute inset-0 flex h-full w-full">
+          <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 px-4 h-full w-full">
+            <div className="flex flex-col justify-center z-10 py-6 px-4 sm:p-8 md:pl-12 lg:pl-16">
               <h1 className="text-3xl sm:text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-              Shop Sustainably
-            </h1>
+                Shop Sustainably
+              </h1>
               <p className="mt-4 max-w-md text-base sm:text-lg text-white/90">
-              Discover eco-friendly products that help reduce your carbon footprint.
-              Every purchase makes a difference.
-            </p>
+                Discover eco-friendly products that help reduce your carbon footprint.
+                Every purchase makes a difference.
+              </p>
               <Button size="lg" className="mt-6 md:mt-8 w-fit" asChild>
-              <Link href="/products">Shop Now</Link>
-            </Button>
+                <Link href="/products">Shop Now</Link>
+              </Button>
             </div>
-            <div className="flex items-end justify-center md:justify-end h-full relative">
-              <div className="relative h-[85%] md:h-[95%] w-full max-w-[600px]">
+            <div className="relative hidden md:flex items-end justify-center md:justify-end h-full">
+              <div className="absolute bottom-0 right-0 w-full max-w-[400px] lg:max-w-[500px] h-[90%]">
                 <Image
                   src="/hero.png"
                   alt="Sustainable shopping"
                   fill
-                  className="object-contain"
-                  sizes="(max-width: 640px) 80vw, (max-width: 768px) 70vw, (max-width: 1200px) 50vw, 600px"
+                  className="object-contain object-bottom"
+                  sizes="(max-width: 1024px) 400px, 500px"
                   priority
                 />
               </div>

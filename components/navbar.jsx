@@ -98,7 +98,7 @@ export default function Navbar() {
       scrolled ? "bg-background/90 backdrop-blur-md border-b shadow-sm" : "bg-background border-b"
     )}>
       <div className="w-full flex h-16 items-center justify-between px-4 sm:px-6 md:px-8">
-        <div className="md:hidden mr-1">
+        <div className="block min-[880px]:hidden mr-1">
           <Button variant="ghost" size="sm" onClick={toggleMenu} aria-label="Toggle menu" className="p-1">
             {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>
@@ -121,7 +121,7 @@ export default function Navbar() {
             </span>
           </Link>
           
-          <nav className="hidden md:flex items-center space-x-2 text-sm font-medium">
+          <nav className="hidden min-[880px]:flex items-center space-x-2 text-sm font-medium">
             <Link href="/" className={linkStyle('/')}>
               <Home className="mr-1 h-4 w-4" />
               <span>Home</span>
@@ -267,7 +267,7 @@ export default function Navbar() {
       
       {/* Mobile Menu */}
       <div 
-        className={`md:hidden border-t transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`min-[880px]:hidden border-t transition-all duration-300 ease-in-out overflow-hidden ${
           isMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
