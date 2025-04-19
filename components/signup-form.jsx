@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useAuth } from "@/lib/auth-context"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import Link from "next/link"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
+import { signIn } from "next-auth/react"
 
 export function SignupForm({
   className,
@@ -23,7 +23,6 @@ export function SignupForm({
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [agreeToTerms, setAgreeToTerms] = useState(false)
-  const { login } = useAuth()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
@@ -42,12 +41,33 @@ export function SignupForm({
     setIsLoading(true)
     
     try {
-      // In a real app, you'd call an API to create the account
-      // For now, we'll simulate that with a delay and just log the user in
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      await login(email, password)
+      // In a real app, you would make an API call to register the user first
+      // For this demo, we'll use NextAuth's credentials provider directly
+      
+      // This would be the registration API call
+      // const registrationResponse = await fetch('/api/register', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ name, email, password }),
+      // });
+      // if (!registrationResponse.ok) throw new Error('Registration failed');
+      
+      // For demo, we'll skip to signing in directly
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+        name
+      })
+      
+      if (result?.error) {
+        toast.error("Registration failed. Please try again.")
+        return
+      }
+      
       toast.success("Account created successfully!")
       router.push("/")
+      router.refresh()
     } catch (error) {
       toast.error("There was a problem creating your account.")
       console.error(error)
@@ -60,15 +80,11 @@ export function SignupForm({
     setIsLoading(true)
     
     try {
-      // Mock Google signup for now
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      await login("demo@gmail.com", "password")
-      toast.success("Account created with Google!")
-      router.push("/")
+      await signIn("google", { callbackUrl: "/" })
+      // Redirect will happen automatically
     } catch (error) {
       toast.error("Google signup failed. Please try again.")
       console.error(error)
-    } finally {
       setIsLoading(false)
     }
   }
@@ -80,7 +96,6 @@ export function SignupForm({
       {...props}
     >
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold">Create an account</h1>
         <p className="text-muted-foreground text-sm">
           Enter your information to create an account
         </p>

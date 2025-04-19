@@ -11,90 +11,10 @@ import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { ProductImageSlider } from "@/components/product-image-slider"
 import { Leaf, ShoppingBag, Search, ShoppingCart, CreditCard, CloudOff, Recycle, Trash2, LineChart, Award, Globe, BarChart2 } from "lucide-react"
-import productsData from "@/lib/products.json"
 import { HomeFeaturedProductsSkeletonGrid } from "@/components/HomePageSkeleton"
 
-// Creating new products for our categories that don't exist in the data
-const additionalProducts = [
-  {
-    id: 101,
-    name: "Eco-Friendly Correction Pen",
-    price: 399,
-    carbonFootprint: 0.2,
-    images: [
-      "/images/products/Stationery/White Strip Error/714+-YEhZYL._SX522_.jpg",
-      "/images/products/Stationery/White Strip Error/71AIg4DrzJL._SX522_.jpg",
-      "/images/products/Stationery/White Strip Error/7121MutBSCL._SX522_.jpg"
-    ],
-    category: "stationery",
-    description: "Eco-friendly correction pen made with recyclable materials and non-toxic formula",
-    rating: 4.6,
-    reviewCount: 45,
-    inStock: true
-  },
-  {
-    id: 102,
-    name: "Organic Body Lotion",
-    price: 799,
-    carbonFootprint: 0.3,
-    images: [
-      "/images/products/Personal Care/Body Lotion/612ctEDavpL._SX522_.jpg",
-      "/images/products/Personal Care/Body Lotion/71LL5gkaPEL._SX522_.jpg",
-      "/images/products/Personal Care/Body Lotion/713CMzfgStL._SL1500_.jpg"
-    ],
-    category: "personal-care",
-    description: "Natural and organic body lotion with plant-based ingredients for sustainable skincare",
-    rating: 4.8,
-    reviewCount: 67,
-    inStock: true
-  },
-  {
-    id: 103,
-    name: "Sustainable Solar Power Bank",
-    price: 2499,
-    carbonFootprint: 0.4,
-    images: [
-      "/images/products/Accessories/Cable/81eG1PLn6TL._SX522_.jpg",
-      "/images/products/Accessories/Cable/717yotBLXaL._SX522_.jpg",
-      "/images/products/Accessories/Cable/61DKsll9yDL._SX522_.jpg"
-    ],
-    category: "accessories",
-    description: "High-capacity solar power bank with rapid charging technology, made from 90% recycled materials.",
-    rating: 4.7,
-    reviewCount: 32,
-    inStock: true
-  }
-];
-
-// Select 6 featured products - one from each category
-const featuredProducts = [
-  // Clothing - Women's dress with specific image
-  {
-    id: 7,
-    name: "Women's Eco-Friendly Dress",
-    price: 5999,
-    carbonFootprint: 0.9,
-    images: [
-      "/images/products/Clothing/clothing women/dresses/dress4.jpg",
-      "/images/products/Clothing/clothing women/dresses/dress2.jpg",
-      "/images/products/Clothing/clothing women/dresses/dress3.jpg"
-    ],
-    category: "clothing",
-    description: "Elegant sustainable dress made from organic cotton and eco-friendly materials",
-    rating: 4.9
-  },
-  // Furniture
-  productsData.find(p => p.id === 9), // Sustainable Dining Set
-  // Home goods
-  productsData.find(p => p.id === 3), // Recycled Glass Vase
-  // Personal Care - Body Lotion with specific image
-  additionalProducts[1], // Organic Body Lotion
-  // Accessories - Sustainable Solar Power Bank with specific image 
-  additionalProducts[2], // Sustainable Solar Power Bank
-  // Stationery - Correction Pen with specific image
-  additionalProducts[0] // Eco-Friendly Correction Pen
-];
-
+// Only keep the product categories and sustainability stats in the file
+// since we'll fetch the actual products from the database
 const productCategories = [
   {
     name: "Clothing",
@@ -163,45 +83,30 @@ export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Fetch featured products from database
+  // Fetch featured products from database using our API endpoint
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       setLoading(true)
       try {
-        // Simulate API call with timeout for demo purposes
-        await new Promise(resolve => setTimeout(resolve, 800))
+        // Fetch data from our API endpoint
+        const response = await fetch('/api/featured')
         
-        // For demo - select 6 featured products from productsData
-        // In a real app, this would be a fetch call to your API
-        const categories = ['clothing', 'furniture', 'home', 'stationery', 'personal-care', 'accessories']
-        const featured = []
-        
-        // Try to find one product per category
-        for (const category of categories) {
-          const productForCategory = productsData.find(p => 
-            p.category.toLowerCase() === category.toLowerCase() && 
-            !featured.some(f => f.id === p.id)
-          )
-          
-          if (productForCategory) {
-            featured.push(productForCategory)
-          }
+        if (!response.ok) {
+          throw new Error('Failed to fetch featured products')
         }
         
-        // If we don't have 6 products yet, fill with other products
-        while (featured.length < 6 && featured.length < productsData.length) {
-          const randomProduct = productsData[Math.floor(Math.random() * productsData.length)]
-          if (!featured.some(p => p.id === randomProduct.id)) {
-            featured.push(randomProduct)
-          }
-        }
+        const data = await response.json()
         
-        setFeaturedProducts(featured)
+        if (data.featuredProducts && Array.isArray(data.featuredProducts)) {
+          setFeaturedProducts(data.featuredProducts)
+        } else {
+          throw new Error('Invalid data format from API')
+        }
       } catch (error) {
         console.error('Error fetching featured products:', error)
-        // Fallback to hardcoded data if fetch fails
-        const fallbackProducts = productsData.slice(0, 6)
-        setFeaturedProducts(fallbackProducts)
+        toast.error('Failed to load featured products')
+        // Set empty array as fallback
+        setFeaturedProducts([])
       } finally {
         setLoading(false)
       }

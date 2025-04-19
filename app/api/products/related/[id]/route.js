@@ -12,19 +12,27 @@ export async function GET(request, { params }) {
     const { id } = unwrappedParams;
     const productId = parseInt(id);
     
-    // Find product by ID
-    const product = await Product.findOne({ id: productId });
+    // Find the original product to get its category
+    const originalProduct = await Product.findOne({ id: productId });
     
-    if (!product) {
+    if (!originalProduct) {
       return NextResponse.json(
         { error: 'Product not found' },
         { status: 404 }
       );
     }
     
-    return NextResponse.json(product);
+    // Find related products from the same category, excluding the original product
+    const relatedProducts = await Product.find({ 
+      category: originalProduct.category,
+      id: { $ne: productId }
+    })
+      .sort({ rating: -1 }) // Sort by highest rating
+      .limit(4); // Limit to 4 related products
+    
+    return NextResponse.json({ relatedProducts });
   } catch (error) {
-    console.error('Error fetching product:', error);
+    console.error('Error fetching related products:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

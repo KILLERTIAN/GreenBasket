@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/lib/cart-context"
-import { useAuth } from "@/lib/auth-context"
 import { useWishlist } from "@/lib/wishlist-context"
 import Link from "next/link"
 import { ShoppingCart, Search, Menu, X, User, LogOut, Settings, Package, Heart, Home, Info, Phone, Leaf } from "lucide-react"
@@ -25,15 +24,21 @@ import { cn } from "@/lib/utils"
 import { SearchBar } from "@/components/SearchBar"
 import { Badge } from "@/components/ui/badge"
 
+import { useSession, signOut } from "next-auth/react"
+
 export default function Navbar() {
   const { cart } = useCart()
-  const { user, logout } = useAuth()
   const { wishlistCount } = useWishlist()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const { data: session } = useSession()
+  
+  // Get user from session
+  const user = session?.user
+  const isAdmin = user?.role === "admin"
   
   // For hydration mismatch prevention with theme
   useEffect(() => {
@@ -54,6 +59,10 @@ export default function Navbar() {
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
   
   const totalCartItems = cart.reduce((total, item) => total + (item.quantity || 1), 0)
+  
+  const handleSignOut = async () => {
+    await signOut({ redirect: true, callbackUrl: "/" })
+  }
   
   // Helper function to determine if a link is active
   const isActiveLink = (path) => {
@@ -129,7 +138,7 @@ export default function Navbar() {
               <Phone className="mr-1 h-4 w-4" />
               <span>Contact</span>
             </Link>
-            {user?.isAdmin && (
+            {isAdmin && (
               <Link href="/admin" className={linkStyle('/admin')}>
                 <Settings className="mr-1 h-4 w-4" />
                 <span>Admin</span>
@@ -141,8 +150,8 @@ export default function Navbar() {
         <div className="flex-1" />
         
         <div className="flex items-center gap-1 sm:gap-2">
-          {/* Only render ModeToggle when mounted to avoid hydration issues */}
-          {mounted && <div className="block"><ModeToggle /></div>}
+          {/* Only render ModeToggle when mounted to avoid hydration issues, and hide on mobile */}
+          {mounted && <div className="hidden sm:block"><ModeToggle /></div>}
           
           <Button
             variant="ghost"
@@ -233,7 +242,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={logout} className="text-red-500 cursor-pointer">
+                <DropdownMenuItem onClick={handleSignOut} className="text-red-500 cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
                 </DropdownMenuItem>
@@ -313,7 +322,7 @@ export default function Navbar() {
             <span className="mr-2">Theme:</span>
             <ModeToggle />
           </div>}
-          {user?.isAdmin && (
+          {isAdmin && (
             <Link 
               href="/admin" 
               className={mobileLinkStyle('/admin')}

@@ -1,74 +1,91 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect } from "react"
-import { useAuth } from "./auth-context"
+import { useSession } from "next-auth/react"
 import { toast } from "sonner"
-import productsData from "./products.json"
 
-const WishlistContext = createContext()
+export const WishlistContext = createContext({
+  wishlist: [],
+  addToWishlist: () => {},
+  removeFromWishlist: () => {},
+  isInWishlist: () => false,
+})
 
 export function WishlistProvider({ children }) {
-  const { user } = useAuth()
-  const [wishlistItems, setWishlistItems] = useState([])
+  const { data: session } = useSession()
+  const [wishlist, setWishlist] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Load wishlist data when user changes
+  // Load wishlist data when session changes
   useEffect(() => {
     const loadWishlist = () => {
-      if (user) {
+      if (session?.user) {
         // Get wishlist from localStorage
-        const savedWishlist = localStorage.getItem(`wishlist_${user.id}`)
+        const userId = session.user.id || session.user.email
+        const savedWishlist = localStorage.getItem(`wishlist_${userId}`)
         if (savedWishlist) {
-          setWishlistItems(JSON.parse(savedWishlist))
+          try {
+            setWishlist(JSON.parse(savedWishlist))
+          } catch (error) {
+            console.error("Failed to parse wishlist from localStorage:", error)
+            setWishlist([])
+          }
         } else {
-          setWishlistItems([])
+          setWishlist([])
         }
       } else {
         // No user, empty wishlist
-        setWishlistItems([])
+        setWishlist([])
       }
       setLoading(false)
     }
     
     loadWishlist()
-  }, [user])
+  }, [session])
 
   // Save wishlist to localStorage whenever it changes
   useEffect(() => {
-    if (user && !loading) {
-      localStorage.setItem(`wishlist_${user.id}`, JSON.stringify(wishlistItems))
+    if (session?.user && !loading) {
+      const userId = session.user.id || session.user.email
+      localStorage.setItem(`wishlist_${userId}`, JSON.stringify(wishlist))
     }
-  }, [wishlistItems, user, loading])
+  }, [wishlist, session, loading])
 
   // Add product to wishlist
-  const addToWishlist = (productId) => {
-    if (!user) {
+  const addToWishlist = (product) => {
+    if (!session?.user) {
       toast.error("Please log in to add items to your wishlist")
       return false
     }
     
+    if (!product) return false
+    
     // Check if product already in wishlist
-    if (wishlistItems.includes(productId)) {
+    if (wishlist.some((item) => item.id === product.id)) {
       toast.info("Item already in wishlist")
       return false
     }
     
     // Add to wishlist
-    setWishlistItems(prev => [...prev, productId])
+    setWishlist((prevWishlist) => {
+      return [...prevWishlist, product]
+    })
     toast.success("Added to wishlist")
     return true
   }
 
   // Remove product from wishlist
   const removeFromWishlist = (productId) => {
-    setWishlistItems(prev => prev.filter(id => id !== productId))
+    setWishlist((prevWishlist) => 
+      prevWishlist.filter((item) => item.id !== productId)
+    )
     toast.success("Removed from wishlist")
     return true
   }
 
   // Check if product is in wishlist
   const isInWishlist = (productId) => {
-    return wishlistItems.includes(productId)
+    return wishlist.some((item) => item.id === productId)
   }
 
   // Toggle wishlist status
@@ -82,12 +99,11 @@ export function WishlistProvider({ children }) {
 
   // Get wishlist items with product details
   const getWishlistWithDetails = () => {
-    return wishlistItems.map(productId => {
-      const productDetails = productsData.find(p => p.id === productId)
-      if (productDetails) {
+    return wishlist.map(product => {
+      if (product) {
         return {
-          ...productDetails,
-          image: productDetails.images[0] // Use first image for display
+          ...product,
+          image: product.images[0] // Use first image for display
         }
       }
       return null
@@ -96,13 +112,14 @@ export function WishlistProvider({ children }) {
 
   // Clear wishlist
   const clearWishlist = () => {
-    setWishlistItems([])
+    setWishlist([])
     toast.success("Wishlist cleared")
     return true
   }
 
   const value = {
-    wishlistItems,
+    wishlist,
+    wishlistItems: wishlist, // For backward compatibility
     loading,
     addToWishlist,
     removeFromWishlist,
@@ -110,7 +127,7 @@ export function WishlistProvider({ children }) {
     toggleWishlist,
     getWishlistWithDetails,
     clearWishlist,
-    wishlistCount: wishlistItems.length
+    wishlistCount: wishlist.length
   }
 
   return (

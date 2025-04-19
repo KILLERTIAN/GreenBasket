@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation" 
 import Link from "next/link"
 import Image from "next/image"
@@ -17,7 +17,7 @@ import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
 import { SearchBar } from "@/components/SearchBar"
 import { ProductSkeletonGrid, ProductSkeletonList } from "@/components/ProductSkeleton"
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams()
   const urlCategory = searchParams.get('category')
   const urlSearch = searchParams.get('search')
@@ -201,7 +201,7 @@ export default function ProductsPage() {
   }
   
   return (
-    <div className="container mx-auto py-4">
+    <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">
           {selectedCategory !== 'all' 
@@ -497,4 +497,12 @@ export default function ProductsPage() {
       )}
     </div>
   )
-} 
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center">Loading products...</div>}>
+      <ProductsContent />
+    </Suspense>
+  )
+}

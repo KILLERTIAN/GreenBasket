@@ -1,80 +1,120 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import React, { useState, useEffect } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { ChevronRight, CircleCheck, Leaf, ShoppingCart, Star, CheckCircle, ChevronDown, ChevronUp, Heart, Share2, Truck, RefreshCw, Recycle, Shield, Droplets, Factory, Wind } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Leaf, Droplets, Factory, Wind, ShoppingCart, Star, Heart, Truck, Shield, CheckCircle } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ProductImageSlider } from "@/components/product-image-slider"
 import { useCart } from "@/lib/cart-context"
 import { useWishlist } from "@/lib/wishlist-context"
-import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import { ProductImageSlider } from "@/components/product-image-slider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Link from "next/link"
-import productsData from "@/lib/products.json"
 import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
-import React from "react"
 
 export default function ProductDetailPage({ params }) {
-  const router = useRouter()
-  const { addToCart, cart } = useCart()
-  const { isInWishlist, toggleWishlist } = useWishlist()
-  const [isLoading, setIsLoading] = useState(false)
+  // Use params object directly without React.use()
+  const { id } = params;
+  
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
   const [carbonData, setCarbonData] = useState(null)
-  const [isLoadingCarbon, setIsLoadingCarbon] = useState(true)
+  const [expandedSection, setExpandedSection] = useState("description")
+  const [relatedProducts, setRelatedProducts] = useState([])
+  const [loadingRelated, setLoadingRelated] = useState(true)
+  const { addToCart } = useCart()
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
   
-  // Unwrap the params object using React.use()
-  const unwrappedParams = React.use(params)
-  const product = productsData.find(p => p.id === parseInt(unwrappedParams.id))
-  
-  // Fetch carbon footprint data when product loads
+  // Fetch product by ID from the API
   useEffect(() => {
-    async function loadCarbonData() {
-      if (product) {
-        setIsLoadingCarbon(true)
+    const fetchProduct = async () => {
+      setLoading(true)
+      try {
+        // Add cache: 'no-store' to make fetch request show up in Network tab
+        const response = await fetch(`/api/products/${id}`, {
+          cache: 'no-store',
+          headers: {
+            'x-request-source': 'client-component'
+          }
+        })
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch product')
+        }
+        
+        const data = await response.json()
+        setProduct(data)
+        
+        // Fetch carbon footprint data
         try {
-          const data = await fetchCarbonFootprint(product.id)
-          setCarbonData(data)
-        } catch (error) {
-          console.error("Error fetching carbon data:", error)
-          // Set fallback values
+          const carbonInfo = await fetchCarbonFootprint(data.id)
+          setCarbonData(carbonInfo)
+        } catch (err) {
+          console.error("Error fetching carbon data:", err)
+          // Set fallback carbon data
           setCarbonData({
-            footprint: product.carbonFootprint || 5.0,
-            conventionalFootprint: (product.carbonFootprint || 5.0) * 3,
+            footprint: data.carbonFootprint,
+            conventionalFootprint: data.carbonFootprint * 3,
             savings: {
-              savings: ((product.carbonFootprint || 5.0) * 2).toFixed(2),
+              savings: (data.carbonFootprint * 2).toFixed(2),
               percentage: "67"
             }
           })
-        } finally {
-          setIsLoadingCarbon(false)
         }
+        
+        // Fetch related products
+        try {
+          const relatedResponse = await fetch(`/api/products/related/${id}`, {
+            cache: 'no-store',
+            headers: {
+              'x-request-source': 'client-component'
+            }
+          })
+          if (relatedResponse.ok) {
+            const relatedData = await relatedResponse.json()
+            setRelatedProducts(relatedData.relatedProducts || [])
+          }
+        } catch (err) {
+          console.error("Error fetching related products:", err)
+          setRelatedProducts([])
+        } finally {
+          setLoadingRelated(false)
+        }
+      } catch (error) {
+        console.error('Error fetching product:', error)
+        toast.error('Failed to load product details')
+      } finally {
+        setLoading(false)
       }
     }
     
-    loadCarbonData()
-  }, [product])
+    fetchProduct()
+  }, [id])
   
-  if (!product) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
-        <h1 className="text-2xl font-bold">Product not found</h1>
-        <Button variant="outline" onClick={() => router.push('/products')}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to products
-        </Button>
-      </div>
-    )
+  // Function to handle adding product to cart
+  const handleAddToCart = () => {
+    if (!product) return
+    
+    addToCart({
+      ...product,
+      quantity: quantity,
+      image: product.images[0] // Use first image for cart thumbnail
+    })
+    
+    toast.success(`${product.name} added to cart`)
   }
   
-  // Check if item is already in cart
-  const cartItem = cart.find(item => item.id === product.id)
-  const isInCart = !!cartItem
+  // Handle quantity changes
+  const increaseQuantity = () => setQuantity(prev => prev + 1)
+  const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1))
   
-  // Check if item is in wishlist
-  const productInWishlist = isInWishlist(product.id)
+  // Handle expandable sections
+  const toggleSection = (section) => {
+    setExpandedSection(expandedSection === section ? null : section)
+  }
   
   // Function to format price in Indian Rupees
   const formatPrice = (price) => {
@@ -85,129 +125,118 @@ export default function ProductDetailPage({ params }) {
     }).format(price)
   }
   
-  const handleAddToCart = () => {
-    setIsLoading(true)
-    
-    // Simulate API call with timeout
-    setTimeout(() => {
-      // Add product to cart with the selected quantity
-      for (let i = 0; i < quantity; i++) {
-        addToCart({
-          ...product,
-          image: product.images[0] // Use first image for cart thumbnail
-        });
-      }
-      toast.success(`${quantity} ${product.name} added to cart`)
-      setIsLoading(false)
-      setQuantity(1) // Reset quantity after adding to cart
-    }, 600)
+  // Toggle wishlist status
+  const toggleWishlist = () => {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id)
+      toast.success(`${product.name} removed from wishlist`)
+    } else {
+      addToWishlist(product)
+      toast.success(`${product.name} added to wishlist`)
+    }
   }
   
-  const handleToggleWishlist = () => {
-    toggleWishlist(product.id)
+  if (loading) {
+    return (
+      <div className="container mx-auto py-8">
+        <div className="flex animate-pulse">
+          <div className="w-1/2 h-[500px] bg-muted rounded-lg mr-8"></div>
+          <div className="w-1/2 space-y-4">
+            <div className="h-8 bg-muted rounded w-3/4"></div>
+            <div className="h-6 bg-muted rounded w-1/2"></div>
+            <div className="h-24 bg-muted rounded"></div>
+            <div className="h-10 bg-muted rounded w-36"></div>
+            <div className="h-12 bg-muted rounded"></div>
+          </div>
+        </div>
+      </div>
+    )
   }
   
-  const incrementQuantity = () => {
-    setQuantity(prev => prev + 1)
-  }
-  
-  const decrementQuantity = () => {
-    setQuantity(prev => (prev > 1 ? prev - 1 : 1))
+  if (!product) {
+    return (
+      <div className="container mx-auto py-8 text-center">
+        <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+        <p className="mb-8">Sorry, the product you are looking for does not exist.</p>
+        <Button asChild>
+          <Link href="/products">Browse All Products</Link>
+        </Button>
+      </div>
+    )
   }
 
   return (
-    <div className="container mx-auto px-3 sm:px-4 py-2 md:py-4">
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center flex-wrap gap-1 xs:gap-2 text-xs sm:text-sm text-muted-foreground mb-3 md:mb-4 overflow-x-auto whitespace-nowrap">
-        <Link href="/" className="hover:text-primary hover:underline">Home</Link>
-        <span>/</span>
-        <Link href="/products" className="hover:text-primary hover:underline">Products</Link>
-        <span>/</span>
-        <Link href={`/products?category=${product.category}`} className="capitalize hover:text-primary hover:underline">{product.category}</Link>
-        <span>/</span>
-        <span className="truncate max-w-[100px] xs:max-w-[200px]">{product.name}</span>
-      </div>
+    <div>
+      {/* Breadcrumb */}
+      <nav className="flex text-sm text-muted-foreground mb-6">
+        <Link href="/" className="hover:text-primary">Home</Link>
+        <ChevronRight className="h-4 w-4 mx-2" />
+        <Link href="/products" className="hover:text-primary">Products</Link>
+        <ChevronRight className="h-4 w-4 mx-2" />
+        <Link 
+          href={`/products?category=${product.category}`} 
+          className="capitalize hover:text-primary"
+        >
+          {product.category}
+        </Link>
+        <ChevronRight className="h-4 w-4 mx-2" />
+        <span className="truncate max-w-[200px]">{product.name}</span>
+      </nav>
       
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 xl:gap-10">
-        {/* Product Images - Left Column */}
-        <div className="lg:sticky lg:top-20 h-fit">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        {/* Product Images */}
+        <div>
           <ProductImageSlider 
             images={product.images} 
             productName={product.name}
-            autoRotate={false}
-            interval={5000}
             showMagnifier={true}
             showThumbnails={true}
-            smallButtons={true}
+            autoRotate={false}
           />
         </div>
         
-        {/* Product Details - Right Column */}
-        <div className="space-y-3 sm:space-y-4 md:space-y-5">
+        {/* Product Details */}
+        <div className="space-y-6">
           <div>
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">{product.name}</h1>
+            <Badge className="mb-2 capitalize">{product.category}</Badge>
+            <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
             
-            {/* Product Rating */}
-            <div className="flex items-center mt-2">
-              {[...Array(5)].map((_, i) => (
-                <Star 
-                  key={i} 
-                  className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${
-                    i < Math.floor(product.rating) 
-                      ? 'text-yellow-400 fill-yellow-400' 
-                      : i === Math.floor(product.rating) && product.rating % 1 >= 0.5
-                        ? 'text-yellow-400 fill-yellow-400'
-                        : 'text-gray-300'
-                  }`} 
-                />
-              ))}
-              <span className="ml-2 text-xs sm:text-sm font-medium">
-                {product.rating} ({product.reviewCount} reviews)
+            <div className="flex items-center mb-4">
+              <div className="flex items-center">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span className="ml-1 mr-1 text-sm font-medium">{product.rating}</span>
+              </div>
+              <span className="text-muted-foreground text-sm">
+                ({product.reviewCount} reviews)
               </span>
             </div>
-          </div>
-          
-          {/* Price and Stock Info */}
-          <div className="py-3 sm:py-4 border-t border-b">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2 sm:mb-3">
-              <p className="text-2xl sm:text-3xl font-bold text-primary">{formatPrice(product.price)}</p>
-              <Badge variant="outline" className="text-xs sm:text-sm font-normal px-2 py-1">
-                <Leaf className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1 text-green-500" />
-                {isLoadingCarbon 
-                  ? "Calculating..." 
-                  : `${carbonData?.footprint || product.carbonFootprint} kg CO₂`}
-              </Badge>
+            
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-2xl font-bold text-primary">{formatPrice(product.price)}</h2>
+              {product.inStock ? (
+                <Badge variant="outline" className="text-green-600 bg-green-50 hover:bg-green-100 border-green-200">
+                  <CircleCheck className="h-3.5 w-3.5 mr-1" />
+                  In Stock
+                </Badge>
+              ) : (
+                <Badge variant="outline" className="text-red-600 bg-red-50 hover:bg-red-100 border-red-200">
+                  Out of Stock
+                </Badge>
+              )}
             </div>
             
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              {product.inStock ? (
-                <div className="flex items-center text-green-600">
-                  <CheckCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
-                  <span className="text-xs sm:text-sm">In Stock</span>
-                </div>
-              ) : (
-                <div className="flex items-center text-red-500">
-                  <span className="text-xs sm:text-sm">Out of Stock</span>
-                </div>
-              )}
-              
-              <div className="flex items-center text-xs sm:text-sm text-muted-foreground">
-                <Truck className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
-                <span>Delivery in {product.deliveryTime}</span>
-              </div>
-              
-              <div className="flex items-center text-xs sm:text-sm text-green-600">
-                <Leaf className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
-                <span>
-                  {isLoadingCarbon
-                    ? "Calculating savings..."
-                    : `Saves ${carbonData?.savings?.percentage || "67"}% emissions vs. conventional products`}
-                </span>
-              </div>
-            </div>
+            <Badge className="flex items-center w-fit gap-1 mb-6 bg-green-100 hover:bg-green-200 text-green-800 border-green-200">
+              <Leaf className="h-3.5 w-3.5 text-green-700" />
+              {carbonData?.footprint || product.carbonFootprint} kg CO₂ (
+              {carbonData?.savings?.percentage || "67"}% less than conventional)
+            </Badge>
+            
+            {/* Description */}
+            <p className="text-muted-foreground mb-6">
+              {product.description}
+            </p>
           </div>
           
-          {/* Product Description */}
           <div>
             <h2 className="text-base sm:text-lg font-medium mb-2">About this item</h2>
             <p className="text-sm text-muted-foreground">{product.description}</p>
@@ -229,64 +258,62 @@ export default function ProductDetailPage({ params }) {
           </div>
           
           {/* Quantity Selector and Actions */}
-          <div className="pt-3 sm:pt-4">
-            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <span className="text-xs sm:text-sm font-medium">Quantity:</span>
+          <div className="space-y-4 pt-2">
               <div className="flex items-center">
+              <span className="mr-4 font-medium">Quantity:</span>
+              <div className="flex items-center border rounded-md overflow-hidden">
                 <Button 
-                  variant="outline" 
+                  variant="ghost" 
                   size="icon" 
-                  className="h-7 w-7 sm:h-8 sm:w-8 rounded-r-none"
-                  onClick={decrementQuantity}
+                  onClick={decreaseQuantity}
                   disabled={quantity <= 1}
-                  style={{ position: 'relative', zIndex: 1 }}
+                  className="h-8 w-8 rounded-none"
                 >
-                  -
+                  <ChevronDown className="h-4 w-4" />
                 </Button>
-                <div className="flex h-7 w-10 sm:h-8 sm:w-12 items-center justify-center border-y border-input bg-transparent px-3 py-1 text-xs sm:text-sm" style={{ position: 'relative', zIndex: 1 }}>
-                  {quantity}
-                </div>
+                <span className="w-10 text-center">{quantity}</span>
                 <Button 
-                  variant="outline" 
+                  variant="ghost" 
                   size="icon" 
-                  className="h-7 w-7 sm:h-8 sm:w-8 rounded-l-none"
-                  onClick={incrementQuantity}
-                  style={{ position: 'relative', zIndex: 1 }}
+                  onClick={increaseQuantity}
+                  className="h-8 w-8 rounded-none"
                 >
-                  +
+                  <ChevronUp className="h-4 w-4" />
                 </Button>
               </div>
             </div>
             
-            <div className="flex gap-2 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button
-                size="lg"
-                className="flex-1 text-xs sm:text-sm py-3 h-auto"
                 onClick={handleAddToCart}
-                disabled={isLoading || !product.inStock}
+                className="flex-1"
               >
-                {isLoading ? (
-                  <span className="flex items-center gap-2">
-                    <div className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin rounded-full border-2 border-background border-t-transparent"></div>
-                    Adding...
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
-                    {isInCart ? "Add More to Cart" : "Add to Cart"}
-                  </span>
-                )}
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Add to Cart
               </Button>
               
+              <div className="flex gap-3">
               <Button
                 variant="outline"
                 size="icon"
-                className={`h-10 w-10 sm:h-11 sm:w-11 ${productInWishlist ? "text-red-500 hover:text-red-600" : ""}`}
-                onClick={handleToggleWishlist}
-              >
-                <Heart className={`h-4 w-4 sm:h-5 sm:w-5 ${productInWishlist ? "fill-red-500" : ""}`} />
+                onClick={toggleWishlist}
+                  className={`h-10 w-10 sm:h-11 sm:w-11 ${isInWishlist(product.id) ? "text-red-500 hover:text-red-600" : ""}`}
+                >
+                  <Heart className={`h-4 w-4 sm:h-5 sm:w-5 ${isInWishlist(product.id) ? "fill-red-500" : ""}`} />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-10 w-10 sm:h-11 sm:w-11"
+                >
+                  <Share2 className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
+              </div>
             </div>
+            
+            <p className="text-xs text-muted-foreground">
+              Delivery Time: {product.deliveryTime}
+            </p>
           </div>
           
           {/* Additional Info */}
@@ -323,6 +350,18 @@ export default function ProductDetailPage({ params }) {
                       <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Product Details</h3>
                         <p className="text-xs sm:text-sm text-muted-foreground">{product.details}</p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Key Features</h3>
+                        <ul className="space-y-2">
+                          {product.features.map((feature, index) => (
+                            <li key={index} className="flex items-start">
+                              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                              <span className="text-xs sm:text-sm">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                       
                       <div>
@@ -365,7 +404,7 @@ export default function ProductDetailPage({ params }) {
                       
                       <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Carbon Footprint</h3>
-                        <p className="mb-3">This product has a carbon footprint of <span className="font-medium">{isLoadingCarbon ? "calculating..." : `${carbonData?.footprint} kg CO₂`}</span>, which is {isLoadingCarbon ? "lower" : `${carbonData?.savings?.percentage}% lower`} than conventional alternatives.</p>
+                        <p className="mb-3">This product has a carbon footprint of <span className="font-medium">{carbonData?.footprint || product.carbonFootprint} kg CO₂</span>, which is {carbonData?.savings?.percentage || "67"}% lower than conventional alternatives.</p>
                         
                         <div className="relative pt-1">
                           <div className="flex items-center justify-between mb-1">
@@ -381,11 +420,11 @@ export default function ProductDetailPage({ params }) {
                             </div>
                           </div>
                           <div className="overflow-hidden h-2 text-xs flex rounded bg-gray-200">
-                            <div style={{ width: `${isLoadingCarbon ? 33 : 100 - parseInt(carbonData?.savings?.percentage) || 33}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                            <div style={{ width: `${100 - parseInt(carbonData?.savings?.percentage || 67)}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
                           </div>
                           <div className="flex items-center justify-between mt-1 text-xs text-muted-foreground">
-                            <div>{isLoadingCarbon ? "Calculating..." : `${carbonData?.footprint} kg CO₂`}</div>
-                            <div>{isLoadingCarbon ? "Calculating..." : `${carbonData?.conventionalFootprint} kg CO₂`}</div>
+                            <div>{carbonData?.footprint || product.carbonFootprint} kg CO₂</div>
+                            <div>{carbonData?.conventionalFootprint || (product.carbonFootprint * 3)} kg CO₂</div>
                           </div>
                         </div>
                       </div>
@@ -447,6 +486,127 @@ export default function ProductDetailPage({ params }) {
           </div>
         </div>
       </div>
+      
+      {/* Reviews */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold mb-8">Customer Reviews</h2>
+        <div className="grid gap-8 md:grid-cols-2">
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-start">
+                <div className="mr-4">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="font-medium">JD</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center mb-1">
+                    <div className="flex mr-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`h-4 w-4 ${i < 5 ? "fill-yellow-400 text-yellow-400" : "text-muted"}`} />
+                      ))}
+                    </div>
+                    <span className="text-sm font-medium">Jane Doe</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm mb-3">Verified Purchase</p>
+                  <h3 className="font-medium mb-2">Amazing quality and eco-friendly</h3>
+                  <p className="text-sm text-muted-foreground">
+                    I'm really impressed with the quality and the fact that it's eco-friendly.
+                    The material feels premium and it's exactly as described. Delivery was also faster than expected.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-start">
+                <div className="mr-4">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="font-medium">MS</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center mb-1">
+                    <div className="flex mr-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`h-4 w-4 ${i < 4 ? "fill-yellow-400 text-yellow-400" : "text-muted"}`} />
+                      ))}
+                    </div>
+                    <span className="text-sm font-medium">Mike Smith</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm mb-3">Verified Purchase</p>
+                  <h3 className="font-medium mb-2">Good product, sustainable packaging</h3>
+                  <p className="text-sm text-muted-foreground">
+                    The product is good quality and I love the sustainable packaging.
+                    It's great to see companies taking environmental impact seriously.
+                    Would buy again and recommend to others.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        
+        <div className="mt-8 text-center">
+          <Button variant="outline">Read All {product.reviewCount} Reviews</Button>
+        </div>
+      </div>
+      
+      {/* Related Products Section */}
+      {relatedProducts.length > 0 && (
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-8">You May Also Like</h2>
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {relatedProducts.map((relatedProduct) => (
+              <Card key={relatedProduct.id} className="overflow-hidden h-full flex flex-col">
+                <Link href={`/products/${relatedProduct.id}`} className="relative h-48 overflow-hidden">
+                  <Image
+                    src={relatedProduct.images[0] || '/product-placeholder.png'}
+                    alt={relatedProduct.name}
+                    fill
+                    className="object-cover transition-transform hover:scale-105"
+                  />
+                </Link>
+                <CardContent className="p-4 flex flex-col flex-grow">
+                  <Link href={`/products/${relatedProduct.id}`} className="mb-2 font-medium hover:underline line-clamp-1">
+                    {relatedProduct.name}
+                  </Link>
+                  <div className="flex items-center mb-2">
+                    <div className="flex mr-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`h-3 w-3 ${i < relatedProduct.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`} />
+                      ))}
+                    </div>
+                    <span className="text-xs text-muted-foreground">({relatedProduct.reviewCount})</span>
+                  </div>
+                  <Badge className="w-fit mb-auto">{formatPrice(relatedProduct.price)}</Badge>
+                  <div className="flex mt-3">
+                    <Button 
+                      variant="outline"
+                      size="sm" 
+                      className="flex-1 text-xs" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addToCart({
+                          ...relatedProduct,
+                          quantity: 1,
+                          image: relatedProduct.images[0]
+                        });
+                        toast.success(`${relatedProduct.name} added to cart`);
+                      }}
+                    >
+                      <ShoppingCart className="h-3 w-3 mr-1" />
+                      Add to Cart
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 } 

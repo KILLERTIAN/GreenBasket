@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 
 export function ProductImageSlider({
   images, 
-  productName, 
+  productName = "Product", 
   autoRotate = true, 
   interval = 5000,
   showMagnifier = false,
