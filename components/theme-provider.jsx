@@ -27,16 +27,6 @@ const THEMES = {
   system: {
     name: "System",
     colors: {},
-  },
-  green: {
-    name: "Green",
-    colors: {
-      primary: "#059669", // emerald-600
-      background: "#f0fdf4",
-      card: "#dcfce7",
-      text: "#166534",
-      border: "#bbf7d0",
-    },
   }
 }
 
@@ -59,7 +49,7 @@ export function ThemeProvider({ children, ...props }) {
         attribute="class" 
         defaultTheme="light"
         enableSystem
-        themes={["light", "dark", "green"]}
+        themes={["light", "dark"]}
         {...props}
       >
         {mounted && children}

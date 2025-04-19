@@ -108,7 +108,7 @@ const productCategories = [
     href: "/products?category=accessories"
   },
   {
-    name: "Home goods",
+    name: "Home",
     description: "Sustainable products for your eco-friendly home",
     image: "/images/products/Home goods/glass vase/vase1.jpg",
     href: "/products?category=home"
@@ -120,7 +120,7 @@ const productCategories = [
     href: "/products?category=furniture"
   },
   {
-    name: "Personal Care",
+    name: "Personal-Care",
     description: "Natural and sustainable personal care products",
     image: "/images/products/Personal Care/Body Lotion/612ctEDavpL._SX522_.jpg",
     href: "/products?category=personal-care"
@@ -222,11 +222,14 @@ export default function HomePage() {
       <section>
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Shop by Category</h2>
+          <Link href="/products">
+            <Button variant="outline" size="sm">View All</Button>
+          </Link>
         </div>
         <div className="mt-8 grid gap-4 md:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {productCategories.map((category) => (
             <Link 
-              href={category.href} 
+              href={`/products?category=${category.name.toLowerCase()}`}
               key={category.name}
               className="group flex flex-col items-center p-3 rounded-lg hover:bg-accent/50 transition-colors"
             >

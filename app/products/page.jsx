@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation" 
 import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
@@ -12,34 +13,123 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Leaf, Search, SlidersHorizontal, LayoutGrid, List, ChevronLeft, ChevronRight } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import { toast } from "sonner"
+import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
+import { SearchBar } from "@/components/SearchBar"
+import { ProductSkeletonGrid, ProductSkeletonList } from "@/components/ProductSkeleton"
 import productsData from "@/lib/products.json"
-import { fetchCarbonFootprint } from "@/lib/carbon-calculator" 
 
 export default function ProductsPage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const searchParams = useSearchParams()
+  const urlCategory = searchParams.get('category')
+  const urlSearch = searchParams.get('search')
+  
+  const [searchQuery, setSearchQuery] = useState(urlSearch || "")
+  const [selectedCategory, setSelectedCategory] = useState(urlCategory || "all")
   const [displayMode, setDisplayMode] = useState("grid")
   const [sortBy, setSortBy] = useState("featured")
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [productCarbonData, setProductCarbonData] = useState({})
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(12)
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [totalProducts, setTotalProducts] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
+  const [categories, setCategories] = useState(["all"])
   const { addToCart } = useCart()
+  
+  // Initialize search query and category from URL parameters
+  useEffect(() => {
+    if (urlSearch) setSearchQuery(urlSearch)
+    if (urlCategory) setSelectedCategory(urlCategory)
+  }, [urlSearch, urlCategory])
   
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1)
   }, [searchQuery, selectedCategory, sortBy])
   
-  // Fetch carbon footprint data for all products on initial load
+  // Fetch product data and apply filters client-side
   useEffect(() => {
-    async function loadAllCarbonData() {
+    const fetchAndFilterProducts = async () => {
+      setLoading(true)
+      try {
+        // Filter products based on search and category
+        let filteredProducts = [...productsData];
+        
+        // Apply category filter if not 'all'
+        if (selectedCategory && selectedCategory !== 'all') {
+          filteredProducts = filteredProducts.filter(
+            product => product.category.toLowerCase() === selectedCategory.toLowerCase()
+          );
+        }
+        
+        // Apply search filter if present
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
+          filteredProducts = filteredProducts.filter(product => 
+            product.name.toLowerCase().includes(query) || 
+            product.description.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query)
+          );
+        }
+        
+        // Apply sorting
+        switch(sortBy) {
+          case 'price-low-high':
+            filteredProducts.sort((a, b) => a.price - b.price);
+            break;
+          case 'price-high-low':
+            filteredProducts.sort((a, b) => b.price - a.price);
+            break;
+          case 'rating':
+            filteredProducts.sort((a, b) => b.rating - a.rating);
+            break;
+          case 'sustainability':
+            filteredProducts.sort((a, b) => (a.carbonFootprint || 5) - (b.carbonFootprint || 5));
+            break;
+          default: // 'featured' - maintain default order or implement featured sorting logic
+            break;
+        }
+        
+        // Calculate pagination
+        const total = filteredProducts.length;
+        const pages = Math.ceil(total / itemsPerPage);
+        
+        // Get current page items
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+        
+        // Update state
+        setProducts(paginatedProducts);
+        setTotalProducts(total);
+        setTotalPages(pages);
+        
+        // Extract unique categories for filters
+        const uniqueCategories = ['all', ...new Set(productsData.map(p => p.category.toLowerCase()))];
+        setCategories(uniqueCategories);
+        
+      } catch (error) {
+        console.error('Error processing products:', error);
+        toast.error('Failed to load products');
+      } finally {
+        // Add slight delay to make loading state visible
+        setTimeout(() => {
+          setLoading(false);
+        }, 300);
+      }
+    };
+    
+    fetchAndFilterProducts();
+  }, [currentPage, itemsPerPage, selectedCategory, searchQuery, sortBy]);
+  
+  // Fetch carbon footprint data
+  useEffect(() => {
+    async function loadCarbonData() {
       const carbonDataMap = {}
       
-      // Load carbon data for first 6 products to avoid overloading
-      const productsToLoad = productsData.slice(0, 12)
-      
-      for (const product of productsToLoad) {
+      // Load carbon data for displayed products
+      for (const product of products) {
         try {
           const data = await fetchCarbonFootprint(product.id)
           carbonDataMap[product.id] = data
@@ -60,75 +150,12 @@ export default function ProductsPage() {
       setProductCarbonData(carbonDataMap)
     }
     
-    loadAllCarbonData()
-  }, [])
-  
-  // Filter products based on search query and selected category
-  let filtered = [...productsData];
-  
-  // Filter by search query
-  if (searchQuery) {
-    filtered = filtered.filter(product => 
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }
-  
-  // Filter by category
-  if (selectedCategory && selectedCategory !== 'all') {
-    filtered = filtered.filter(product => {
-      const category = product.category.toLowerCase();
-      // Handle category mapping for URL parameters
-      if (selectedCategory === 'home') {
-        return category === 'home';
-      } else {
-        return category === selectedCategory;
-      }
-    });
-  } else {
-    // When no specific category is selected, show all main categories
-    filtered = filtered.filter(product => {
-      const category = product.category.toLowerCase();
-      const isDisplayableCategory = category === 'stationery' || 
-                                   category === 'personal-care' || 
-                                   category === 'accessories' ||
-                                   category === 'clothing' ||
-                                   category === 'furniture' ||
-                                   category === 'home';
-      return isDisplayableCategory;
-    });
-  }
-  
-  // Sort products based on selected option
-  const sortedProducts = [...filtered].sort((a, b) => {
-    switch (sortBy) {
-      case "price-low-high":
-        return a.price - b.price
-      case "price-high-low":
-        return b.price - a.price
-      case "rating":
-        return b.rating - a.rating
-      case "sustainability":
-        const aFootprint = productCarbonData[a.id]?.footprint || a.carbonFootprint || 0
-        const bFootprint = productCarbonData[b.id]?.footprint || b.carbonFootprint || 0
-        return aFootprint - bFootprint
-      default:
-        return 0 // Default sort (featured)
+    if (products.length > 0) {
+      loadCarbonData()
     }
-  })
-  
-  // Calculate pagination values
-  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage
-  const paginatedProducts = sortedProducts.slice(startIndex, endIndex)
-  
-  // Generate unique categories from product data
-  const categories = ["all", ...new Set(productsData.map(product => product.category))]
+  }, [products])
   
   const handleAddToCart = (product) => {
-    // Add loading state for the specific product in a real implementation
-    
     // Simulate an API call
     setTimeout(() => {
       addToCart({
@@ -160,7 +187,11 @@ export default function ProductsPage() {
   return (
     <div className="container mx-auto py-4">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Sustainable Products</h1>
+        <h1 className="text-3xl font-bold mb-2">
+          {selectedCategory !== 'all' 
+            ? `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Products`
+            : 'All Products'}
+        </h1>
         <p className="text-muted-foreground">
           Browse our collection of eco-friendly products that help reduce your carbon footprint.
         </p>
@@ -170,12 +201,13 @@ export default function ProductsPage() {
       <div className="mb-8 space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-grow">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input 
-              placeholder="Search products..." 
-              className="pl-9"
+            <Input
+              type="text"
+              placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full"
+              icon={<Search className="h-4 w-4" />}
             />
           </div>
           
@@ -244,7 +276,7 @@ export default function ProductsPage() {
       {/* Products count and pagination info */}
       <div className="flex justify-between items-center mb-4">
         <p className="text-sm text-muted-foreground">
-          Showing {sortedProducts.length > 0 ? startIndex + 1 : 0} to {Math.min(endIndex, sortedProducts.length)} of {sortedProducts.length} products
+          Showing {totalProducts > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} to {Math.min(currentPage * itemsPerPage, totalProducts)} of {totalProducts} products
         </p>
         
         <div className="flex items-center gap-2">
@@ -271,8 +303,12 @@ export default function ProductsPage() {
           ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' 
           : 'grid-cols-1'
       }`}>
-        {paginatedProducts.length > 0 ? (
-          paginatedProducts.map((product) => (
+        {loading ? (
+          displayMode === 'grid' 
+            ? <ProductSkeletonGrid count={itemsPerPage} />
+            : <ProductSkeletonList count={Math.min(itemsPerPage, 8)} />
+        ) : products.length > 0 ? (
+          products.map((product) => (
             <Card 
               key={product.id} 
               className={`overflow-hidden transition-all duration-200 hover:shadow-lg ${
@@ -350,7 +386,7 @@ export default function ProductsPage() {
       </div>
       
       {/* Pagination controls */}
-      {sortedProducts.length > 0 && totalPages > 1 && (
+      {totalPages > 1 && !loading && (
         <div className="mt-10 flex items-center justify-center">
           <div className="flex items-center space-x-2">
             <Button

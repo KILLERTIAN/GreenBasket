@@ -1,6 +1,6 @@
 "use client"
 
-import { Moon, Sun, Leaf, Monitor } from "lucide-react"
+import { Moon, Sun, Monitor } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useThemeInfo } from "@/components/theme-provider"
 
@@ -27,8 +27,6 @@ export function ModeToggle() {
         return <Moon className="h-[1.2rem] w-[1.2rem]" />
       case "light":
         return <Sun className="h-[1.2rem] w-[1.2rem]" />
-      case "green":
-        return <Leaf className="h-[1.2rem] w-[1.2rem]" />
       case "system":
       default:
         return <Monitor className="h-[1.2rem] w-[1.2rem]" />
@@ -52,7 +50,6 @@ export function ModeToggle() {
               {key === "light" && <Sun className="h-4 w-4" />}
               {key === "dark" && <Moon className="h-4 w-4" />}
               {key === "system" && <Monitor className="h-4 w-4" />}
-              {key === "green" && <Leaf className="h-4 w-4" />}
               <span>{value.name}</span>
             </DropdownMenuRadioItem>
           ))}
