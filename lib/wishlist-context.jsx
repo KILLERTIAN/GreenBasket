@@ -1,74 +1,81 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect } from "react"
-import { useAuth } from "./auth-context"
+import { useSession } from "next-auth/react"
 import { toast } from "sonner"
 import productsData from "./products.json"
 
 const WishlistContext = createContext()
 
 export function WishlistProvider({ children }) {
-  const { user } = useAuth()
-  const [wishlistItems, setWishlistItems] = useState([])
+  const { data: session } = useSession()
+  const [wishlist, setWishlist] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Load wishlist data when user changes
+  // Load wishlist data when session changes
   useEffect(() => {
     const loadWishlist = () => {
-      if (user) {
+      if (session?.user) {
         // Get wishlist from localStorage
-        const savedWishlist = localStorage.getItem(`wishlist_${user.id}`)
+        const userId = session.user.id || session.user.email
+        const savedWishlist = localStorage.getItem(`wishlist_${userId}`)
         if (savedWishlist) {
-          setWishlistItems(JSON.parse(savedWishlist))
+          try {
+            setWishlist(JSON.parse(savedWishlist))
+          } catch (error) {
+            console.error("Failed to parse wishlist from localStorage:", error)
+            setWishlist([])
+          }
         } else {
-          setWishlistItems([])
+          setWishlist([])
         }
       } else {
         // No user, empty wishlist
-        setWishlistItems([])
+        setWishlist([])
       }
       setLoading(false)
     }
     
     loadWishlist()
-  }, [user])
+  }, [session])
 
   // Save wishlist to localStorage whenever it changes
   useEffect(() => {
-    if (user && !loading) {
-      localStorage.setItem(`wishlist_${user.id}`, JSON.stringify(wishlistItems))
+    if (session?.user && !loading) {
+      const userId = session.user.id || session.user.email
+      localStorage.setItem(`wishlist_${userId}`, JSON.stringify(wishlist))
     }
-  }, [wishlistItems, user, loading])
+  }, [wishlist, session, loading])
 
   // Add product to wishlist
   const addToWishlist = (productId) => {
-    if (!user) {
+    if (!session?.user) {
       toast.error("Please log in to add items to your wishlist")
       return false
     }
     
     // Check if product already in wishlist
-    if (wishlistItems.includes(productId)) {
+    if (wishlist.includes(productId)) {
       toast.info("Item already in wishlist")
       return false
     }
     
     // Add to wishlist
-    setWishlistItems(prev => [...prev, productId])
+    setWishlist(prev => [...prev, productId])
     toast.success("Added to wishlist")
     return true
   }
 
   // Remove product from wishlist
   const removeFromWishlist = (productId) => {
-    setWishlistItems(prev => prev.filter(id => id !== productId))
+    setWishlist(prev => prev.filter(id => id !== productId))
     toast.success("Removed from wishlist")
     return true
   }
 
   // Check if product is in wishlist
   const isInWishlist = (productId) => {
-    return wishlistItems.includes(productId)
+    return wishlist.includes(productId)
   }
 
   // Toggle wishlist status
@@ -82,7 +89,7 @@ export function WishlistProvider({ children }) {
 
   // Get wishlist items with product details
   const getWishlistWithDetails = () => {
-    return wishlistItems.map(productId => {
+    return wishlist.map(productId => {
       const productDetails = productsData.find(p => p.id === productId)
       if (productDetails) {
         return {
@@ -96,13 +103,14 @@ export function WishlistProvider({ children }) {
 
   // Clear wishlist
   const clearWishlist = () => {
-    setWishlistItems([])
+    setWishlist([])
     toast.success("Wishlist cleared")
     return true
   }
 
   const value = {
-    wishlistItems,
+    wishlist,
+    wishlistItems: wishlist, // For backward compatibility
     loading,
     addToWishlist,
     removeFromWishlist,
@@ -110,7 +118,7 @@ export function WishlistProvider({ children }) {
     toggleWishlist,
     getWishlistWithDetails,
     clearWishlist,
-    wishlistCount: wishlistItems.length
+    wishlistCount: wishlist.length
   }
 
   return (

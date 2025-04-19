@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/lib/cart-context"
-import { useAuth } from "@/lib/auth-context"
 import { useWishlist } from "@/lib/wishlist-context"
 import Link from "next/link"
 import { ShoppingCart, Search, Menu, X, User, LogOut, Settings, Package, Heart, Home, Info, Phone, Leaf } from "lucide-react"
@@ -23,15 +22,23 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 
+import { Badge } from "@/components/ui/badge"
+import { useSession, signOut } from "next-auth/react"
+import { SearchBar } from "./SearchBar"
+
 export default function Navbar() {
   const { cart } = useCart()
-  const { user, logout } = useAuth()
   const { wishlistCount } = useWishlist()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const { data: session } = useSession()
+  
+  // Get user from session
+  const user = session?.user
+  const isAdmin = user?.role === "admin"
   
   // For hydration mismatch prevention with theme
   useEffect(() => {
@@ -52,6 +59,10 @@ export default function Navbar() {
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
   
   const totalCartItems = cart.reduce((total, item) => total + (item.quantity || 1), 0)
+  
+  const handleSignOut = async () => {
+    await signOut({ redirect: true, callbackUrl: "/" })
+  }
   
   // Helper function to determine if a link is active
   const isActiveLink = (path) => {
@@ -93,7 +104,7 @@ export default function Navbar() {
           </Button>
         </div>
         
-        <div className="flex w-full items-center justify-between">
+        <div className="flex items-center">
           <Link href="/" className="mr-2 sm:mr-6 flex items-center space-x-1 sm:space-x-2 group">
             <div className="relative h-6 w-6 sm:h-8 sm:w-8 overflow-hidden transition-transform group-hover:scale-110">
               <Image 
@@ -127,7 +138,7 @@ export default function Navbar() {
               <Phone className="mr-1 h-4 w-4" />
               <span>Contact</span>
             </Link>
-            {user?.isAdmin && (
+            {isAdmin && (
               <Link href="/admin" className={linkStyle('/admin')}>
                 <Settings className="mr-1 h-4 w-4" />
                 <span>Admin</span>
@@ -231,7 +242,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={logout} className="text-red-500 cursor-pointer">
+                <DropdownMenuItem onClick={handleSignOut} className="text-red-500 cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
                 </DropdownMenuItem>
@@ -311,7 +322,7 @@ export default function Navbar() {
             <span className="mr-2">Theme:</span>
             <ModeToggle />
           </div>}
-          {user?.isAdmin && (
+          {isAdmin && (
             <Link 
               href="/admin" 
               className={mobileLinkStyle('/admin')}
@@ -324,29 +335,46 @@ export default function Navbar() {
         </div>
       </div>
       
-      {/* Search Overlay */}
-      <div className={`${isSearchOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-16 z-50 border-b bg-background/95 backdrop-blur-sm p-2 sm:p-4 shadow-md`}>
-        <form className="flex w-full max-w-2xl mx-auto">
-          <Input
-            type="search"
-            placeholder="Search for eco-friendly products..."
-            className="flex-1 rounded-l-full rounded-r-none border-r-0 text-sm"
-            autoFocus
-          />
-          <Button type="submit" className="rounded-l-none rounded-r-full text-sm px-3 sm:px-4">
-            Search
-          </Button>
-          <Button 
-            type="button" 
-            variant="ghost" 
-            size="icon"
-            onClick={toggleSearch}
-            className="ml-1 sm:ml-2 rounded-full h-8 w-8 sm:h-9 sm:w-9"
-            aria-label="Close search"
-          >
-            <X className="h-4 w-4 sm:h-5 sm:w-5" />
-          </Button>
-        </form>
+      {/* Search Overlay - Full Screen */}
+      <div className={`${isSearchOpen ? 'flex' : 'hidden'} fixed inset-0 z-50 bg-background/95 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto`}>
+        <div className="w-full max-w-3xl mx-auto mt-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold">Search Products</h2>
+            <Button 
+              type="button" 
+              variant="ghost" 
+              size="icon"
+              onClick={toggleSearch}
+              className="rounded-full h-9 w-9"
+              aria-label="Close search"
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
+          <SearchBar onClose={toggleSearch} />
+          
+          <div className="mt-6 flex flex-wrap gap-3">
+            <p className="text-sm text-muted-foreground w-full mb-1">Popular categories:</p>
+            <Link href="/products?category=clothing" onClick={toggleSearch}>
+              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-accent">Clothing</Badge>
+            </Link>
+            <Link href="/products?category=furniture" onClick={toggleSearch}>
+              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-accent">Furniture</Badge>
+            </Link>
+            <Link href="/products?category=home" onClick={toggleSearch}>
+              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-accent">Home Goods</Badge>
+            </Link>
+            <Link href="/products?category=personal-care" onClick={toggleSearch}>
+              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-accent">Personal Care</Badge>
+            </Link>
+            <Link href="/products?category=accessories" onClick={toggleSearch}>
+              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-accent">Accessories</Badge>
+            </Link>
+            <Link href="/products?category=stationery" onClick={toggleSearch}>
+              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-accent">Stationery</Badge>
+            </Link>
+          </div>
+        </div>
       </div>
     </header>
   )

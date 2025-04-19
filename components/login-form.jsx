@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useAuth } from "@/lib/auth-context"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import Link from "next/link"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
+import { signIn } from "next-auth/react"
 
 export function LoginForm({
   className,
@@ -19,7 +19,6 @@ export function LoginForm({
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const { login } = useAuth()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
@@ -27,31 +26,36 @@ export function LoginForm({
     setIsLoading(true)
     
     try {
-      await login(email, password)
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      })
+      
+      if (result?.error) {
+        toast.error("Invalid credentials. Please try again.")
+        setIsLoading(false)
+        return
+      }
+      
       toast.success("Successfully logged in!")
       router.push("/")
+      router.refresh()
     } catch (error) {
-      toast.error("Invalid credentials. Please try again.")
+      toast.error("Something went wrong. Please try again.")
       console.error(error)
-    } finally {
       setIsLoading(false)
     }
   }
 
   const handleGoogleLogin = async () => {
-    setIsLoading(true)
-    
     try {
-      // Mock Google login for now
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      await login("demo@gmail.com", "password")
-      toast.success("Successfully logged in with Google!")
-      router.push("/")
+      await signIn("google", { callbackUrl: "/" })
+      // The redirect will happen automatically,
+      // so we don't need to handle success here
     } catch (error) {
       toast.error("Google login failed. Please try again.")
       console.error(error)
-    } finally {
-      setIsLoading(false)
     }
   }
 
