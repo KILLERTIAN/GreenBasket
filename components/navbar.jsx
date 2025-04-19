@@ -21,6 +21,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
+import { SearchBar } from "@/components/SearchBar"
+import { Badge } from "@/components/ui/badge"
 
 import { Badge } from "@/components/ui/badge"
 import { useSession, signOut } from "next-auth/react"
