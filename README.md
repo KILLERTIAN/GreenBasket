@@ -42,25 +42,30 @@ Our mission: Make sustainable shopping accessible, transparent, and rewarding.
 
 3. **Product Detail Page** (`/products/[id]`)
    - Detailed product information, images, price, and sustainability metrics
-   - Compare environmental impact with conventional alternatives
+   - Compare the environmental impact with conventional alternatives
 
 4. **Cart Page** (`/cart`)
    - Review items, quantities, and price
-   - View real-time carbon footprint impact of your cart
+   - View the real-time carbon footprint impact of your cart
    - Apply eco-rewards or sustainability discounts
+     
+![image](https://github.com/user-attachments/assets/8e065d8a-1310-483c-acd4-7ab9dd61486a)
 
 5. **Checkout Page** (`/checkout`)
    - Secure payment processing through Razorpay
-   - Order summary with environmental impact visualization
+   - Order summary with environmental impact visualisation
 
 6. **Profile Page** (`/profile`)
    - User dashboard with order history
-   - Carbon footprint tracking and visualizations
+   - Carbon footprint tracking and visualisations
    - Personal sustainability metrics and achievements
+
+![image](https://github.com/user-attachments/assets/16f39f34-7315-4acc-a318-e9232609e16a)
+
 
 7. **Leaderboard Page** (`/leaderboard`)
    - Community rankings by carbon footprint and eco-purchases
-   - Visualizations showing top performers and trends over time
+   - Visualisations showing top performers and trends over time
 
 8. **About Page** (`/about`)
    - Information about GreenBasket's mission and values
@@ -69,6 +74,8 @@ Our mission: Make sustainable shopping accessible, transparent, and rewarding.
 9. **Carbon API Demo** (`/carbon-api`)
    - Live demonstration of the carbon intensity API integration
    - Real-time data on grid carbon intensity and renewable energy mix
+
+![image](https://github.com/user-attachments/assets/58d96d6e-49b8-48af-8b5d-42371b879d9e)
 
 ### Admin Pages
 
@@ -83,6 +90,8 @@ Our mission: Make sustainable shopping accessible, transparent, and rewarding.
 3. **Order Management** (`/admin/orders`)
    - View and process customer orders
    - Track carbon savings across all purchases
+
+
 
 4. **User Management** (`/admin/users`)
    - View and manage user accounts
@@ -178,9 +187,22 @@ npm install
 3. Set up environment variables
 Create a `.env.local` file with the following variables:
 ```
-NEXT_PUBLIC_API_URL=your_api_url
-NEXT_PUBLIC_RAZORPAY_KEY_ID=your_razorpay_key
-DATABASE_URL=your_database_connection_string
+# Database
+MONGODB_URI=youruri
+NODE_ENV=development 
+
+# Authentication
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=32digitkey
+
+# Google OAuth
+GOOGLE_CLIENT_ID=yourgoogleclientid
+GOOGLE_CLIENT_SECRET=yourclient-secret
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3
+STRIPE_SECRET_KEY=stripetestkey
+STRIPE_WEBHOOK_SECRET=whsec_test
 ```
 
 4. Run the development server
