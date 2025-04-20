@@ -159,7 +159,7 @@ Stripe – Payment gateway for secure transactions
 **☁️ Deployment**
 Vercel – Serverless hosting with auto CI/CD
 
-Link to ur site: https://green-basket0.vercel.app/
+Link to our site: https://green-basket0.vercel.app/
 
 
 ## 🧪 Environment Setup
