@@ -93,12 +93,6 @@ To test the payment gateway in development or staging environments, use the foll
 - **CVV**: Any 3-digit number (e.g., 123)
 - **Name**: Any name
 
-For testing different payment scenarios:
-- **Successful Payment**: Use any OTP
-- **Failed Payment**: Use OTP "1234"
-
-### UPI Test Credentials
-- **UPI ID**: `success@razorpay`
 
 ## 👤 Admin Access
 
@@ -165,7 +159,7 @@ npm run start
 - **State Management**: React Context API
 - **Visualization**: Recharts
 - **Authentication**: NextAuth.js
-- **Payment Processing**: Razorpay
+- **Payment Processing**: Stripe
 - **API Integration**: Carbon Intensity API, National Grid ESO API
 - **Styling**: TailwindCSS with CSS variables for theming
 
