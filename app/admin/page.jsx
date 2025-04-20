@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -34,6 +34,60 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
+import { 
+  CartesianGrid, 
+  Dot, 
+  Line, 
+  LineChart, 
+  BarChart as RechartsBarChart, 
+  Bar, 
+  XAxis, 
+  YAxis,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Sector,
+  Label
+} from "recharts"
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+import React from "react"
+
+// Add global CSS for chart colors
+const chartStyles = `
+  :root {
+    --color-jan: hsl(var(--chart-1));
+    --color-feb: hsl(var(--chart-2));
+    --color-mar: hsl(var(--chart-3));
+    --color-apr: hsl(var(--chart-4));
+    --color-may: hsl(var(--chart-5));
+    --color-jun: hsl(var(--chart-6));
+    --color-retail: hsl(var(--chart-1));
+    --color-online: hsl(var(--chart-2));
+    --color-sustainabilityScore: hsl(var(--chart-2));
+  }
+
+  .dark {
+    --chart-1: 142 76% 36%;
+    --chart-2: 205 100% 50%;
+    --chart-3: 52 100% 50%;
+    --chart-4: 170 100% 40%;
+    --chart-5: 291 64% 42%;
+    --chart-6: 31 100% 60%;
+  }
+
+  .light {
+    --chart-1: 142 72% 29%;
+    --chart-2: 205 100% 36%;
+    --chart-3: 35 100% 43%;
+    --chart-4: 170 100% 30%;
+    --chart-5: 291 70% 34%;
+    --chart-6: 31 100% 48%;
+  }
+`
 
 // Mock data - Replace with actual API calls
 const products = [
@@ -168,32 +222,75 @@ const users = [
   }
 ]
 
-const sustainabilityData = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-  datasets: [
-    {
-      label: "Carbon Footprint Reduction (kg)",
-      data: [12, 19, 15, 25, 22, 30],
-      borderColor: "rgb(75, 192, 192)",
-      backgroundColor: "rgba(75, 192, 192, 0.2)",
-      tension: 0.3,
-      fill: true
-    }
-  ]
+// Sustainability metrics data for pie chart
+const sustainabilityData = [
+  { month: "Jan", sustainabilityScore: 42, fill: "var(--color-jan)" },
+  { month: "Feb", sustainabilityScore: 55, fill: "var(--color-feb)" },
+  { month: "Mar", sustainabilityScore: 50, fill: "var(--color-mar)" },
+  { month: "Apr", sustainabilityScore: 68, fill: "var(--color-apr)" },
+  { month: "May", sustainabilityScore: 72, fill: "var(--color-may)" },
+  { month: "Jun", sustainabilityScore: 85, fill: "var(--color-jun)" },
+]
+
+const sustainabilityChartConfig = {
+  sustainabilityScore: {
+    label: "Sustainability Score",
+    color: "hsl(var(--chart-2))",
+  },
+  jan: {
+    label: "January",
+    color: "hsl(var(--chart-1))",
+  },
+  feb: {
+    label: "February", 
+    color: "hsl(var(--chart-2))",
+  },
+  mar: {
+    label: "March",
+    color: "hsl(var(--chart-3))",
+  },
+  apr: {
+    label: "April",
+    color: "hsl(var(--chart-4))",
+  },
+  may: {
+    label: "May",
+    color: "hsl(var(--chart-5))",
+  },
+  jun: {
+    label: "June",
+    color: "hsl(var(--chart-6))",
+  },
 }
 
-const salesData = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-  datasets: [
-    {
-      label: "Monthly Sales (₹)",
-      data: [25000, 32000, 28000, 42000, 38000, 52000],
-      borderColor: "rgb(54, 162, 235)",
-      backgroundColor: "rgba(54, 162, 235, 0.2)",
-      tension: 0.3,
-      fill: true
-    }
-  ]
+// Sales data for bar chart
+const salesData = [
+  { date: "2024-01-01", retail: 15000, online: 10000 },
+  { date: "2024-01-15", retail: 18000, online: 14000 },
+  { date: "2024-02-01", retail: 17000, online: 15000 },
+  { date: "2024-02-15", retail: 19000, online: 13000 },
+  { date: "2024-03-01", retail: 16000, online: 12000 },
+  { date: "2024-03-15", retail: 18500, online: 9500 },
+  { date: "2024-04-01", retail: 22000, online: 20000 },
+  { date: "2024-04-15", retail: 25000, online: 17000 },
+  { date: "2024-05-01", retail: 21000, online: 17000 },
+  { date: "2024-05-15", retail: 24000, online: 14000 },
+  { date: "2024-06-01", retail: 28000, online: 24000 },
+  { date: "2024-06-15", retail: 30000, online: 22000 },
+]
+
+const salesChartConfig = {
+  revenue: {
+    label: "Revenue",
+  },
+  retail: {
+    label: "Retail Sales",
+    color: "hsl(var(--chart-1))",
+  },
+  online: {
+    label: "Online Sales",
+    color: "hsl(var(--chart-2))",
+  },
 }
 
 function AdminDashboard() {
@@ -203,6 +300,25 @@ function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState("")
   const [productStatusFilter, setProductStatusFilter] = useState("all")
   const [orderStatusFilter, setOrderStatusFilter] = useState("all")
+  const [activeSalesChart, setActiveSalesChart] = useState("retail")
+  const [activeSustainabilityMonth, setActiveSustainabilityMonth] = useState(sustainabilityData[0].month)
+
+  // Calculate totals for sales data
+  const salesTotal = React.useMemo(
+    () => ({
+      retail: salesData.reduce((acc, curr) => acc + curr.retail, 0),
+      online: salesData.reduce((acc, curr) => acc + curr.online, 0),
+    }),
+    []
+  )
+
+  // Find active month index for the pie chart
+  const activeSustainabilityIndex = React.useMemo(
+    () => sustainabilityData.findIndex((item) => item.month === activeSustainabilityMonth),
+    [activeSustainabilityMonth]
+  )
+  
+  const sustainabilityMonths = React.useMemo(() => sustainabilityData.map((item) => item.month), [])
 
   // Simulate loading
   useEffect(() => {
@@ -320,6 +436,8 @@ function AdminDashboard() {
 
   return (
     <div className="space-y-8">
+      <style jsx global>{chartStyles}</style>
+      
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold py-4">Admin Dashboard</h1>
@@ -332,7 +450,7 @@ function AdminDashboard() {
       </div>
 
       <div className="grid gap-6 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-white shadow-md py-4">
+        <Card className="shadow-md py-4">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Products</CardTitle>
             <Package className="h-4 w-4 text-muted-foreground" />
@@ -345,7 +463,7 @@ function AdminDashboard() {
           </CardContent>
         </Card>
         
-        <Card className="bg-white shadow-md py-4">
+        <Card className="shadow-md py-4">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Carbon Saved</CardTitle>
             <Leaf className="h-4 w-4 text-green-500" />
@@ -359,7 +477,7 @@ function AdminDashboard() {
           </CardContent>
         </Card>
         
-        <Card className="bg-white shadow-md py-4">
+        <Card className="shadow-md py-4">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
             <ShoppingBag className="h-4 w-4 text-muted-foreground" />
@@ -372,7 +490,7 @@ function AdminDashboard() {
           </CardContent>
         </Card>
         
-        <Card className="bg-white shadow-md py-4">
+        <Card className="shadow-md py-4">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Users</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
@@ -387,7 +505,7 @@ function AdminDashboard() {
       </div>
 
       <Tabs defaultValue="products" className="w-full">
-        <TabsList className="bg-white shadow-sm rounded-lg mb-6">
+        <TabsList className="shadow-sm rounded-lg mb-6">
           <TabsTrigger value="products" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Products</TabsTrigger>
           <TabsTrigger value="orders" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Orders</TabsTrigger>
           <TabsTrigger value="users" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Users</TabsTrigger>
@@ -395,7 +513,7 @@ function AdminDashboard() {
         </TabsList>
         
         <TabsContent value="products">
-          <Card className="bg-white shadow-md py-4">
+          <Card className="shadow-md py-4">
             <CardHeader>
               <CardTitle className="py-4">Product Management</CardTitle>
               <CardDescription>Manage your product inventory and details</CardDescription>
@@ -488,7 +606,7 @@ function AdminDashboard() {
         </TabsContent>
         
         <TabsContent value="orders">
-          <Card className="bg-white shadow-md py-4">
+          <Card className="shadow-md py-4">
             <CardHeader>
               <CardTitle className="py-4">Order Management</CardTitle>
               <CardDescription>View and manage customer orders</CardDescription>
@@ -559,7 +677,7 @@ function AdminDashboard() {
         </TabsContent>
         
         <TabsContent value="users">
-          <Card className="bg-white shadow-md py-4">
+          <Card className="shadow-md py-4">
             <CardHeader>
               <CardTitle className="py-4">User Management</CardTitle>
               <CardDescription>View and manage user accounts</CardDescription>
@@ -607,71 +725,236 @@ function AdminDashboard() {
         
         <TabsContent value="analytics">
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
-            <Card className="bg-white shadow-md py-4">
-              <CardHeader>
-                <CardTitle className="py-4">Sustainability Metrics</CardTitle>
-                <CardDescription>Carbon footprint reduction over time</CardDescription>
+            <Card className="flex flex-col py-4">
+              <CardHeader className="flex-row items-start space-y-0 pb-0">
+                <div className="grid gap-1">
+                  <CardTitle>Sustainability Metrics</CardTitle>
+                  <CardDescription>Carbon footprint reduction over time</CardDescription>
+                </div>
+                <Select value={activeSustainabilityMonth} onValueChange={setActiveSustainabilityMonth}>
+                  <SelectTrigger
+                    className="ml-auto h-7 w-[130px] rounded-lg pl-2.5"
+                    aria-label="Select a month"
+                  >
+                    <SelectValue placeholder="Select month" />
+                  </SelectTrigger>
+                  <SelectContent align="end" className="rounded-xl">
+                    {sustainabilityMonths.map((key) => {
+                      const config = sustainabilityChartConfig[key.toLowerCase() === "jun" ? "jun" : key.toLowerCase()]
+
+                      if (!config) {
+                        return null
+                      }
+
+                      return (
+                        <SelectItem
+                          key={key}
+                          value={key}
+                          className="rounded-lg [&_span]:flex"
+                        >
+                          <div className="flex items-center gap-2 text-xs">
+                            <span
+                              className="flex h-3 w-3 shrink-0 rounded-sm"
+                              style={{
+                                backgroundColor: `var(--color-${key.toLowerCase() === "jun" ? "jun" : key.toLowerCase()})`,
+                              }}
+                            />
+                            {config?.label}
+                          </div>
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
               </CardHeader>
-              <CardContent className="overflow-x-auto">
-                <Chart
-                  type="line"
-                  data={sustainabilityData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: {
-                        position: "top"
-                      },
-                      tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                      }
-                    },
-                    scales: {
-                      y: {
-                        beginAtZero: true
-                      }
-                    }
-                  }}
-                  className="h-80 min-w-[300px]"
-                />
+              <CardContent className="flex flex-1 justify-center pb-0">
+                <ChartContainer
+                  config={sustainabilityChartConfig}
+                  className="mx-auto aspect-square w-full max-w-[300px]"
+                >
+                  <PieChart>
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent hideLabel />}
+                    />
+                    <Pie
+                      data={sustainabilityData}
+                      dataKey="sustainabilityScore"
+                      nameKey="month"
+                      innerRadius={60}
+                      strokeWidth={5}
+                      activeIndex={activeSustainabilityIndex}
+                      activeShape={({
+                        outerRadius = 0,
+                        ...props
+                      }) => (
+                        <g>
+                          <Sector {...props} outerRadius={outerRadius + 10} />
+                          <Sector
+                            {...props}
+                            outerRadius={outerRadius + 25}
+                            innerRadius={outerRadius + 12}
+                          />
+                        </g>
+                      )}
+                    >
+                      <Label
+                        content={({ viewBox }) => {
+                          if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                            return (
+                              <text
+                                x={viewBox.cx}
+                                y={viewBox.cy}
+                                textAnchor="middle"
+                                dominantBaseline="middle"
+                              >
+                                <tspan
+                                  x={viewBox.cx}
+                                  y={viewBox.cy}
+                                  className="fill-foreground text-3xl font-bold"
+                                >
+                                  {sustainabilityData[activeSustainabilityIndex].sustainabilityScore}
+                                </tspan>
+                                <tspan
+                                  x={viewBox.cx}
+                                  y={(viewBox.cy || 0) + 24}
+                                  className="fill-muted-foreground"
+                                >
+                                  Score
+                                </tspan>
+                              </text>
+                            )
+                          }
+                        }}
+                      />
+                    </Pie>
+                  </PieChart>
+                </ChartContainer>
               </CardContent>
+              <CardFooter className="flex-col items-start gap-2 text-sm pt-4">
+                <div className="flex gap-2 font-medium leading-none">
+                  Sustainability score up by 43% <TrendingUp className="h-4 w-4 text-green-500" />
+                </div>
+                <div className="leading-none text-muted-foreground">
+                  January - June 2024
+                </div>
+              </CardFooter>
             </Card>
             
-            <Card className="bg-white shadow-md py-4">
-              <CardHeader>
-                <CardTitle className="py-4">Sales Overview</CardTitle>
-                <CardDescription>Monthly sales data</CardDescription>
+            <Card>
+              <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
+                <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
+                  <CardTitle>Sales Overview</CardTitle>
+                  <CardDescription>
+                    Monthly retail vs online sales data
+                  </CardDescription>
+                </div>
+                <div className="flex">
+                  {["retail", "online"].map((key) => {
+                    return (
+                      <button
+                        key={key}
+                        data-active={activeSalesChart === key}
+                        className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                        onClick={() => setActiveSalesChart(key)}
+                      >
+                        <span className="text-xs text-muted-foreground">
+                          {salesChartConfig[key].label}
+                        </span>
+                        <span className="text-lg font-bold leading-none sm:text-2xl">
+                          {formatPrice(salesTotal[key])}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
               </CardHeader>
-              <CardContent className="overflow-x-auto">
-                <Chart
-                  type="bar"
-                  data={salesData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: {
-                        position: "top"
-                      },
-                      tooltip: {
-                        mode: 'index',
-                        intersect: false,
+              <CardContent className="px-2 sm:p-6">
+                <ChartContainer
+                  config={salesChartConfig}
+                  className="aspect-auto h-[300px] w-full"
+                >
+                  <RechartsBarChart
+                    accessibilityLayer
+                    data={salesData}
+                    margin={{
+                      left: 12,
+                      right: 12,
+                    }}
+                  >
+                    <CartesianGrid vertical={false} />
+                    <XAxis
+                      dataKey="date"
+                      tickLine={false}
+                      axisLine={false}
+                      tickMargin={8}
+                      minTickGap={32}
+                      tickFormatter={(value) => {
+                        const date = new Date(value)
+                        return date.toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                        })
+                      }}
+                      stroke="var(--muted-foreground)"
+                    />
+                    <YAxis 
+                      tickFormatter={(value) => 
+                        new Intl.NumberFormat('en-IN', {
+                          style: 'currency',
+                          currency: 'INR',
+                          notation: 'compact',
+                          maximumFractionDigits: 1
+                        }).format(value)
                       }
-                    },
-                    scales: {
-                      y: {
-                        beginAtZero: true
+                      stroke="var(--muted-foreground)"
+                    />
+                    <ChartTooltip
+                      content={
+                        <ChartTooltipContent
+                          className="w-[150px]"
+                          nameKey="revenue"
+                          labelFormatter={(value) => {
+                            return new Date(value).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })
+                          }}
+                          formatter={(value) => 
+                            new Intl.NumberFormat('en-IN', {
+                              style: 'currency',
+                              currency: 'INR',
+                              maximumFractionDigits: 0
+                            }).format(value)
+                          }
+                        />
                       }
-                    }
-                  }}
-                  className="h-80 min-w-[300px]"
-                />
+                    />
+                    <Bar 
+                      dataKey={activeSalesChart} 
+                      fill={activeSalesChart === "retail" ? "var(--color-retail, hsl(var(--chart-1)))" : "var(--color-online, hsl(var(--chart-2)))"}
+                      radius={[4, 4, 0, 0]}
+                      barSize={30}
+                    />
+                  </RechartsBarChart>
+                </ChartContainer>
               </CardContent>
+              <CardFooter className="flex-col items-start gap-2 text-sm pb-4">
+                <div className="flex gap-2 font-medium leading-none">
+                  Revenue increased by 12.5% this month <TrendingUp className="h-4 w-4 text-green-500" />
+                </div>
+                <div className="leading-none text-muted-foreground">
+                  Total: {new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: 'INR',
+                    maximumFractionDigits: 0
+                  }).format(salesData.reduce((sum, item) => sum + item.retail + item.online, 0))}
+                </div>
+              </CardFooter>
             </Card>
             
-            <Card className="bg-white shadow-md md:col-span-2 py-4">
+            <Card className="shadow-md md:col-span-2 py-4">
               <CardHeader>
                 <CardTitle className="py-4">Product Category Distribution</CardTitle>
                 <CardDescription>Breakdown of products by category</CardDescription>
@@ -692,18 +975,18 @@ function AdminDashboard() {
                           products.filter(p => p.category === 'home').length,
                         ],
                         backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
+                          'var(--color-jan)',
+                          'var(--color-feb)',
+                          'var(--color-mar)',
+                          'var(--color-apr)',
+                          'var(--color-may)',
                         ],
                         borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
+                          'var(--color-jan)',
+                          'var(--color-feb)',
+                          'var(--color-mar)',
+                          'var(--color-apr)',
+                          'var(--color-may)',
                         ],
                         borderWidth: 1,
                       },
@@ -719,6 +1002,7 @@ function AdminDashboard() {
                         labels: {
                           boxWidth: 10,
                           padding: 10,
+                          color: 'var(--foreground)',
                         }
                       },
                     },

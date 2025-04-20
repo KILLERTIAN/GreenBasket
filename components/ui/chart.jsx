@@ -95,7 +95,54 @@ function Chart({ type, data, options = {}, className, ...props }) {
     <ChartContainer className={className} config={{}}>
       <ChartComponent data={data} {...options} {...props}>
         {type === 'pie' || type === 'donut' ? (
-          <RechartsPrimitive.Pie dataKey="value" />
+          <>
+            <RechartsPrimitive.Pie 
+              data={data.datasets[0].data.map((value, i) => ({
+                name: data.labels[i],
+                value: value,
+                fill: data.datasets[0].backgroundColor[i] || data.datasets[0].backgroundColor
+              }))} 
+              dataKey="value" 
+              nameKey="name" 
+              cx="50%" 
+              cy="50%" 
+              outerRadius={type === 'donut' ? "80%" : "60%"}
+              innerRadius={type === 'donut' ? "60%" : 0}
+              fill="#8884d8"
+              stroke={data.datasets[0].borderColor || "#fff"}
+              strokeWidth={data.datasets[0].borderWidth || 1}
+            />
+            <RechartsPrimitive.Tooltip content={<ChartTooltipContent />} />
+            <RechartsPrimitive.Legend />
+          </>
+        ) : type === 'radar' ? (
+          <>
+            <RechartsPrimitive.PolarGrid />
+            <RechartsPrimitive.PolarAngleAxis dataKey="subject" />
+            <RechartsPrimitive.PolarRadiusAxis />
+            <RechartsPrimitive.Tooltip content={<ChartTooltipContent />} />
+            <RechartsPrimitive.Legend />
+            {data?.datasets?.map((dataset, index) => {
+              // Transform data for radar chart
+              const radarData = dataset.data.map((value, i) => ({
+                subject: data.labels[i],
+                [dataset.label]: value,
+                fullMark: 100
+              }));
+              
+              return (
+                <RechartsPrimitive.Radar
+                  key={index}
+                  name={dataset.label}
+                  dataKey={dataset.label}
+                  stroke={dataset.borderColor}
+                  fill={dataset.backgroundColor}
+                  fillOpacity={0.6}
+                  data={radarData}
+                />
+              );
+            })}
+          </>
         ) : (
           <>
             <RechartsPrimitive.XAxis dataKey={data?.labels ? 'name' : 'x'} />
@@ -154,6 +201,8 @@ function getDatasetComponent(type) {
       return RechartsPrimitive.Bar
     case 'area':
       return RechartsPrimitive.Area
+    case 'radar':
+      return RechartsPrimitive.Radar
     default:
       return null
   }
@@ -220,10 +269,14 @@ function ChartTooltipContent({
 
   const nestLabel = payload.length === 1 && indicator !== "dot"
 
+  // Determine if this is for a pie chart
+  const isPieChart = payload.some(item => item.payload && item.payload.fill);
+  
   return (
     (<div
       className={cn(
         "border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
+        isPieChart ? "min-w-[10rem]" : "",
         className
       )}>
       {!nestLabel ? tooltipLabel : null}
@@ -231,11 +284,17 @@ function ChartTooltipContent({
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
-          const indicatorColor = color || item.payload.fill || item.color
+          const indicatorColor = color || (item.payload.fill ? item.payload.fill : item.color)
+          
+          // Handle percentage value for pie charts
+          const isPieValue = isPieChart && item.value !== undefined && item.payload && item.payload.value;
+          const formattedValue = isPieValue 
+            ? `${item.value} (${((item.value / payload.reduce((total, p) => total + (p.value || 0), 0)) * 100).toFixed(1)}%)`
+            : item.value !== undefined ? item.value.toLocaleString() : '';
 
           return (
             (<div
-              key={item.dataKey}
+              key={item.dataKey || index}
               className={cn(
                 "[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5",
                 indicator === "dot" && "items-center"
@@ -275,9 +334,9 @@ function ChartTooltipContent({
                         {itemConfig?.label || item.name}
                       </span>
                     </div>
-                    {item.value && (
+                    {item.value !== undefined && (
                       <span className="text-foreground font-mono font-medium tabular-nums">
-                        {item.value.toLocaleString()}
+                        {formattedValue}
                       </span>
                     )}
                   </div>
@@ -287,6 +346,18 @@ function ChartTooltipContent({
           );
         })}
       </div>
+      
+      {/* Interactive total for pie charts */}
+      {isPieChart && payload.length > 1 && (
+        <div className="mt-1 pt-1 border-t border-border/30">
+          <div className="flex justify-between items-center">
+            <span className="font-medium">Total</span>
+            <span className="font-mono font-medium">
+              {payload.reduce((total, item) => total + (item.value || 0), 0).toLocaleString()}
+            </span>
+          </div>
+        </div>
+      )}
     </div>)
   );
 }

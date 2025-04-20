@@ -38,38 +38,45 @@ export function SignupForm({
       return
     }
     
+    if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long")
+      return
+    }
+    
     setIsLoading(true)
     
     try {
-      // In a real app, you would make an API call to register the user first
-      // For this demo, we'll use NextAuth's credentials provider directly
+      // Register the user with our API
+      const registerResponse = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
       
-      // This would be the registration API call
-      // const registrationResponse = await fetch('/api/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ name, email, password }),
-      // });
-      // if (!registrationResponse.ok) throw new Error('Registration failed');
+      const registerData = await registerResponse.json();
       
-      // For demo, we'll skip to signing in directly
-      const result = await signIn("credentials", {
+      if (!registerResponse.ok) {
+        throw new Error(registerData.error || 'Registration failed');
+      }
+      
+      // If registration is successful, sign them in
+      const signInResult = await signIn("credentials", {
         redirect: false,
         email,
         password,
-        name
-      })
+      });
       
-      if (result?.error) {
-        toast.error("Registration failed. Please try again.")
-        return
+      if (signInResult?.error) {
+        toast.error("Login failed after registration. Please try logging in manually.")
+        router.push("/login");
+        return;
       }
       
       toast.success("Account created successfully!")
       router.push("/")
       router.refresh()
     } catch (error) {
-      toast.error("There was a problem creating your account.")
+      toast.error(error.message || "There was a problem creating your account.")
       console.error(error)
     } finally {
       setIsLoading(false)
@@ -138,6 +145,7 @@ export function SignupForm({
               onChange={(e) => setPassword(e.target.value)}
               required 
               disabled={isLoading}
+              minLength={8}
             />
             <Button
               type="button"
@@ -157,6 +165,9 @@ export function SignupForm({
               </span>
             </Button>
           </div>
+          <p className="text-sm text-muted-foreground">
+            Password must be at least 8 characters long
+          </p>
         </div>
         
         <div className="space-y-2">
@@ -168,6 +179,7 @@ export function SignupForm({
             onChange={(e) => setConfirmPassword(e.target.value)}
             required 
             disabled={isLoading}
+            minLength={8}
           />
         </div>
         
@@ -257,15 +269,12 @@ export function SignupForm({
             />
           </svg>
         )}
-        Google
+        Continue with Google
       </Button>
       
       <div className="text-center text-sm">
         Already have an account?{" "}
-        <Link 
-          href="/login" 
-          className="font-medium text-primary underline-offset-4 hover:underline"
-        >
+        <Link href="/login" className="text-primary underline-offset-4 hover:underline">
           Sign in
         </Link>
       </div>

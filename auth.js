@@ -1,39 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-// For credentials provider, normally you would validate against a database
-const validateCredentials = async (credentials) => {
-  // This is a simple mock example
-  if (credentials.email === "user@example.com" && credentials.password === "password") {
-    return {
-      id: "1",
-      name: "Test User",
-      email: "user@example.com",
-    };
-  }
-  
-  // Admin user credentials
-  if (credentials.email === "admin@gmail.com" && credentials.password === "admin123") {
-    return {
-      id: "admin-1",
-      name: "Admin User",
-      email: "admin@gmail.com",
-      role: "admin"
-    };
-  }
-  
-  // For demo purposes, allow any credentials during development
-  if (process.env.NODE_ENV === "development") {
-    return {
-      id: Math.random().toString(36).substring(2, 9),
-      name: credentials.email.split("@")[0],
-      email: credentials.email,
-    };
-  }
-  
-  return null;
-};
+import { validateCredentials } from "@/lib/models/User";
 
 // Log the environment variables to debug
 console.log('==== NextAuth Environment Variables ====');
@@ -81,8 +49,48 @@ export const authConfig = {
           return null;
         }
         
-        // Validate credentials
-        return await validateCredentials(credentials);
+        try {
+          // Use the validated credentials from database
+          const user = await validateCredentials(credentials.email, credentials.password);
+          
+          // If user is found in database, return user
+          if (user) {
+            return user;
+          }
+          
+          // For backwards compatibility and development testing
+          if (credentials.email === "user@example.com" && credentials.password === "password") {
+            return {
+              id: "1",
+              name: "Test User",
+              email: "user@example.com",
+            };
+          }
+          
+          // Admin user credentials
+          if (credentials.email === "admin@gmail.com" && credentials.password === "admin123") {
+            return {
+              id: "admin-1",
+              name: "Admin User",
+              email: "admin@gmail.com",
+              role: "admin"
+            };
+          }
+          
+          // For demo purposes, allow any credentials during development or if ALLOW_DEMO_LOGIN is set
+          if (process.env.NODE_ENV === "development" || process.env.ALLOW_DEMO_LOGIN === "true") {
+            return {
+              id: Math.random().toString(36).substring(2, 9),
+              name: credentials.email.split("@")[0],
+              email: credentials.email,
+            };
+          }
+          
+          return null;
+        } catch (error) {
+          console.error("Auth error:", error);
+          return null;
+        }
       }
     }),
   ],
