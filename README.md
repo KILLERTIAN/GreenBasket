@@ -121,6 +121,47 @@ GreenBasket integrates with real-time carbon data sources to provide accurate su
 
 The API will work properly in hosted environments as it includes proper error handling and fallbacks to mock data when external APIs are unavailable.
 
+## 🔧 TECH STACK
+**🖥️ Frontend**
+
+Next.js – React framework with built-in routing & SSR
+
+Tailwind CSS – Utility-first CSS for rapid UI styling
+
+shadcn/ui – Accessible design system components
+
+Recharts – Data visualization for carbon metrics
+
+Axios – Lightweight HTTP requests for APIs
+
+**🧠 State & Aut**
+
+React Context API – Global state management
+
+NextAuth.js – Secure user authentication
+
+JWT & bcrypt – Token-based auth + password hashing
+
+**🔗 Backend / APIs**
+
+Node.js + Express – API server with routing and business logic
+
+MongoDB + Mongoose – NoSQL DB with schema-based modeling
+
+Carbon Intensity API – Real-time emissions data from the grid
+
+Custom REST APIs – Internal endpoints for sustainability data
+
+**💳 Payments**
+Stripe – Payment gateway for secure transactions
+
+
+**☁️ Deployment**
+Vercel – Serverless hosting with auto CI/CD
+
+Link to ur site: https://green-basket0.vercel.app/
+
+
 ## 🧪 Environment Setup
 
 1. Clone the repository
@@ -181,6 +222,3 @@ Push to your fork
 
 Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
