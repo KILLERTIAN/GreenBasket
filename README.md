@@ -2,7 +2,7 @@
 
 GreenBasket is an eco-friendly e-commerce platform that helps users shop sustainably while tracking their environmental impact. Our mission is to make sustainable shopping accessible, transparent, and rewarding through carbon footprint tracking and eco-conscious products.
 
-📌 About GreenBasket
+**📌 About GreenBasket**
 GreenBasket is a sustainability-first e-commerce platform designed for conscious consumers. It features only recycled and upcycled products and calculates the environmental impact of each order in real time. From product discovery to checkout, users are guided by actionable eco-insights and their cumulative carbon footprint.
 
 Our mission: Make sustainable shopping accessible, transparent, and rewarding.
@@ -169,10 +169,15 @@ npm run start
 
 ## 🤝 Contributing
 We welcome contributions, suggestions, and new feature proposals.
+
 Fork the repo
+
 Create a new branch (git checkout -b feature/your-feature)
+
 Commit your changes
+
 Push to your fork
+
 Open a Pull Request
 
 ## 📄 License
