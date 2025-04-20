@@ -260,7 +260,7 @@ export default function OrderDetailsPage() {
           Back to Orders
         </Button>
         
-        <Card className="text-center py-12 shadow-md bg-white">
+        <Card className="text-center py-12 shadow-md">
           <CardContent>
             <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-6" />
             <h2 className="text-2xl font-bold mb-4">Order Not Found</h2>
@@ -306,7 +306,7 @@ export default function OrderDetailsPage() {
           </p>
         </div>
         <div className="mt-4 md:mt-0">
-          <Button asChild size="sm" variant="outline" className="gap-2 bg-white hover:bg-gray-50">
+          <Button asChild size="sm" variant="outline" className="gap-2 hover:bg-gray-50 dark:hover:bg-gray-800">
             <Link href={`/support/order/${order.id}`}>
               <AlertCircle className="h-4 w-4" />
               Need Help?
@@ -315,7 +315,7 @@ export default function OrderDetailsPage() {
         </div>
       </div>
       
-      <Card className="mb-8 pb-4 overflow-hidden shadow-md border-gray-200 bg-white">
+      <Card className="mb-8 pb-4 overflow-hidden shadow-md">
         <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 h-3 relative">
           <div 
             className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-500" 
@@ -362,7 +362,7 @@ export default function OrderDetailsPage() {
       </Card>
       
       <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <Card className="shadow-md border-gray-200 overflow-hidden bg-white">
+        <Card className="shadow-md overflow-hidden">
           <div className="bg-blue-50 dark:bg-blue-900/20 py-2 px-4">
             <div className="flex items-center gap-2">
               <Home className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -381,7 +381,7 @@ export default function OrderDetailsPage() {
           </CardContent>
         </Card>
         
-        <Card className="shadow-md border-gray-200 overflow-hidden bg-white">
+        <Card className="shadow-md overflow-hidden pb-4">
           <div className="bg-purple-50 dark:bg-purple-900/20 py-2 px-4">
             <div className="flex items-center gap-2">
               <CreditCard className="h-4 w-4 text-purple-600 dark:text-purple-400" />
@@ -408,7 +408,7 @@ export default function OrderDetailsPage() {
           </CardContent>
         </Card>
         
-        <Card className="shadow-md border-gray-200 overflow-hidden bg-white">
+        <Card className="shadow-md overflow-hidden">
           <div className="bg-amber-50 dark:bg-amber-900/20 py-2 px-4">
             <div className="flex items-center gap-2">
               <User className="h-4 w-4 text-amber-600 dark:text-amber-400" />
@@ -436,7 +436,7 @@ export default function OrderDetailsPage() {
         </Card>
       </div>
       
-      <Card className="shadow-md border-gray-200 overflow-hidden bg-white">
+      <Card className="shadow-md overflow-hidden">
         <div className="bg-green-50 dark:bg-green-900/20 py-2 px-4">
           <div className="flex items-center gap-2">
             <Package className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -450,8 +450,8 @@ export default function OrderDetailsPage() {
                 <div className="flex-1">
                   <p className="font-medium">{item.name}</p>
                   <div className="flex items-center mt-1">
-                    <Badge variant="outline" className="text-xs bg-gray-100">Qty: {item.quantity}</Badge>
-                    <Badge variant="outline" className="ml-2 text-xs bg-green-50 text-green-700 border-green-200">
+                    <Badge variant="outline" className="text-xs bg-gray-100 dark:bg-gray-800">Qty: {item.quantity}</Badge>
+                    <Badge variant="outline" className="ml-2 text-xs bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800">
                       Eco-friendly
                     </Badge>
                   </div>

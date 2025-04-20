@@ -141,13 +141,13 @@ export default function OrdersPage() {
   const getStatusBadge = (status) => {
     switch (status) {
       case "processing":
-        return <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">Processing</Badge>
+        return <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800">Processing</Badge>
       case "shipped":
-        return <Badge variant="outline" className="bg-orange-50 text-orange-600 border-orange-200">Shipped</Badge>
+        return <Badge variant="outline" className="bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-800">Shipped</Badge>
       case "delivered":
-        return <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">Delivered</Badge>
+        return <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800">Delivered</Badge>
       case "cancelled":
-        return <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200">Cancelled</Badge>
+        return <Badge variant="outline" className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border-red-200 dark:border-red-800">Cancelled</Badge>
       default:
         return <Badge variant="outline">Unknown</Badge>
     }
@@ -186,7 +186,7 @@ export default function OrdersPage() {
       {isLoading ? (
         <div className="space-y-4">
           {[1, 2, 3].map(i => (
-            <Card key={i} className="overflow-hidden shadow-md bg-white">
+            <Card key={i} className="overflow-hidden shadow-md">
               <CardHeader className="p-4 pb-0">
                 <div className="h-6 bg-muted rounded animate-pulse w-1/4 mb-2" />
                 <div className="h-4 bg-muted rounded animate-pulse w-1/3" />
@@ -224,7 +224,7 @@ export default function OrdersPage() {
       ) : (
         <div className="space-y-6">
           {filteredOrders.map(order => (
-            <Card key={order.id} className="overflow-hidden shadow-md bg-white">
+            <Card key={order.id} className="overflow-hidden shadow-md">
               <CardHeader className="pb-2 pt-5">
                 <div className="flex justify-between items-start">
                   <div>
@@ -243,7 +243,7 @@ export default function OrdersPage() {
                   {/* Order items */}
                   <div className="space-y-2">
                     {order.items.map((item, index) => (
-                      <div key={`${order.id}-${index}`} className="flex justify-between py-2 border-b">
+                      <div key={`${order.id}-${index}`} className="flex justify-between py-2 border-b border-border">
                         <div>
                           <p className="font-medium">{item.name}</p>
                           <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
@@ -268,7 +268,7 @@ export default function OrdersPage() {
                         </p>
                         {order.trackingNumber && (
                           <p className="text-xs text-muted-foreground">
-                            Tracking: {order.trackingNumber}
+                            Tracking: <span className="font-mono">{order.trackingNumber}</span>
                           </p>
                         )}
                       </div>

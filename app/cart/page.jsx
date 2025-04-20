@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useCart } from "@/lib/cart-context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,11 +10,91 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
 
 export default function CartPage() {
   const { cart, totalCarbonFootprint, updateQuantity, removeFromCart, clearCart, getCartTotal } = useCart()
   const [isLoading, setIsLoading] = useState(false)
+  const [carbonData, setCarbonData] = useState({
+    totalFootprint: 0,
+    conventionalFootprint: 0,
+    savings: { savings: "0", percentage: "0" }
+  })
+  const [isCalculating, setIsCalculating] = useState(true)
   const router = useRouter()
+  
+  // Fetch carbon data for all products in cart
+  useEffect(() => {
+    async function fetchAllCarbonData() {
+      if (cart.length === 0) {
+        setCarbonData({
+          totalFootprint: 0,
+          conventionalFootprint: 0,
+          savings: { savings: "0", percentage: "0" }
+        })
+        setIsCalculating(false)
+        return
+      }
+      
+      setIsCalculating(true)
+      try {
+        // Fetch carbon data for each product
+        const carbonPromises = cart.map(async (item) => {
+          try {
+            const data = await fetchCarbonFootprint(item.id)
+            // Multiply by quantity
+            return {
+              footprint: data.footprint * item.quantity,
+              conventionalFootprint: data.conventionalFootprint * item.quantity
+            }
+          } catch (error) {
+            console.error(`Error fetching carbon data for product ${item.id}:`, error)
+            // Use fallback values
+            return {
+              footprint: (item.carbonFootprint || 1) * item.quantity,
+              conventionalFootprint: ((item.carbonFootprint || 1) * 3) * item.quantity
+            }
+          }
+        })
+        
+        const results = await Promise.all(carbonPromises)
+        
+        // Calculate totals
+        const totalFootprint = results.reduce((sum, item) => sum + item.footprint, 0)
+        const totalConventionalFootprint = results.reduce((sum, item) => sum + item.conventionalFootprint, 0)
+        
+        // Calculate savings
+        const carbonSavings = totalConventionalFootprint - totalFootprint
+        const savingsPercentage = totalConventionalFootprint > 0 
+          ? ((carbonSavings / totalConventionalFootprint) * 100).toFixed(0) 
+          : "0"
+        
+        setCarbonData({
+          totalFootprint: parseFloat(totalFootprint.toFixed(2)),
+          conventionalFootprint: parseFloat(totalConventionalFootprint.toFixed(2)),
+          savings: {
+            savings: carbonSavings.toFixed(2),
+            percentage: savingsPercentage
+          }
+        })
+      } catch (error) {
+        console.error("Error calculating carbon data:", error)
+        // Use fallback from context
+        setCarbonData({
+          totalFootprint: totalCarbonFootprint || 0,
+          conventionalFootprint: (totalCarbonFootprint || 0) * 3,
+          savings: {
+            savings: ((totalCarbonFootprint || 0) * 2).toFixed(2),
+            percentage: "67"
+          }
+        })
+      } finally {
+        setIsCalculating(false)
+      }
+    }
+    
+    fetchAllCarbonData()
+  }, [cart, totalCarbonFootprint])
   
   // Function to format price in Indian Rupees
   const formatPrice = (price) => {
@@ -25,15 +105,10 @@ export default function CartPage() {
     }).format(price)
   }
   
-  // How we calculate carbon savings
-  const calculateCarbonSavings = () => {
-    // A traditional non-sustainable product typically has 2-3 times the carbon footprint
-    return (totalCarbonFootprint * 2).toFixed(2);
-  }
-  
   // Calculate trees saved - roughly 25kg CO2 per year per tree
   const calculateTreesSaved = () => {
-    return Math.ceil(calculateCarbonSavings() / 25);
+    const savings = parseFloat(carbonData.savings.savings) || 0
+    return Math.ceil(savings / 25)
   }
   
   const handleCheckout = () => {
@@ -79,8 +154,7 @@ export default function CartPage() {
   }
 
   const cartTotal = getCartTotal()
-  const estimatedTax = cartTotal * 0.1 // 10% tax
-  const totalWithTax = cartTotal + estimatedTax
+  const totalWithTax = cartTotal
 
   return (
     <div className="container mx-auto py-8">
@@ -178,33 +252,41 @@ export default function CartPage() {
                 <span>Subtotal</span>
                 <span>{formatPrice(cartTotal)}</span>
               </div>
-              <div className="flex justify-between">
-                <span>Estimated Tax</span>
-                <span>{formatPrice(estimatedTax)}</span>
-              </div>
               <div className="flex justify-between text-green-600">
                 <span className="flex items-center gap-1">
                   <Leaf className="h-4 w-4" />
                   Carbon Footprint
                 </span>
-                <span>{totalCarbonFootprint.toFixed(2)} kg CO₂</span>
+                <span className="flex items-center">
+                  {isCalculating ? (
+                    <span className="text-xs">Calculating...</span>
+                  ) : (
+                    <span>{carbonData.totalFootprint.toFixed(2)} kg CO₂</span>
+                  )}
+                </span>
               </div>
               <div className="border-t pt-4 flex justify-between font-bold">
                 <span>Total</span>
                 <span>{formatPrice(totalWithTax)}</span>
               </div>
               
-              <div className="bg-green-50 p-3 rounded-md text-sm text-green-700 mt-4">
+              <div className="bg-green-50 dark:bg-green-950/30 p-3 rounded-md text-sm text-green-700 dark:text-green-400 mt-4">
                 <p className="font-medium">Sustainability Impact</p>
-                <p className="mt-1">
-                  Your purchase helps save approximately {calculateCarbonSavings()} kg of CO₂ compared to conventional products.
-                </p>
-                <p className="mt-1">
-                  This is equivalent to saving {calculateTreesSaved()} {calculateTreesSaved() === 1 ? 'tree' : 'trees'} per year.
-                </p>
-                <p className="mt-2 text-xs text-green-600">
-                  <span className="font-medium">How we calculate:</span> We compare the carbon footprint of our eco-friendly products with conventional alternatives (typically 2-3x higher emissions).
-                </p>
+                {isCalculating ? (
+                  <p className="mt-1 text-xs">Calculating your sustainability impact...</p>
+                ) : (
+                  <>
+                    <p className="mt-1">
+                      Your eco-friendly purchase generates {carbonData.totalFootprint.toFixed(2)} kg CO₂, which is {carbonData.savings.savings} kg less than conventional alternatives ({carbonData.conventionalFootprint.toFixed(2)} kg CO₂).
+                    </p>
+                    <p className="mt-1">
+                      That's {carbonData.savings.percentage}% less carbon emissions and equivalent to saving {calculateTreesSaved()} {calculateTreesSaved() === 1 ? 'tree' : 'trees'} per year.
+                    </p>
+                    <p className="mt-2 text-xs text-green-600 dark:text-green-500">
+                      <span className="font-medium">How we calculate:</span> We use real-time carbon emission data through our API to compare eco-friendly products with conventional alternatives.
+                    </p>
+                  </>
+                )}
               </div>
             </CardContent>
             <CardFooter>
@@ -212,7 +294,7 @@ export default function CartPage() {
                 className="w-full" 
                 size="lg"
                 onClick={handleCheckout}
-                disabled={isLoading}
+                disabled={isLoading || isCalculating}
               >
                 {isLoading ? (
                   <span className="flex items-center gap-2">

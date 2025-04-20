@@ -115,7 +115,7 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <div className="md:col-span-2">
-          <Card className="w-full">
+          <Card className="w-full py-4">
             <CardHeader>
               <CardTitle>Send Us a Message</CardTitle>
               <CardDescription>
@@ -209,18 +209,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Map (Placeholder) */}
-      <div className="mt-12">
-        <div className="h-[400px] w-full bg-accent rounded-xl flex items-center justify-center p-4">
-          <div className="text-center">
-            <h3 className="text-lg font-semibold mb-2">Interactive Map Coming Soon</h3>
-            <p className="text-muted-foreground max-w-md mx-auto">
-              We're working on integrating an interactive map to help you find us more easily.
-              For now, please use the address information above.
-            </p>
-          </div>
-        </div>
-      </div>
+
     </div>
   )
 } 

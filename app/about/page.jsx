@@ -33,7 +33,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold mb-6">Our Story</h2>
           <div className="space-y-4 text-lg">
             <p>
-              GreenBasket started with a simple idea: shopping shouldn't cost the Earth. Founded in 2023 by a team of environmental enthusiasts, we set out to create an online marketplace where sustainability comes first.
+              GreenBasket started with a simple idea: shopping shouldn't cost the Earth. Founded in 2025 by a team of environmental enthusiasts, we set out to create an online marketplace where sustainability comes first.
             </p>
             <p>
               We carefully select each product based on its environmental impact, ensuring everything we offer aligns with our core values of sustainability, quality, and transparency.
@@ -54,7 +54,7 @@ export default function AboutPage() {
         <h2 className="text-3xl font-bold mb-8 text-center">Our Values</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 pb-4">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Leaf className="h-6 w-6 text-primary" />
               </div>
@@ -65,7 +65,7 @@ export default function AboutPage() {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 pb-4">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Recycle className="h-6 w-6 text-primary" />
               </div>
@@ -76,7 +76,7 @@ export default function AboutPage() {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 pb-4">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <BarChart3 className="h-6 w-6 text-primary" />
               </div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 pb-4">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Shield className="h-6 w-6 text-primary" />
               </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 pb-4">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Heart className="h-6 w-6 text-primary" />
               </div>
@@ -109,7 +109,7 @@ export default function AboutPage() {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 pb-4">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Clock className="h-6 w-6 text-primary" />
               </div>

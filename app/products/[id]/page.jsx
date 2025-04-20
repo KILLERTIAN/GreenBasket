@@ -17,7 +17,7 @@ import { fetchCarbonFootprint } from "@/lib/carbon-calculator"
 export default function ProductDetailPage({ params }) {
   // Use params object directly without React.use()
   const { id } = params;
-  
+
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
@@ -27,7 +27,7 @@ export default function ProductDetailPage({ params }) {
   const [loadingRelated, setLoadingRelated] = useState(true)
   const { addToCart } = useCart()
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
-  
+
   // Fetch product by ID from the API
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,14 +40,14 @@ export default function ProductDetailPage({ params }) {
             'x-request-source': 'client-component'
           }
         })
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch product')
         }
-        
+
         const data = await response.json()
         setProduct(data)
-        
+
         // Fetch carbon footprint data
         try {
           const carbonInfo = await fetchCarbonFootprint(data.id)
@@ -64,7 +64,7 @@ export default function ProductDetailPage({ params }) {
             }
           })
         }
-        
+
         // Fetch related products
         try {
           const relatedResponse = await fetch(`/api/products/related/${id}`, {
@@ -90,32 +90,32 @@ export default function ProductDetailPage({ params }) {
         setLoading(false)
       }
     }
-    
+
     fetchProduct()
   }, [id])
-  
+
   // Function to handle adding product to cart
   const handleAddToCart = () => {
     if (!product) return
-    
+
     addToCart({
       ...product,
       quantity: quantity,
       image: product.images[0] // Use first image for cart thumbnail
     })
-    
+
     toast.success(`${product.name} added to cart`)
   }
-  
+
   // Handle quantity changes
   const increaseQuantity = () => setQuantity(prev => prev + 1)
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1))
-  
+
   // Handle expandable sections
   const toggleSection = (section) => {
     setExpandedSection(expandedSection === section ? null : section)
   }
-  
+
   // Function to format price in Indian Rupees
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
@@ -124,7 +124,7 @@ export default function ProductDetailPage({ params }) {
       maximumFractionDigits: 0
     }).format(price)
   }
-  
+
   // Toggle wishlist status
   const toggleWishlist = () => {
     if (isInWishlist(product.id)) {
@@ -135,7 +135,7 @@ export default function ProductDetailPage({ params }) {
       toast.success(`${product.name} added to wishlist`)
     }
   }
-  
+
   if (loading) {
     return (
       <div className="container mx-auto py-8">
@@ -152,7 +152,7 @@ export default function ProductDetailPage({ params }) {
       </div>
     )
   }
-  
+
   if (!product) {
     return (
       <div className="container mx-auto py-8 text-center">
@@ -173,8 +173,8 @@ export default function ProductDetailPage({ params }) {
         <ChevronRight className="h-4 w-4 mx-2" />
         <Link href="/products" className="hover:text-primary">Products</Link>
         <ChevronRight className="h-4 w-4 mx-2" />
-        <Link 
-          href={`/products?category=${product.category}`} 
+        <Link
+          href={`/products?category=${product.category}`}
           className="capitalize hover:text-primary"
         >
           {product.category}
@@ -182,25 +182,25 @@ export default function ProductDetailPage({ params }) {
         <ChevronRight className="h-4 w-4 mx-2" />
         <span className="truncate max-w-[200px]">{product.name}</span>
       </nav>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {/* Product Images */}
         <div>
-          <ProductImageSlider 
-            images={product.images} 
+          <ProductImageSlider
+            images={product.images}
             productName={product.name}
             showMagnifier={true}
             showThumbnails={true}
             autoRotate={false}
           />
         </div>
-        
+
         {/* Product Details */}
         <div className="space-y-6">
           <div>
             <Badge className="mb-2 capitalize">{product.category}</Badge>
             <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-            
+
             <div className="flex items-center mb-4">
               <div className="flex items-center">
                 <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -210,7 +210,7 @@ export default function ProductDetailPage({ params }) {
                 ({product.reviewCount} reviews)
               </span>
             </div>
-            
+
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-2xl font-bold text-primary">{formatPrice(product.price)}</h2>
               {product.inStock ? (
@@ -224,23 +224,23 @@ export default function ProductDetailPage({ params }) {
                 </Badge>
               )}
             </div>
-            
+
             <Badge className="flex items-center w-fit gap-1 mb-6 bg-green-100 hover:bg-green-200 text-green-800 border-green-200">
               <Leaf className="h-3.5 w-3.5 text-green-700" />
               {carbonData?.footprint || product.carbonFootprint} kg CO₂ (
               {carbonData?.savings?.percentage || "67"}% less than conventional)
             </Badge>
-            
+
             {/* Description */}
             <p className="text-muted-foreground mb-6">
               {product.description}
             </p>
           </div>
-          
+
           <div>
             <h2 className="text-base sm:text-lg font-medium mb-2">About this item</h2>
             <p className="text-sm text-muted-foreground">{product.description}</p>
-            
+
             {/* Key Features */}
             <ul className="mt-3 sm:mt-4 space-y-1">
               {product.features.slice(0, 4).map((feature, index) => (
@@ -256,15 +256,15 @@ export default function ProductDetailPage({ params }) {
               )}
             </ul>
           </div>
-          
+
           {/* Quantity Selector and Actions */}
           <div className="space-y-4 pt-2">
-              <div className="flex items-center">
+            <div className="flex items-center">
               <span className="mr-4 font-medium">Quantity:</span>
               <div className="flex items-center border rounded-md overflow-hidden">
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={decreaseQuantity}
                   disabled={quantity <= 1}
                   className="h-8 w-8 rounded-none"
@@ -272,9 +272,9 @@ export default function ProductDetailPage({ params }) {
                   <ChevronDown className="h-4 w-4" />
                 </Button>
                 <span className="w-10 text-center">{quantity}</span>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={increaseQuantity}
                   className="h-8 w-8 rounded-none"
                 >
@@ -282,7 +282,7 @@ export default function ProductDetailPage({ params }) {
                 </Button>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 onClick={handleAddToCart}
@@ -291,12 +291,12 @@ export default function ProductDetailPage({ params }) {
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 Add to Cart
               </Button>
-              
+
               <div className="flex gap-3">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={toggleWishlist}
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={toggleWishlist}
                   className={`h-10 w-10 sm:h-11 sm:w-11 ${isInWishlist(product.id) ? "text-red-500 hover:text-red-600" : ""}`}
                 >
                   <Heart className={`h-4 w-4 sm:h-5 sm:w-5 ${isInWishlist(product.id) ? "fill-red-500" : ""}`} />
@@ -307,15 +307,15 @@ export default function ProductDetailPage({ params }) {
                   className="h-10 w-10 sm:h-11 sm:w-11"
                 >
                   <Share2 className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
+                </Button>
               </div>
             </div>
-            
+
             <p className="text-xs text-muted-foreground">
               Delivery Time: {product.deliveryTime}
             </p>
           </div>
-          
+
           {/* Additional Info */}
           <div className="grid grid-cols-2 gap-2 sm:gap-4 mt-3 sm:mt-4">
             <div className="flex items-start gap-2">
@@ -333,7 +333,7 @@ export default function ProductDetailPage({ params }) {
               </div>
             </div>
           </div>
-          
+
           {/* Detailed Tabs */}
           <div className="mt-4 sm:mt-6">
             <Tabs defaultValue="details">
@@ -342,7 +342,7 @@ export default function ProductDetailPage({ params }) {
                 <TabsTrigger value="sustainability" className="text-xs sm:text-sm py-1.5 sm:py-2">Sustainability</TabsTrigger>
                 <TabsTrigger value="shipping" className="text-xs sm:text-sm py-1.5 sm:py-2">Shipping & Returns</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="details" className="mt-3 sm:mt-4">
                 <Card>
                   <CardContent className="p-3 sm:p-4">
@@ -351,7 +351,7 @@ export default function ProductDetailPage({ params }) {
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Product Details</h3>
                         <p className="text-xs sm:text-sm text-muted-foreground">{product.details}</p>
                       </div>
-                      
+
                       <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Key Features</h3>
                         <ul className="space-y-2">
@@ -363,7 +363,7 @@ export default function ProductDetailPage({ params }) {
                           ))}
                         </ul>
                       </div>
-                      
+
                       <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Care Instructions</h3>
                         <ul className="list-disc pl-4 text-xs sm:text-sm space-y-1">
@@ -377,7 +377,7 @@ export default function ProductDetailPage({ params }) {
                   </CardContent>
                 </Card>
               </TabsContent>
-              
+
               <TabsContent value="sustainability" className="mt-3 sm:mt-4">
                 <Card>
                   <CardContent className="p-3 sm:p-4">
@@ -388,24 +388,24 @@ export default function ProductDetailPage({ params }) {
                           <h3 className="font-medium text-center text-sm sm:text-base">Water Savings</h3>
                           <p className="text-center text-xs text-muted-foreground mt-1">83% less water used in production</p>
                         </div>
-                        
+
                         <div className="flex flex-col items-center justify-center p-3 border rounded-lg">
                           <Factory className="h-5 w-5 sm:h-6 sm:w-6 text-gray-500 mb-2" />
                           <h3 className="font-medium text-center text-sm sm:text-base">Ethical Factory</h3>
                           <p className="text-center text-xs text-muted-foreground mt-1">Made in certified ethical facilities</p>
-                      </div>
-                        
+                        </div>
+
                         <div className="flex flex-col items-center justify-center p-3 border rounded-lg">
                           <Wind className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mb-2" />
                           <h3 className="font-medium text-center text-sm sm:text-base">Carbon Offset</h3>
                           <p className="text-center text-xs text-muted-foreground mt-1">Production offset with renewable energy</p>
                         </div>
                       </div>
-                      
+
                       <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Carbon Footprint</h3>
                         <p className="mb-3">This product has a carbon footprint of <span className="font-medium">{carbonData?.footprint || product.carbonFootprint} kg CO₂</span>, which is {carbonData?.savings?.percentage || "67"}% lower than conventional alternatives.</p>
-                        
+
                         <div className="relative pt-1">
                           <div className="flex items-center justify-between mb-1">
                             <div>
@@ -413,7 +413,7 @@ export default function ProductDetailPage({ params }) {
                                 GreenBasket Product
                               </span>
                             </div>
-                        <div>
+                            <div>
                               <span className="text-xs font-medium inline-block text-gray-600">
                                 Conventional Product
                               </span>
@@ -424,12 +424,12 @@ export default function ProductDetailPage({ params }) {
                           </div>
                           <div className="flex items-center justify-between mt-1 text-xs text-muted-foreground">
                             <div>{carbonData?.footprint || product.carbonFootprint} kg CO₂</div>
-                            <div>{carbonData?.conventionalFootprint || (product.carbonFootprint * 3)} kg CO₂</div>
+                            <div>{(carbonData?.conventionalFootprint).toFixed(2) || (product.carbonFootprint * 3).toFixed(2)} kg CO₂</div>
                           </div>
                         </div>
                       </div>
-                      
-                        <div>
+
+                      <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Sustainability Certifications</h3>
                         <div className="flex flex-wrap gap-2 sm:gap-3">
                           <Badge variant="outline" className="py-1 px-2">Global Organic Textile Standard</Badge>
@@ -441,7 +441,7 @@ export default function ProductDetailPage({ params }) {
                   </CardContent>
                 </Card>
               </TabsContent>
-              
+
               <TabsContent value="shipping" className="mt-3 sm:mt-4">
                 <Card>
                   <CardContent className="p-3 sm:p-4">
@@ -472,7 +472,7 @@ export default function ProductDetailPage({ params }) {
                           </li>
                         </ul>
                       </div>
-                      
+
                       <div>
                         <h3 className="font-medium text-sm sm:text-base mb-1 sm:mb-2">Returns Policy</h3>
                         <p className="mb-2">We accept returns within 30 days of delivery. Items must be unused and in original packaging.</p>
@@ -486,7 +486,7 @@ export default function ProductDetailPage({ params }) {
           </div>
         </div>
       </div>
-      
+
       {/* Reviews */}
       <div className="mt-16">
         <h2 className="text-2xl font-bold mb-8">Customer Reviews</h2>
@@ -518,7 +518,7 @@ export default function ProductDetailPage({ params }) {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-start">
@@ -548,12 +548,12 @@ export default function ProductDetailPage({ params }) {
             </CardContent>
           </Card>
         </div>
-        
+
         <div className="mt-8 text-center">
           <Button variant="outline">Read All {product.reviewCount} Reviews</Button>
         </div>
       </div>
-      
+
       {/* Related Products Section */}
       {relatedProducts.length > 0 && (
         <div className="mt-16">
@@ -583,10 +583,10 @@ export default function ProductDetailPage({ params }) {
                   </div>
                   <Badge className="w-fit mb-auto">{formatPrice(relatedProduct.price)}</Badge>
                   <div className="flex mt-3">
-                    <Button 
+                    <Button
                       variant="outline"
-                      size="sm" 
-                      className="flex-1 text-xs" 
+                      size="sm"
+                      className="flex-1 text-xs"
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart({

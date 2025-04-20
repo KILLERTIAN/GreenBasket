@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             <AuthProvider>
               <WishlistProvider>
                 <CartProvider>
-                  <Navbar />
+                  <Navbar carbonApiEnabled={true} />
                   <main className={`flex-grow ${isAuthPage ? '' : 'px-4 py-6 md:px-6 lg:px-8'}`}>
                     {children}
                   </main>

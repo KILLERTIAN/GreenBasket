@@ -20,7 +20,8 @@ import {
   Zap, 
   Star, 
   Globe, 
-  CircleUser
+  CircleUser,
+  ArrowRightIcon
 } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 import Link from "next/link"
@@ -44,7 +45,8 @@ import {
   LineChart,
   Line,
   AreaChart,
-  Area
+  Area,
+  YAxis
 } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import {
@@ -152,21 +154,25 @@ const performanceChartConfig = {
   },
 }
 
-// Convert monthlySavingsData to direct Recharts format
+// Convert monthlySavingsData to direct Recharts format with improved data trend
 const monthlySavingsChartData = [
-  { month: "Jan", savings: 5 },
-  { month: "Feb", savings: 12 },
-  { month: "Mar", savings: 8 },
-  { month: "Apr", savings: 17 },
-  { month: "May", savings: 22 },
-  { month: "Jun", savings: 28 }
+  { month: "Jan", savings: 5, average: 3 },
+  { month: "Feb", savings: 12, average: 5 },
+  { month: "Mar", savings: 8, average: 6 },
+  { month: "Apr", savings: 17, average: 9 },
+  { month: "May", savings: 22, average: 12 },
+  { month: "Jun", savings: 28, average: 15 }
 ]
 
 // Chart config for monthly savings
 const savingsChartConfig = {
   savings: {
-    label: "Carbon Savings",
+    label: "Your Carbon Savings",
     color: "rgba(16, 185, 129, 0.8)",
+  },
+  average: {
+    label: "Average User",
+    color: "rgba(99, 102, 241, 0.8)",
   },
 }
 
@@ -578,6 +584,11 @@ export default function ProfilePage() {
             <div className="flex items-center text-sm text-muted-foreground">
               <BadgeCheck className="h-4 w-4 mr-1 text-blue-500" />
               <span>Top 5% of eco-shoppers</span>
+            </div>
+            <div className="mt-2">
+              <Link href="/leaderboard" className="text-sm font-medium text-primary flex items-center hover:underline">
+                View Leaderboard <ArrowRightIcon className="h-3.5 w-3.5 ml-1" />
+              </Link>
             </div>
           </CardContent>
         </Card>
@@ -1111,55 +1122,96 @@ export default function ProfilePage() {
 
         <TabsContent value="impact">
           <div className="grid gap-6 md:grid-cols-5">
-            <Card className="md:col-span-3">
-              <CardHeader className="pb-2 pt-5">
+            <Card className="md:col-span-3 group hover:shadow-md transition-all">
+              <CardHeader className="pb-3 pt-6">
                 <CardTitle className="flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-primary" />
                   Monthly Carbon Savings
                 </CardTitle>
                 <CardDescription>Your environmental impact over time</CardDescription>
               </CardHeader>
-              <CardContent className="h-[300px] py-5">
+              <CardContent className="h-[350px] px-1 sm:px-4">
                 <ChartContainer config={savingsChartConfig}>
-                  <BarChart 
+                  <AreaChart 
                     accessibilityLayer 
                     data={monthlySavingsChartData}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
+                    margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
                   >
-                    <CartesianGrid vertical={false} />
-                    <XAxis
-                      dataKey="month"
-                      tickLine={false}
-                      tickMargin={10}
+                    <defs>
+                      <linearGradient id="colorSavings" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="var(--color-savings)" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="var(--color-savings)" stopOpacity={0.1}/>
+                      </linearGradient>
+                      <linearGradient id="colorAverage" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="var(--color-average)" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="var(--color-average)" stopOpacity={0.1}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                    <XAxis 
+                      dataKey="month" 
+                      tickLine={false} 
                       axisLine={false}
+                      tick={{ fill: 'var(--muted-foreground)' }}
+                    />
+                    <YAxis 
+                      tickLine={false} 
+                      axisLine={false} 
+                      tick={{ fill: 'var(--muted-foreground)' }}
+                      tickFormatter={(value) => `${value} kg`}
                     />
                     <ChartTooltip
-                      cursor={false}
+                      cursor={{ stroke: 'var(--muted-foreground)', strokeWidth: 1, strokeDasharray: '5 5' }}
                       content={
                         <ChartTooltipContent 
-                          hideLabel 
                           formatter={(value) => `${value} kg CO₂`}
                         />
                       }
                     />
-                    <Bar 
+                    <Area 
+                      type="monotone" 
                       dataKey="savings" 
-                      fill="var(--color-savings)" 
-                      radius={[4, 4, 0, 0]} 
+                      stroke="var(--color-savings)" 
+                      fillOpacity={0.4}
+                      fill="url(#colorSavings)" 
+                      strokeWidth={2}
+                      activeDot={{ r: 6, stroke: 'var(--color-savings)', strokeWidth: 2, fill: 'var(--background)' }}
+                      dot={{ r: 3, strokeWidth: 2, fill: 'var(--background)' }}
                     />
-                  </BarChart>
+                    <Area 
+                      type="monotone" 
+                      dataKey="average" 
+                      stroke="var(--color-average)" 
+                      fillOpacity={0.2}
+                      fill="url(#colorAverage)" 
+                      strokeWidth={2}
+                      strokeDasharray="5 5"
+                      activeDot={{ r: 6, stroke: 'var(--color-average)', strokeWidth: 2, fill: 'var(--background)' }}
+                      dot={{ r: 3, strokeWidth: 2, fill: 'var(--background)' }}
+                    />
+                  </AreaChart>
                 </ChartContainer>
               </CardContent>
-              <CardFooter className="border-t bg-muted/50 flex justify-center py-3">
-                <span className="flex items-center text-sm text-muted-foreground">
+              <CardFooter className="border-t bg-muted/50 flex justify-between py-3 px-6">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="h-3 w-3 rounded-sm bg-green-500"></span>
+                    <span className="text-sm">Your Savings</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="h-3 w-3 rounded-sm border border-dashed border-blue-500"></span>
+                    <span className="text-sm">Average User</span>
+                  </div>
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
                   <TrendingUp className="h-4 w-4 mr-1 text-green-500" />
-                  Trending up by 27% from last month
-                </span>
+                  <span>460% increase since January</span>
+                </div>
               </CardFooter>
             </Card>
 
-            <Card className="md:col-span-2">
-              <CardHeader className="pb-2 pt-5">
+            <Card className="md:col-span-2 group hover:shadow-md transition-all">
+              <CardHeader className="pb-3 pt-6">
                 <CardTitle className="flex items-center">
                   <Leaf className="h-5 w-5 mr-2 text-primary" />
                   Environmental Impact

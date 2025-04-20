@@ -26,7 +26,7 @@ import { Badge } from "@/components/ui/badge"
 
 import { useSession, signOut } from "next-auth/react"
 
-export default function Navbar() {
+export default function Navbar({ carbonApiEnabled }) {
   const { cart } = useCart()
   const { wishlistCount } = useWishlist()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -130,6 +130,12 @@ export default function Navbar() {
               <Package className="mr-1 h-4 w-4" />
               <span>Products</span>
             </Link>
+            {carbonApiEnabled && (
+              <Link href="/carbon-api" className={linkStyle('/carbon-api')}>
+                <Leaf className="mr-1 h-4 w-4" />
+                <span>Carbon API</span>
+              </Link>
+            )}
             <Link href="/about" className={linkStyle('/about')}>
               <Info className="mr-1 h-4 w-4" />
               <span>About</span>
@@ -302,6 +308,16 @@ export default function Navbar() {
             <Package className="mr-2 h-5 w-5" />
             Products
           </Link>
+          {carbonApiEnabled && (
+            <Link 
+              href="/carbon-api" 
+              className={mobileLinkStyle('/carbon-api')}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Leaf className="mr-2 h-5 w-5" />
+              <span className="flex-1">Carbon API</span>
+            </Link>
+          )}
           <Link 
             href="/about" 
             className={mobileLinkStyle('/about')}
