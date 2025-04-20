@@ -2,7 +2,6 @@
 
 GreenBasket is an eco-friendly e-commerce platform that helps users shop sustainably while tracking their environmental impact. Our mission is to make sustainable shopping accessible, transparent, and rewarding through carbon footprint tracking and eco-conscious products.
 
-![GreenBasket Logo](public/logo.png)
 
 ## 🌱 Core Features
 
@@ -89,7 +88,7 @@ GreenBasket is an eco-friendly e-commerce platform that helps users shop sustain
 To test the payment gateway in development or staging environments, use the following Razorpay test credentials:
 
 ### Test Cards
-- **Card Number**: `4111 1111 1111 1111`
+- **Card Number**: `4242 4242 4242 4242`
 - **Expiry**: Any future date (e.g., 12/25)
 - **CVV**: Any 3-digit number (e.g., 123)
 - **Name**: Any name
