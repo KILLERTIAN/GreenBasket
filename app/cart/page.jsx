@@ -169,7 +169,7 @@ export default function CartPage() {
         </div>
         
         <div>
-          <Card>
+          <Card className="py-4">
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
             </CardHeader>

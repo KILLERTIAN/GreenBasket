@@ -315,7 +315,7 @@ export default function OrderDetailsPage() {
         </div>
       </div>
       
-      <Card className="mb-8 overflow-hidden shadow-md border-gray-200 bg-white">
+      <Card className="mb-8 pb-4 overflow-hidden shadow-md border-gray-200 bg-white">
         <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 h-3 relative">
           <div 
             className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-500" 
