@@ -175,7 +175,7 @@ function CheckoutSuccess() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center h-20 w-20 rounded-full bg-green-100 text-green-600 mb-4">
+        <div className="inline-flex items-center justify-center h-20 w-20 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 mb-4">
           <CheckCircle className="h-10 w-10" />
         </div>
         <h1 className="text-3xl font-bold pt-4 py-4">Order Confirmed!</h1>
@@ -187,7 +187,7 @@ function CheckoutSuccess() {
         )}
       </div>
       
-      <Card className="mb-8 shadow-md bg-white">
+      <Card className="mb-8 shadow-md border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center pt-4 py-4">
             <Package className="h-5 w-5 mr-2 text-primary" />
@@ -263,7 +263,7 @@ function CheckoutSuccess() {
         </CardContent>
       </Card>
       
-      <Card className="mb-8 shadow-md bg-white">
+      <Card className="mb-8 shadow-md border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center pt-4 py-4">
             <Truck className="h-5 w-5 mr-2 text-primary" />
@@ -277,11 +277,11 @@ function CheckoutSuccess() {
               <div className="flex items-center gap-2">
                 <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xs">1</div>
                 <div className="h-1 flex-1 bg-primary" />
-                <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">2</div>
-                <div className="h-1 flex-1 bg-primary/20" />
-                <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">3</div>
-                <div className="h-1 flex-1 bg-primary/20" />
-                <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">4</div>
+                <div className="h-6 w-6 rounded-full bg-primary/20 dark:bg-primary/40 flex items-center justify-center text-xs">2</div>
+                <div className="h-1 flex-1 bg-primary/20 dark:bg-primary/40" />
+                <div className="h-6 w-6 rounded-full bg-primary/20 dark:bg-primary/40 flex items-center justify-center text-xs">3</div>
+                <div className="h-1 flex-1 bg-primary/20 dark:bg-primary/40" />
+                <div className="h-6 w-6 rounded-full bg-primary/20 dark:bg-primary/40 flex items-center justify-center text-xs">4</div>
               </div>
               <div className="flex justify-between mt-2 text-xs">
                 <span>Confirmed</span>
@@ -292,7 +292,7 @@ function CheckoutSuccess() {
             </div>
           </div>
           
-          <div className="rounded-lg border p-4 bg-muted/50">
+          <div className="rounded-lg border p-4 bg-muted/50 dark:bg-muted/10">
             <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5 text-primary" />
               <div>
@@ -305,7 +305,7 @@ function CheckoutSuccess() {
       </Card>
       
       <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-        <Button asChild variant="outline" size="lg" className="gap-2 bg-white hover:bg-gray-50">
+        <Button asChild variant="outline" size="lg" className="gap-2">
           <Link href={`/orders/${order.id}`}>
             View Order Details
             <ChevronRight className="h-4 w-4" />
