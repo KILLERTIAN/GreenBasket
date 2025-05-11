@@ -2,7 +2,11 @@
 
 GreenBasket is an eco-friendly e-commerce platform that helps users shop sustainably while tracking their environmental impact. Our mission is to make sustainable shopping accessible, transparent, and rewarding through carbon footprint tracking and eco-conscious products.
 
-![GreenBasket Logo](public/logo.png)
+**📌 About GreenBasket**
+
+GreenBasket is a sustainability-first e-commerce platform designed for conscious consumers. It features only recycled and upcycled products and calculates the environmental impact of each order in real time. From product discovery to checkout, users are guided by actionable eco-insights and their cumulative carbon footprint.
+
+Our mission: Make sustainable shopping accessible, transparent, and rewarding.
 
 ## 🌱 Core Features
 
@@ -38,25 +42,30 @@ GreenBasket is an eco-friendly e-commerce platform that helps users shop sustain
 
 3. **Product Detail Page** (`/products/[id]`)
    - Detailed product information, images, price, and sustainability metrics
-   - Compare environmental impact with conventional alternatives
+   - Compare the environmental impact with conventional alternatives
 
 4. **Cart Page** (`/cart`)
    - Review items, quantities, and price
-   - View real-time carbon footprint impact of your cart
+   - View the real-time carbon footprint impact of your cart
    - Apply eco-rewards or sustainability discounts
+     
+![image](https://github.com/user-attachments/assets/8e065d8a-1310-483c-acd4-7ab9dd61486a)
 
 5. **Checkout Page** (`/checkout`)
    - Secure payment processing through Razorpay
-   - Order summary with environmental impact visualization
+   - Order summary with environmental impact visualisation
 
 6. **Profile Page** (`/profile`)
    - User dashboard with order history
-   - Carbon footprint tracking and visualizations
+   - Carbon footprint tracking and visualisations
    - Personal sustainability metrics and achievements
+
+![image](https://github.com/user-attachments/assets/16f39f34-7315-4acc-a318-e9232609e16a)
+
 
 7. **Leaderboard Page** (`/leaderboard`)
    - Community rankings by carbon footprint and eco-purchases
-   - Visualizations showing top performers and trends over time
+   - Visualisations showing top performers and trends over time
 
 8. **About Page** (`/about`)
    - Information about GreenBasket's mission and values
@@ -65,6 +74,8 @@ GreenBasket is an eco-friendly e-commerce platform that helps users shop sustain
 9. **Carbon API Demo** (`/carbon-api`)
    - Live demonstration of the carbon intensity API integration
    - Real-time data on grid carbon intensity and renewable energy mix
+
+![image](https://github.com/user-attachments/assets/58d96d6e-49b8-48af-8b5d-42371b879d9e)
 
 ### Admin Pages
 
@@ -80,6 +91,8 @@ GreenBasket is an eco-friendly e-commerce platform that helps users shop sustain
    - View and process customer orders
    - Track carbon savings across all purchases
 
+
+
 4. **User Management** (`/admin/users`)
    - View and manage user accounts
    - Track sustainability leaders
@@ -89,17 +102,11 @@ GreenBasket is an eco-friendly e-commerce platform that helps users shop sustain
 To test the payment gateway in development or staging environments, use the following Razorpay test credentials:
 
 ### Test Cards
-- **Card Number**: `4111 1111 1111 1111`
+- **Card Number**: `4242 4242 4242 4242`
 - **Expiry**: Any future date (e.g., 12/25)
 - **CVV**: Any 3-digit number (e.g., 123)
 - **Name**: Any name
 
-For testing different payment scenarios:
-- **Successful Payment**: Use any OTP
-- **Failed Payment**: Use OTP "1234"
-
-### UPI Test Credentials
-- **UPI ID**: `success@razorpay`
 
 ## 👤 Admin Access
 
@@ -123,6 +130,47 @@ GreenBasket integrates with real-time carbon data sources to provide accurate su
 
 The API will work properly in hosted environments as it includes proper error handling and fallbacks to mock data when external APIs are unavailable.
 
+## 🔧 TECH STACK
+**🖥️ Frontend**
+
+Next.js – React framework with built-in routing & SSR
+
+Tailwind CSS – Utility-first CSS for rapid UI styling
+
+shadcn/ui – Accessible design system components
+
+Recharts – Data visualization for carbon metrics
+
+Axios – Lightweight HTTP requests for APIs
+
+**🧠 State & Aut**
+
+React Context API – Global state management
+
+NextAuth.js – Secure user authentication
+
+JWT & bcrypt – Token-based auth + password hashing
+
+**🔗 Backend / APIs**
+
+Node.js + Express – API server with routing and business logic
+
+MongoDB + Mongoose – NoSQL DB with schema-based modeling
+
+Carbon Intensity API – Real-time emissions data from the grid
+
+Custom REST APIs – Internal endpoints for sustainability data
+
+**💳 Payments**
+Stripe – Payment gateway for secure transactions
+
+
+**☁️ Deployment**
+Vercel – Serverless hosting with auto CI/CD
+
+Link to our site: https://green-basket0.vercel.app/
+
+
 ## 🧪 Environment Setup
 
 1. Clone the repository
@@ -139,9 +187,22 @@ npm install
 3. Set up environment variables
 Create a `.env.local` file with the following variables:
 ```
-NEXT_PUBLIC_API_URL=your_api_url
-NEXT_PUBLIC_RAZORPAY_KEY_ID=your_razorpay_key
-DATABASE_URL=your_database_connection_string
+# Database
+MONGODB_URI=youruri
+NODE_ENV=development 
+
+# Authentication
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=32digitkey
+
+# Google OAuth
+GOOGLE_CLIENT_ID=yourgoogleclientid
+GOOGLE_CLIENT_SECRET=yourclient-secret
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3
+STRIPE_SECRET_KEY=stripetestkey
+STRIPE_WEBHOOK_SECRET=whsec_test
 ```
 
 4. Run the development server
@@ -166,14 +227,20 @@ npm run start
 - **State Management**: React Context API
 - **Visualization**: Recharts
 - **Authentication**: NextAuth.js
-- **Payment Processing**: Razorpay
+- **Payment Processing**: Stripe
 - **API Integration**: Carbon Intensity API, National Grid ESO API
 - **Styling**: TailwindCSS with CSS variables for theming
 
 ## 🤝 Contributing
+We welcome contributions, suggestions, and new feature proposals.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Fork the repo
 
-## 📄 License
+Create a new branch (git checkout -b feature/your-feature)
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Commit your changes
+
+Push to your fork
+
+Open a Pull Request
+
